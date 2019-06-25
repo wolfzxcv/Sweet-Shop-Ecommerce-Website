@@ -5,13 +5,17 @@ import theme from './theme'
 const globalRules = `
   html {
     box-sizing: border-box;
-    width: 1024px;
-    margin: 0 auto;
     font-family: ${theme.fonts.main};
     color: ${theme.colors.green};
     background-color: #F0F8FF;
     font-weight: 500;
     font-size: 16px;
+  }
+
+  body{
+    width: 1024px;
+    margin: 0 auto;
+    background-color: ${theme.colors.white};
   }
   
   a{

@@ -34,7 +34,6 @@ padding: 0px 42px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-background-color: ${props => props.theme.colors.white};
 
 .logo{
   display: flex;
