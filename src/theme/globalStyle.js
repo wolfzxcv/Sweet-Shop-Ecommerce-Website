@@ -13,9 +13,14 @@ const globalRules = `
   }
 
   body{
-    width: 1024px;
     margin: 0 auto;
     background-color: ${theme.colors.white};
+  }
+
+  @media(min-width:1024px){
+    body{
+      width: 1024px;
+    }
   }
   
   a{

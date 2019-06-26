@@ -14,6 +14,7 @@ export default {
     orange,
   },
   fonts: {
-    main: 'sans-serif'
+    main: 'sans-serif',
+    title: "Dancing Script",
   },
 };

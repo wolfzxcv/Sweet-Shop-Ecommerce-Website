@@ -52,14 +52,12 @@ Footer.propTypes = {
 const StyledFooter = styled(Footer)`
 
 .mail{
-  padding: 5px 122px;
-  height: 116px;
   background-color: ${props => props.theme.colors.green};
   color: ${props => props.theme.colors.greenWhite};
   font-size: 24px;
+  font-family: ${props => props.theme.fonts.title};
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+
   .mail-left{
     display: flex;
     align-items: center;
@@ -68,12 +66,12 @@ const StyledFooter = styled(Footer)`
       width: 40px;
       height: 40px;
       background-image: url(${lightLogo});
+      background-repeat: no-repeat;
     }
   }
   .mail-right{
     height: 56px;
     display: flex;
-    justify-content: flex-end;
     color: ${props => props.theme.colors.green};
     .envelope{
       margin: 0;
@@ -117,22 +115,13 @@ const StyledFooter = styled(Footer)`
 }
 
 .footer{
-margin: 0;
-padding: 0 122px;
-height: 341px;
-background-color: ${props => props.theme.colors.greenWhite};
-display: flex;
-justify-content: space-between;
+  margin: 0;
+  background-color: ${props => props.theme.colors.greenWhite};
+  display: flex;
   .footer-left{
     width: 50%;
-    .logotype-lg-dark{
-      margin: 39px 0 115px 0;
-      width: 171px;
-      height: 26px;
-    }
     
     .icons{
-      padding: 30px 0;
       display: flex;
       div{
         padding-right: 8px;
@@ -145,19 +134,79 @@ justify-content: space-between;
     }
   }
 
-  .footer-right{
+}
+
+@media(min-width: 769px){
+  .mail{
+    padding: 5px 122px;
+    height: 116px;
+    justify-content: space-between;
+    align-items: center;
+    .mail-right{
+      justify-content: flex-end;
+    }
+  }
+
+  .footer{
+    padding: 0 122px;
+    height: 341px;
+    justify-content: space-between;
+
+    .logotype-lg-dark{
+      margin: 39px 0 115px 0;
+      width: 171px;
+      height: 26px;
+    }
+
+    .icons{
+      padding: 30px 0;
+    }
+
+    .footer-right{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    .good-day{
-      margin: 30px 0 46px 0;
-      width: 60px;
-      height:219px;
-      background-image: url(${goodDay});
-      background-repeat: no-repeat;
+      .good-day{
+        margin: 30px 0 46px 0;
+        width: 60px;
+        height:219px;
+        background-image: url(${goodDay});
+        background-repeat: no-repeat;
+      }
+      .copyright{
+        margin-bottom: 30px
+      }
     }
-    .copyright{
-      margin-bottom: 30px
+  }
+}
+
+
+@media(max-width: 768px){
+  .mail{
+    padding: 30px;
+    height: 186px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .footer{
+    padding-left: 30px;
+    height: 311px;
+    flex-direction: column;
+    align-items: flex-start;
+    .logotype-lg-dark{
+      margin: 39px 0;
+      width: 171px;
+      height: 26px;
+    }
+
+    .icons{
+      padding: 50px 0 20px 0;
+    }
+
+    .good-day{
+      display: none;
     }
   }
 }
