@@ -13,10 +13,15 @@ const Login = ({ className }) => {
   //   }
   //   fetchAPI();
   // }, []);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    alert('hei');
+  };
   return (
     <div className={className}>
       <div className='login'>
-        <form action=''>
+        <form onSubmit={handleSubmit}>
           <div className='urmail'>
             <div>
               <FontAwesomeIcon icon={faUser} />
@@ -134,7 +139,7 @@ const StyledLogin = styled(Login)`
         justify-content: center;
         align-items: center;
         &:hover {
-          cursor: not-allowed;
+          cursor: pointer;
           background-color: ${props => props.theme.colors.orange};
         }
       }
