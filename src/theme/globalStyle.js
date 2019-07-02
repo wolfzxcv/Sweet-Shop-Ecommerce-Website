@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
-import normalize from './normalize'
-import theme from './theme'
+import { createGlobalStyle } from 'styled-components';
+import normalize from './normalize';
+import theme from './theme';
 
 const globalRules = `
   html {
@@ -27,8 +27,8 @@ const globalRules = `
     text-decoration: none;
     color: inherit;
   }
-`
+`;
 
-const GlobalStyle = createGlobalStyle`${normalize} ${globalRules}`
+const GlobalStyle = createGlobalStyle`${normalize} ${globalRules}`;
 
-export default GlobalStyle
+export default GlobalStyle;

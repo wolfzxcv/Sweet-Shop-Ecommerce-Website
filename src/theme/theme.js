@@ -1,8 +1,8 @@
-//colors
-const green = '#3F5D45'
-const white = '#FFFFFF'
-const greenWhite = '#EAF0ED'
-const orange = '#FFE180'
+// colors
+const green = '#3F5D45';
+const white = '#FFFFFF';
+const greenWhite = '#EAF0ED';
+const orange = '#FFE180';
 
 export default {
   breakpoints: ['40em', '52em', '64em'],
@@ -15,6 +15,6 @@ export default {
   },
   fonts: {
     main: 'sans-serif',
-    title: "Dancing Script",
+    title: 'Dancing Script',
   },
 };

@@ -1,22 +1,16 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Cart = ({ className }) => {
-  return (
-    <div className={className}>
-      Cart
-    </div>
-  )
-}
-
-Cart.propTypes = {
-  className: PropTypes.string,
+  return <div className={className}>Cart</div>;
 };
 
-const StyledCart = styled(Cart)`
+Cart.propTypes = {
+  className: PropTypes.string.isRequired,
+};
 
-`;
+const StyledCart = styled(Cart)``;
 
 StyledCart.displayName = 'Cart';
 

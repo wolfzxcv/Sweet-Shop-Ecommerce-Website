@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import GlobalStyle from './theme/globalStyle';
 import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './theme/globalStyle';
 import theme from './theme/theme';
-import Header from './components/Header'
-import Home from './components/Home'
-import Product from './components/Product'
-import Login from './components/Login'
-import Cart from './components/Cart'
-import Footer from './components/Footer'
+import Header from './components/Header';
+import Home from './components/Home';
+import Product from './components/Product';
+import Login from './components/Login';
+import Cart from './components/Cart';
+import Footer from './components/Footer';
 
 function App() {
   return (
