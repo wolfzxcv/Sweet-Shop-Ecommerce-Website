@@ -172,7 +172,7 @@ const StyledLogin = styled(Login)`
         justify-content: center;
         align-items: center;
         &:hover {
-          cursor: not-allowed;
+          cursor: pointer;
           background-color: ${props => props.theme.colors.orange};
         }
       }

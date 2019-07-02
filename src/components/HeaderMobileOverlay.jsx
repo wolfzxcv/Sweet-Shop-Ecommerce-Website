@@ -15,20 +15,23 @@ const HeaderMobileOverlay = ({ className, menuClose }) => {
         role='presentation'
       >
         <div className='link'>
-          <div>
-            <Link to='/'>HOME</Link>
-          </div>
-          <div>
-            <Link to='/product'>PRODUCT</Link>
-          </div>
-          <div>
-            <Link to='/login'>LOGIN</Link>
-          </div>
-          <div>
-            <Link to='/cart'>
+          <Link to='/'>
+            <div>HOME</div>
+          </Link>
+
+          <Link to='/product'>
+            <div>PRODUCT</div>
+          </Link>
+
+          <Link to='/login'>
+            <div>LOGIN</div>
+          </Link>
+
+          <Link to='/cart'>
+            <div>
               <FontAwesomeIcon icon={faShoppingCart} />
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
     </header>
@@ -52,11 +55,22 @@ const StyledHeaderMobileOverlay = styled(HeaderMobileOverlay)`
     height: 100vh;
   }
   .link {
-    line-height: 4;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 400px;
+      height: 100px;
+      &:hover {
+        background-color: ${props => props.theme.colors.greenWhite};
+      }
+    }
   }
 `;
 
