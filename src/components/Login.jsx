@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 
 const Login = ({ className }) => {
-  // useEffect(() => {
-  //   async function fetchAPI() {
-  //     const response = await fetch('http://localhost:3000/api/smash/products');
-  //     const data = await response.json();
-  //     console.log(data);
-  //   }
-  //   fetchAPI();
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/products`
+      )
+      .then(result => console.log(result.data));
+    // https://vue-course-api.hexschool.io/api/smash/admin/products
+    // console.log(process.env.REACT_APP_API, process.env.REACT_APP_CUSTOM);
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
