@@ -12,7 +12,8 @@ const HeaderMobileOverlay = ({ className, menuClose }) => {
         className='whole-page'
         onClick={menuClose}
         onKeyDown={menuClose}
-        role='presentation'
+        role='button'
+        tabIndex='0'
       >
         <div className='link'>
           <Link to='/'>

@@ -17,9 +17,11 @@ const HeaderMobile = ({ className }) => {
   return (
     <header className={className}>
       <div
+        className='menuToggle'
         onClick={() => setMenuOpen(!menuOpen)}
         onKeyDown={() => setMenuOpen(!menuOpen)}
-        role='presentation'
+        role='button'
+        tabIndex='0'
       >
         {menuOpen ? (
           <FontAwesomeIcon icon={faTimes} />
@@ -32,7 +34,8 @@ const HeaderMobile = ({ className }) => {
       <div
         onClick={() => setMenuOpen(false)}
         onKeyDown={() => setMenuOpen(!menuOpen)}
-        role='presentation'
+        role='button'
+        tabIndex='0'
       >
         <Link to='/'>
           <img src={require('../svg/logotype-sm-dark.svg')} alt='logo' />
@@ -42,7 +45,8 @@ const HeaderMobile = ({ className }) => {
       <div
         onClick={() => setMenuOpen(false)}
         onKeyDown={() => setMenuOpen(!menuOpen)}
-        role='presentation'
+        role='button'
+        tabIndex='0'
       >
         <Link to='/cart'>
           <FontAwesomeIcon icon={faShoppingCart} />
@@ -63,6 +67,13 @@ const StyledHeaderMobile = styled(HeaderMobile)`
   justify-content: space-between;
   align-items: center;
   font-size: 24px;
+  .menuToggle {
+    width: 30px;
+    height: 30px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   img {
     width: 114px;
     height: 18px;
