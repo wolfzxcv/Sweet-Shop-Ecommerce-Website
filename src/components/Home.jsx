@@ -74,8 +74,6 @@ const Home = ({ className }) => {
       </div>
 
       <div className='no-reason' />
-
-      <div className='product' />
     </div>
   );
 };

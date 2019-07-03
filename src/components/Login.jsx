@@ -132,6 +132,9 @@ const StyledLogin = styled(Login)`
       height: 65px;
       background-color: ${props => props.theme.colors.orange};
       color: ${props => props.theme.colors.green};
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

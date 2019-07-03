@@ -10,7 +10,7 @@ const CartExample = ({ className }) => {
       <div>
         <img
           src={require('../images/photo-1499635842761-4f1f28fafcff.jpg')}
-          alt=''
+          alt='img'
         />
       </div>
       <div className='items'>

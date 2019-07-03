@@ -41,9 +41,6 @@ const StyledCartExampleM = styled(CartExampleM)`
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 20px;
-  /* div {
-    border: 1px solid red;
-  } */
 
   img {
     width: 110px;
@@ -98,6 +95,6 @@ const StyledCartExampleM = styled(CartExampleM)`
   }
 `;
 
-StyledCartExampleM.displayName = 'CartExampleM ';
+StyledCartExampleM.displayName = 'CartExampleM';
 
 export default StyledCartExampleM;

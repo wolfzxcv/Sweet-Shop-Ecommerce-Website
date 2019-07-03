@@ -18,20 +18,23 @@ const HeaderLaptop = ({ className }) => {
       </div>
 
       <div className='link'>
-        <div>
-          <Link to='/'>HOME</Link>
-        </div>
-        <div>
-          <Link to='/product'>PRODUCT</Link>
-        </div>
-        <div>
-          <Link to='/login'>LOGIN</Link>
-        </div>
-        <div>
-          <Link to='/cart'>
+        <Link to='/'>
+          <div>HOME</div>
+        </Link>
+
+        <Link to='/product'>
+          <div>PRODUCT</div>
+        </Link>
+
+        <Link to='/login'>
+          <div>LOGIN</div>
+        </Link>
+
+        <Link to='/cart'>
+          <div>
             <FontAwesomeIcon icon={faShoppingCart} />
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
     </header>
   );
@@ -65,10 +68,14 @@ const StyledHeaderLaptop = styled(HeaderLaptop)`
   .link {
     display: flex;
     div {
-      margin-left: 60px;
+      width: 100px;
       height: 40px;
       display: flex;
+      justify-content: center;
       align-items: center;
+      &:hover {
+        background-color: ${props => props.theme.colors.greenWhite};
+      }
     }
   }
 `;
