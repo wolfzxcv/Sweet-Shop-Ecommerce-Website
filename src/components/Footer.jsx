@@ -62,7 +62,9 @@ const StyledFooter = styled(Footer)`
     background-color: ${props => props.theme.colors.green};
     color: ${props => props.theme.colors.greenWhite};
     font-size: 24px;
-    font-family: ${props => props.theme.fonts.title};
+    font-family: 'Shadows Into Light', cursive;
+    letter-spacing: 5px;
+    font-weight: 700;
     display: flex;
 
     .mail-left {

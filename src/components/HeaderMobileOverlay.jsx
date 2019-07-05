@@ -41,7 +41,7 @@ const HeaderMobileOverlay = ({ className, menuClose }) => {
 
 HeaderMobileOverlay.propTypes = {
   className: PropTypes.string.isRequired,
-  menuClose: PropTypes.string.isRequired,
+  menuClose: PropTypes.func.isRequired,
 };
 
 const StyledHeaderMobileOverlay = styled(HeaderMobileOverlay)`

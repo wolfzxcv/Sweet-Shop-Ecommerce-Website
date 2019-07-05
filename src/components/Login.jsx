@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
+import { SharedContext } from '../contexts/SharedContext';
 
 const Login = ({ className }) => {
-  const [user, setUser] = useState({ email: '', password: '' });
+  const { user, setUser, isLogin, setIsLogin } = useContext(SharedContext);
+
+  if (isLogin) {
+    return <Redirect to='/manage' />;
+  }
 
   const handleLogin = user => {
-    console.log(user);
-
     axios
-      .post(
-        `${process.env.REACT_APP_API}/admin/signin`,
-        { user },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .then(result => console.log(result.data))
+      .post(`${process.env.REACT_APP_API}/admin/signin`, user)
+      .then(result => {
+        if (result.data.message === '登入成功') setIsLogin(true);
+      })
       .catch(error => {
         console.log(error.message);
       });
   };
+
   return (
     <div className={className}>
       <div className='login'>
+        <div className='title'>This is for admin sign in only</div>
         <form onSubmit={e => e.preventDefault() && false}>
           <div className='urmail'>
             <div>
@@ -37,7 +37,7 @@ const Login = ({ className }) => {
             <input
               type='email'
               placeholder='your email'
-              onChange={e => setUser({ ...user, email: e.target.value })}
+              onChange={e => setUser({ ...user, username: e.target.value })}
             />
           </div>
 
@@ -55,6 +55,7 @@ const Login = ({ className }) => {
             <input type='checkbox' value='remember me' />
             remember me
           </div>
+
           <button type='submit' onClick={() => handleLogin(user)}>
             Sign in
           </button>
@@ -84,6 +85,21 @@ Login.propTypes = {
 };
 
 const StyledLogin = styled(Login)`
+  .title {
+    padding: 0;
+    font-size: 24px;
+    width: 100%;
+    height: 65px;
+    background-color: ${props => props.theme.colors.orange};
+    color: ${props => props.theme.colors.green};
+    font-weight: 600;
+    font-family: 'Shadows Into Light', cursive;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   form {
     padding: 40px 0 0 0;
     display: flex;

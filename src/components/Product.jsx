@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import ProductContent from './ProductContent';
-import bgi from '../images/photo-1512484457149-266d165a4eca.jpg';
+import backgroundImage from '../images/photo-1512484457149-266d165a4eca.jpg';
 import text from '../svg/sm-想吃甜點是不需要理由的.svg';
 
 const Product = ({ className }) => {
@@ -20,7 +20,7 @@ const Product = ({ className }) => {
         <div>
           <FontAwesomeIcon icon={faCaretLeft} />
         </div>
-        <div>1 </div>
+        <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>
@@ -57,7 +57,7 @@ const StyledProduct = styled(Product)`
     }
   }
   .bgi {
-    background-image: url(${bgi});
+    background-image: url(${backgroundImage});
     background-size: cover;
     display: flex;
     justify-content: flex-end;
