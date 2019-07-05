@@ -26,8 +26,8 @@ function App() {
             <Route component={Product} path='/product' />
             <Route component={Login} path='/login' />
             <Route component={Cart} path='/cart' />
-            <Route component={PageNotFound} path='*' />
             <PrivateRoute component={Manage} path='/manage' />
+            <Route component={PageNotFound} />
           </Switch>
           <Footer />
         </Router>

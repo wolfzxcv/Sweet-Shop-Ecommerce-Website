@@ -10,10 +10,6 @@ import { SharedContext } from '../contexts/SharedContext';
 const Login = ({ className }) => {
   const { user, setUser, isLogin, setIsLogin } = useContext(SharedContext);
 
-  if (isLogin) {
-    return <Redirect to='/manage' />;
-  }
-
   const handleLogin = user => {
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
@@ -24,6 +20,23 @@ const Login = ({ className }) => {
         console.log(error.message);
       });
   };
+
+  const checkIfLogin = () => {
+    axios
+      .post(`${process.env.REACT_APP_API}/api/user/check`)
+      .then(result => {
+        if (result.data.success === true) setIsLogin(true);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
+  if (isLogin) {
+    return <Redirect to='/manage' />;
+  } else {
+    checkIfLogin();
+  }
 
   return (
     <div className={className}>
