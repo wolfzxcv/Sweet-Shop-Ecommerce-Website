@@ -12,6 +12,7 @@ import Product from './components/Product';
 import Login from './components/Login';
 import Cart from './components/Cart';
 import Footer from './components/Footer';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route component={Product} path='/product' />
             <Route component={Login} path='/login' />
             <Route component={Cart} path='/cart' />
+            <Route component={PageNotFound} path='*' />
             <PrivateRoute component={Manage} path='/manage' />
           </Switch>
           <Footer />
