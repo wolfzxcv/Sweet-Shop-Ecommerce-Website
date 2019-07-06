@@ -99,7 +99,7 @@ const StyledLogin = styled(Login)`
     justify-content: space-between;
     align-items: center;
     width: 390px;
-    height: 380px;
+    height: 280px;
     background-color: ${props => props.theme.colors.green};
     color: ${props => props.theme.colors.greenWhite};
 

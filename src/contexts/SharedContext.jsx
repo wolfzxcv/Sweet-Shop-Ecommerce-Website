@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export const SharedContext = createContext();
 
@@ -36,6 +37,9 @@ export default props => {
       .catch(error => {
         console.log(error.message);
       });
+    if (!isLogin) {
+      return <Redirect to='/login' />;
+    }
   };
 
   const value = {
