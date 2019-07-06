@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,32 +7,12 @@ import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Login = ({ className }) => {
-  const { user, setUser, isLogin, setIsLogin } = useContext(SharedContext);
-
-  const handleLogin = user => {
-    axios
-      .post(`${process.env.REACT_APP_API}/admin/signin`, user)
-      .then(result => {
-        if (result.data.message === '登入成功') setIsLogin(true);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
-  };
-
-  const checkIfLogin = () => {
-    axios
-      .post(`${process.env.REACT_APP_API}/api/user/check`)
-      .then(result => {
-        if (result.data.success === true) setIsLogin(true);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
-  };
+  const { user, setUser, isLogin, handleLogin, checkIfLogin } = useContext(
+    SharedContext
+  );
 
   if (isLogin) {
-    return <Redirect to='/manage' />;
+    return <Redirect to='/dashboard' />;
   } else {
     checkIfLogin();
   }
