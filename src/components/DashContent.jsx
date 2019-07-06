@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 //import { Flex, Box, Text } from 'rebass';
 import DashProductList from './DashProductList';
+import DashAddNewProduct from './DashAddNewProduct';
 import { SharedContext } from '../contexts/SharedContext';
 
 const DashContent = ({ className }) => {
@@ -43,6 +44,8 @@ const DashContent = ({ className }) => {
           />
         ))}
       </div>
+
+      <DashAddNewProduct />
     </div>
   );
 };
