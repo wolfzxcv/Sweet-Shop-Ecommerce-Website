@@ -6,7 +6,7 @@ const Dashboard = () => {
   const { user, isLogin, handleLogout } = useContext(SharedContext);
 
   if (!isLogin) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/login' />;
   }
 
   return (
