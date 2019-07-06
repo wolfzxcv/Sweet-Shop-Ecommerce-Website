@@ -9,6 +9,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import HeaderMobileOverlay from './HeaderMobileOverlay';
+import logoSmallDark from '../svg/logotype-sm-dark.svg';
 
 const HeaderMobile = ({ className }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,7 +39,7 @@ const HeaderMobile = ({ className }) => {
         tabIndex='0'
       >
         <Link to='/'>
-          <img src={require('../svg/logotype-sm-dark.svg')} alt='logo' />
+          <img src={logoSmallDark} alt='logo' />
         </Link>
       </div>
 

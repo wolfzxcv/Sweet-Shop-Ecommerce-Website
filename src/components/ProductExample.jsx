@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import product from '../images/photo-1499635842761-4f1f28fafcff.jpg';
+import product from '../images/cake.png';
 
 const ProductExample = ({ className }) => {
   return (

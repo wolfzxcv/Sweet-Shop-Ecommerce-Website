@@ -8,10 +8,7 @@ const CartExample = ({ className }) => {
   return (
     <div className={className}>
       <div>
-        <img
-          src={require('../images/photo-1499635842761-4f1f28fafcff.jpg')}
-          alt='img'
-        />
+        <img src={require('../images/cake.png')} alt='img' />
       </div>
       <div className='items'>
         <div>Best Sweet</div>

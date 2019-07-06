@@ -18,7 +18,7 @@ const DashContent = ({ className }) => {
       )
       .then(result => setProduct(result.data.products));
   }, [setProduct]);
-  // console.log(product);
+  console.log(product);
   return (
     <div className={className}>
       <button type='button'>Add new porduct</button>

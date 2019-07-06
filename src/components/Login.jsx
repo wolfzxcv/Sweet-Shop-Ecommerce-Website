@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../contexts/SharedContext';
+import icFacebook from '../svg/ic-facebook-logotype.svg';
+import icGoogle from '../svg/ic-google.svg';
+import icYahoo from '../svg/ic-yahoo.svg';
 
 const Login = ({ className }) => {
   const { user, setUser, isLogin, handleLogin, checkIfLogin } = useContext(
@@ -56,16 +59,13 @@ const Login = ({ className }) => {
 
       <div className='socialmedia'>
         <div>
-          <img
-            src={require('../svg/ic-facebook-logotype.svg')}
-            alt='ic-facebook'
-          />
+          <img src={icFacebook} alt='ic-facebook' />
         </div>
         <div>
-          <img src={require('../svg/ic-google.svg')} alt='ic-google' />
+          <img src={icGoogle} alt='ic-google' />
         </div>
         <div>
-          <img src={require('../svg/ic-yahoo.svg')} alt='ic-yahoo' />
+          <img src={icYahoo} alt='ic-yahoo' />
         </div>
       </div>
     </div>

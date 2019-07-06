@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import lightLogo from '../svg/logo-light.svg';
 import goodDay from '../svg/sm-今天是個吃甜點的好日子.svg';
+import logoDark from '../svg/logotype-lg-dark.svg';
+import icFacebook from '../svg/ic-facebook.svg';
+import icLine from '../svg/ic-line@.svg';
 
 const Footer = ({ className }) => {
   return (
@@ -28,7 +31,7 @@ const Footer = ({ className }) => {
       <div className='footer'>
         <div className='footer-left'>
           <div className='logotype-lg-dark'>
-            <img src={require('../svg/logotype-lg-dark.svg')} alt='logo' />
+            <img src={logoDark} alt='logo' />
           </div>
           <div>
             <div>+353-87-654-3210</div>
@@ -37,10 +40,10 @@ const Footer = ({ className }) => {
           </div>
           <div className='icons'>
             <div>
-              <img src={require('../svg/ic-facebook.svg')} alt='ic-facebook' />
+              <img src={icFacebook} alt='ic-facebook' />
             </div>
             <div>
-              <img src={require('../svg/ic-line@.svg')} alt='ic-lineo' />
+              <img src={icLine} alt='ic-lineo' />
             </div>
           </div>
         </div>

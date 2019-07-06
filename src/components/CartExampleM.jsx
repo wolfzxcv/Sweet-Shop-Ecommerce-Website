@@ -7,10 +7,7 @@ const CartExampleM = ({ className }) => {
     <div className={className}>
       <div className='upper'>
         <div className='left'>
-          <img
-            src={require('../images/photo-1499635842761-4f1f28fafcff.jpg')}
-            alt=''
-          />
+          <img src={require('../images/cake.png')} alt='' />
         </div>
 
         <div className='right'>
