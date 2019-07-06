@@ -7,6 +7,7 @@ export const SharedContext = createContext();
 export default props => {
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
+  const [product, setProduct] = useState([]);
 
   const handleLogin = user => {
     axios
@@ -42,14 +43,19 @@ export default props => {
     }
   };
 
+  const getProductList = () => {};
+
   const value = {
     user,
     setUser,
+    product,
+    setProduct,
     isLogin,
     setIsLogin,
     handleLogin,
     handleLogout,
     checkIfLogin,
+    getProductList,
   };
 
   return <SharedContext.Provider value={value} {...props} />;
