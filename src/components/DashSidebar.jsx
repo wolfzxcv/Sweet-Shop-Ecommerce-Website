@@ -19,7 +19,7 @@ DashSidebar.propTypes = {
 
 const StyledDashSidebar = styled(DashSidebar)`
   div {
-    padding-left: 8px;
+    padding: 0 8px 0 8px;
     height: 65px;
     line-height: 2;
     font-family: 'Shadows Into Light', cursive;

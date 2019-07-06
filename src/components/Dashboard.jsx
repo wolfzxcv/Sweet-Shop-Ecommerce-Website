@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Flex, Box, Text } from 'rebass';
 import { SharedContext } from '../contexts/SharedContext';
 import DashSidebar from './DashSidebar';
 import DashContent from './DashContent';
@@ -12,23 +13,27 @@ const Dashboard = ({ className }) => {
 
   return (
     <div className={className}>
-      <header>
-        Dashboard
-        <div
-          role='button'
-          tabIndex='0'
-          onKeyDown={handleLogout}
+      <Flex pl={1} color='green' bg='orange' alignItems='center'>
+        <Text fontWeight='bold'>Dashboard</Text>
+        <Box mx='auto' />
+        <Text
+          className='button'
+          p={1}
+          width='80px'
+          color='white'
+          bg='green'
           onClick={() => {
             handleLogout(user);
           }}
         >
-          Log out
-        </div>
-      </header>
-      <div className='content'>
+          <Flex justifyContent='center'> Log out </Flex>
+        </Text>
+      </Flex>
+
+      <Flex>
         <DashSidebar className='left' />
         <DashContent className='right' />
-      </div>
+      </Flex>
     </div>
   );
 };
@@ -38,40 +43,12 @@ Dashboard.propTypes = {
 };
 
 const StyledDashboard = styled(Dashboard)`
-  header {
-    padding-left: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: ${props => props.theme.colors.orange};
-    div {
-      width: 80px;
-      height: 30px;
-      background-color: ${props => props.theme.colors.green};
-      color: ${props => props.theme.colors.white};
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      &:hover {
-        background-color: ${props => props.theme.colors.greenWhite};
-        color: ${props => props.theme.colors.green};
-        cursor: pointer;
-      }
-    }
-  }
-
-  .content {
-    display: flex;
-    .left,
-    .right {
-      display: flex;
-      flex-direction: column;
-    }
-    .left {
-      width: 13%;
-    }
-    .right {
-      width: 87%;
+  .button {
+    height: 28px;
+    &:hover {
+      background-color: ${props => props.theme.colors.greenWhite};
+      color: ${props => props.theme.colors.green};
+      cursor: pointer;
     }
   }
 `;

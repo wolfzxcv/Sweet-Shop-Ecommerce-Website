@@ -2,11 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-//import DashProductList from './DashProductList';
-//import { SharedContext } from '../contexts/SharedContext';
+//import { Flex, Box, Text } from 'rebass';
+import DashProductList from './DashProductList';
+import { SharedContext } from '../contexts/SharedContext';
 
 const DashContent = ({ className }) => {
-  // const { product, setProduct } = useContext(SharedContext);
+  const { product, setProduct } = useContext(SharedContext);
 
   useEffect(() => {
     axios
@@ -15,27 +16,32 @@ const DashContent = ({ className }) => {
           process.env.REACT_APP_CUSTOM
         }/admin/products`
       )
-      .then(result => console.log(result.data));
-  }, []);
-
+      .then(result => setProduct(result.data.products));
+  }, [setProduct]);
+  // console.log(product);
   return (
     <div className={className}>
-      <button>Add new porduct</button>
+      <button type='button'>Add new porduct</button>
+      <div className='table-head'>
+        <div className='wide'>Category</div>
+        <div className='wider'>Name</div>
+        <div>Price</div>
+        <div>Enabled</div>
+        <div>Edit</div>
+        <div>Delete</div>
+      </div>
+
       <div>
-        {/* {product.map(item => (
+        {product.map(item => (
           <DashProductList
             key={item.id}
             id={item.id}
-            title={item.product}
             category={item.category}
-            origPrice={item.origin_price}
+            title={item.title}
             price={item.price}
-            imageUrl={item.imageUrl}
             isEnabled={item.is_enabled}
-            content={item.content}
-            description={item.description}
           />
-        ))} */}
+        ))}
       </div>
     </div>
   );
@@ -45,7 +51,24 @@ DashContent.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
-const StyledDashContent = styled(DashContent)``;
+const StyledDashContent = styled(DashContent)`
+  div {
+    border: 1px solid red;
+  }
+  .table-head {
+    display: flex;
+    justify-content: space-between;
+    .wide {
+      flex: 2;
+    }
+    .wider {
+      flex: 5;
+    }
+    div {
+      flex: 1;
+    }
+  }
+`;
 
 StyledDashContent.displayName = 'DashContent';
 

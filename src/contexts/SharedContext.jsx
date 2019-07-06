@@ -40,8 +40,6 @@ export default props => {
     }
   };
 
-  const getProductList = () => {};
-
   const value = {
     user,
     setUser,
@@ -52,7 +50,6 @@ export default props => {
     handleLogin,
     handleLogout,
     checkIfLogin,
-    getProductList,
   };
 
   return <SharedContext.Provider value={value} {...props} />;
