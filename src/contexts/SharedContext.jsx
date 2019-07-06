@@ -23,10 +23,7 @@ export default props => {
   const handleLogout = user => {
     axios
       .post(`${process.env.REACT_APP_API}/logout`, user)
-      .then(setIsLogin(false))
-      .catch(error => {
-        console.log(error.message);
-      });
+      .then(setIsLogin(false));
   };
 
   const checkIfLogin = () => {

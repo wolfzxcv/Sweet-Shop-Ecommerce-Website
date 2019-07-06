@@ -20,7 +20,6 @@ const Dashboard = ({ className }) => {
           onKeyDown={handleLogout}
           onClick={() => {
             handleLogout(user);
-            window.location.reload();
           }}
         >
           Log out
