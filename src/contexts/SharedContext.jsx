@@ -10,9 +10,10 @@ export default props => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [product, setProduct] = useState([]);
   const [form, setForm] = useState({
+    id: '',
     title: '',
     category: '',
-    is_enabled: null,
+    is_enabled: 1,
     price: '',
     unit: '',
     description: '',
@@ -61,15 +62,84 @@ export default props => {
       form.unit < 999 &&
       form.unit > 0
     ) {
-      alert(
-        `${form.title} ${form.category} ${form.price} ${form.unit}\ntest pass`
-      );
+      setForm(form);
+      uploadNewProduct(form);
       setIsModalOpen(false);
+      setForm({
+        id: '',
+        title: '',
+        category: '',
+        is_enabled: 1,
+        price: '',
+        unit: '',
+        description: '',
+        content: '',
+        image: '',
+        imageUrl: '',
+      });
+      alert('Yay!! Upload new product successfully!!');
+      window.location.reload();
     } else {
       alert(
-        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 999`
+        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 99`
       );
     }
+  };
+
+  const uploadNewProduct = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/product`,
+        { data: form }
+      )
+      .then(result => {
+        if (result.data.success) console.log('Upload new product successfully');
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
+  const correctProduct = id => {
+    setForm(product.find(x => x.id === id));
+    setIsModalOpen(true);
+  };
+
+  const updateProduct = id => {
+    console.log(id);
+    axios
+      .put(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/product/${id}`,
+        { data: form }
+      )
+      .then(result => {
+        console.log(result.data.message);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
+  const deleteProduct = id => {
+    console.log(id);
+    axios
+      .delete(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/product/${id}`
+      )
+      .then(result => {
+        console.log(result.data.message);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
   };
 
   const value = {
@@ -88,6 +158,9 @@ export default props => {
     handleLogout,
     checkIfLogin,
     handleForm,
+    correctProduct,
+    updateProduct,
+    deleteProduct,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

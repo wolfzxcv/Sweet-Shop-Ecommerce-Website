@@ -1,20 +1,28 @@
 import React, { useContext } from 'react';
 import Modal from 'styled-react-modal';
 import styled from 'styled-components';
-import { Button, Flex } from 'rebass';
+import { Button, Flex, Image } from 'rebass';
 import { SharedContext } from '../contexts/SharedContext';
 
 const DashAddNewProduct = () => {
-  const { isModalOpen, setIsModalOpen, form, setForm, handleForm } = useContext(
-    SharedContext
-  );
+  const {
+    isModalOpen,
+    setIsModalOpen,
+    form,
+    setForm,
+    updateProduct,
+    handleForm,
+  } = useContext(SharedContext);
 
+  const id = form.id;
   return (
     <StyledModal
       isOpen={isModalOpen}
       onEscapeKeydown={() => setIsModalOpen(false)}
     >
-      <StyledTitle>Add New Product || Norge elsker meg</StyledTitle>
+      <StyledTitle>
+        {id === '' ? 'Add New Product' : `Edit ${form.title}`}
+      </StyledTitle>
 
       <form
         onSubmit={e => {
@@ -23,7 +31,7 @@ const DashAddNewProduct = () => {
         }}
       >
         <Flex m={2} justifyContent='space-around'>
-          <StyledFlex flexDirection='column' justifyContent='flex-start'>
+          <StyledFlex flexDirection='column' justifyContent='center'>
             <div>Input image url</div>
             <input
               type='text'
@@ -31,12 +39,7 @@ const DashAddNewProduct = () => {
               value={form.imageUrl}
               onChange={e => setForm({ ...form, imageUrl: e.target.value })}
             />
-            <div>or Upload image</div>
-            <input
-              type='file'
-              value={form.image}
-              onChange={e => setForm({ ...form, image: e.target.value })}
-            />
+            <Image width='240px' src={form.imageUrl} borderRadius={8} />
           </StyledFlex>
           <Flex flexDirection='column' justifyContent='space-around'>
             <div>
@@ -63,7 +66,13 @@ const DashAddNewProduct = () => {
 
             <div>
               Enabled
-              <input type='checkbox' checked={form.is_enabled} />
+              <select
+                value={form.is_enabled}
+                onChange={e => setForm({ ...form, is_enabled: e.target.value })}
+              >
+                <option value='1'>YES</option>
+                <option value='0'>NO</option>
+              </select>
             </div>
 
             <div>
@@ -83,8 +92,8 @@ const DashAddNewProduct = () => {
               Amount
               <input
                 type='text'
-                placeholder='999'
-                maxLength='3'
+                placeholder='99'
+                maxLength='2'
                 size='1'
                 style={{ direction: 'rtl' }}
                 value={form.unit}
@@ -136,7 +145,7 @@ const DashAddNewProduct = () => {
           ml='30px'
           width='150px'
           bg='green'
-          onClick={handleForm}
+          onClick={id === '' ? handleForm : () => updateProduct(id)}
         >
           Submit
         </StyledButton>

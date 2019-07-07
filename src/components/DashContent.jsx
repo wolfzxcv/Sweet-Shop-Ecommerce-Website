@@ -16,11 +16,13 @@ const DashContent = ({ className }) => {
       .get(
         `${process.env.REACT_APP_API}/api/${
           process.env.REACT_APP_CUSTOM
-        }/admin/products`
+        }/products/all`
       )
       .then(result => setProduct(result.data.products));
   }, [setProduct]);
+
   console.log(product);
+
   return (
     <ModalProvider>
       <div className={className}>
@@ -40,12 +42,13 @@ const DashContent = ({ className }) => {
           <div className='wide'>Category</div>
           <div className='wider'>Name</div>
           <div>Price</div>
+          <div>Amount</div>
           <div>Enabled</div>
           <div>Edit</div>
           <div>Delete</div>
         </div>
 
-        <div>
+        <div className='product-list'>
           {product.map(item => (
             <DashProductList
               key={item.id}
@@ -53,11 +56,16 @@ const DashContent = ({ className }) => {
               category={item.category}
               title={item.title}
               price={item.price}
-              isEnabled={item.is_enabled}
+              isEnabled={item.is_enabled.toString()}
+              amount={item.unit}
             />
           ))}
         </div>
-
+        <div>
+          {`There are  
+          ${product.length}  
+          products, add more, Go Go Go!`}
+        </div>
         <DashAddNewProduct />
       </div>
     </ModalProvider>
@@ -70,8 +78,8 @@ DashContent.propTypes = {
 
 const StyledDashContent = styled(DashContent)`
   margin: 0 auto;
-  div {
-    border: 1px solid red;
+  margin-bottom: 30px;
+  .product-list {
   }
   .add-new-porduct {
     &:hover {
@@ -81,9 +89,12 @@ const StyledDashContent = styled(DashContent)`
     }
   }
   .table-head {
+    background-color: ${props => props.theme.colors.green};
+    color: ${props => props.theme.colors.orange};
     display: flex;
     justify-content: space-between;
     .wide {
+      padding-left: 3px;
       flex: 2;
     }
     .wider {
