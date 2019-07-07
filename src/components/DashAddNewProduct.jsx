@@ -5,7 +5,10 @@ import { Button, Flex } from 'rebass';
 import { SharedContext } from '../contexts/SharedContext';
 
 const DashAddNewProduct = () => {
-  const { isModalOpen, setIsModalOpen } = useContext(SharedContext);
+  const { isModalOpen, setIsModalOpen, form, setForm, handleForm } = useContext(
+    SharedContext
+  );
+
   return (
     <StyledModal
       isOpen={isModalOpen}
@@ -22,9 +25,18 @@ const DashAddNewProduct = () => {
         <Flex m={2} justifyContent='space-around'>
           <StyledFlex flexDirection='column' justifyContent='flex-start'>
             <div>Input image url</div>
-            <input type='text' placeholder='Input image url' />
+            <input
+              type='text'
+              placeholder='Input image url'
+              value={form.imageUrl}
+              onChange={e => setForm({ ...form, imageUrl: e.target.value })}
+            />
             <div>or Upload image</div>
-            <input type='file' />
+            <input
+              type='file'
+              value={form.image}
+              onChange={e => setForm({ ...form, image: e.target.value })}
+            />
           </StyledFlex>
           <Flex flexDirection='column' justifyContent='space-around'>
             <div>
@@ -33,17 +45,25 @@ const DashAddNewProduct = () => {
                 type='text'
                 placeholder='write your product name'
                 size='50'
+                value={form.title}
+                onChange={e => setForm({ ...form, title: e.target.value })}
               />
             </div>
 
             <div>
               Category
-              <input type='text' placeholder='write your category' size='20' />
+              <input
+                type='text'
+                placeholder='write your category'
+                size='20'
+                value={form.category}
+                onChange={e => setForm({ ...form, category: e.target.value })}
+              />
             </div>
 
             <div>
               Enabled
-              <input type='checkbox' />
+              <input type='checkbox' checked={form.is_enabled} />
             </div>
 
             <div>
@@ -54,6 +74,8 @@ const DashAddNewProduct = () => {
                 maxLength='5'
                 size='5'
                 style={{ direction: 'rtl' }}
+                value={form.price}
+                onChange={e => setForm({ ...form, price: e.target.value })}
               />
             </div>
 
@@ -63,19 +85,35 @@ const DashAddNewProduct = () => {
                 type='text'
                 placeholder='999'
                 maxLength='3'
-                size='3'
+                size='1'
                 style={{ direction: 'rtl' }}
+                value={form.unit}
+                onChange={e => setForm({ ...form, unit: e.target.value })}
               />
             </div>
 
             <div>
               <div>Allergy Advice</div>
-              <textarea placeholder='Allergy Advice...' rows='3' cols='60' />
+              <textarea
+                placeholder='Allergy Advice...'
+                rows='3'
+                cols='60'
+                value={form.description}
+                onChange={e =>
+                  setForm({ ...form, description: e.target.value })
+                }
+              />
             </div>
 
             <div>
               <div>Details</div>
-              <textarea placeholder='Details...' rows='10' cols='60' />
+              <textarea
+                placeholder='Details...'
+                rows='10'
+                cols='60'
+                value={form.content}
+                onChange={e => setForm({ ...form, content: e.target.value })}
+              />
             </div>
           </Flex>
         </Flex>
@@ -98,10 +136,7 @@ const DashAddNewProduct = () => {
           ml='30px'
           width='150px'
           bg='green'
-          onClick={() => {
-            alert('Love you');
-            setIsModalOpen(false);
-          }}
+          onClick={handleForm}
         >
           Submit
         </StyledButton>

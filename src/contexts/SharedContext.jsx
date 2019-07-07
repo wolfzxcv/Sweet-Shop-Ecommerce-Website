@@ -7,8 +7,19 @@ export const SharedContext = createContext();
 export default props => {
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
-  const [product, setProduct] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [product, setProduct] = useState([]);
+  const [form, setForm] = useState({
+    title: '',
+    category: '',
+    is_enabled: null,
+    price: '',
+    unit: '',
+    description: '',
+    content: '',
+    image: '',
+    imageUrl: '',
+  });
 
   const handleLogin = user => {
     axios
@@ -41,18 +52,42 @@ export default props => {
     }
   };
 
+  const handleForm = () => {
+    if (
+      form.title.trim().length > 5 &&
+      form.category.trim().length > 0 &&
+      form.price < 99.99 &&
+      form.price > 0 &&
+      form.unit < 999 &&
+      form.unit > 0
+    ) {
+      alert(
+        `${form.title} ${form.category} ${form.price} ${form.unit}\ntest pass`
+      );
+      setIsModalOpen(false);
+    } else {
+      alert(
+        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 999`
+      );
+    }
+  };
+
   const value = {
     user,
     setUser,
+    form,
+    setForm,
     product,
     setProduct,
     isLogin,
     setIsLogin,
     isModalOpen,
     setIsModalOpen,
+
     handleLogin,
     handleLogout,
     checkIfLogin,
+    handleForm,
   };
 
   return <SharedContext.Provider value={value} {...props} />;
