@@ -20,7 +20,9 @@ const HeaderMobile = ({ className }) => {
       <div
         className='menuToggle'
         onClick={() => setMenuOpen(!menuOpen)}
-        onKeyDown={() => setMenuOpen(!menuOpen)}
+        onKeyDown={e => {
+          if (e.keyCode === 27) setMenuOpen(!menuOpen);
+        }}
         role='button'
         tabIndex='0'
       >
@@ -34,7 +36,7 @@ const HeaderMobile = ({ className }) => {
 
       <div
         onClick={() => setMenuOpen(false)}
-        onKeyDown={() => setMenuOpen(!menuOpen)}
+        onKeyDown={() => setMenuOpen(false)}
         role='button'
         tabIndex='0'
       >
@@ -45,7 +47,7 @@ const HeaderMobile = ({ className }) => {
 
       <div
         onClick={() => setMenuOpen(false)}
-        onKeyDown={() => setMenuOpen(!menuOpen)}
+        onKeyDown={() => setMenuOpen(false)}
         role='button'
         tabIndex='0'
       >
