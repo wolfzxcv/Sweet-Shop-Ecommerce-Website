@@ -2,13 +2,16 @@ import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { ModalProvider } from 'styled-react-modal';
 //import { Flex, Box, Text } from 'rebass';
 import DashProductList from './DashProductList';
 import DashAddNewProduct from './DashAddNewProduct';
 import { SharedContext } from '../contexts/SharedContext';
 
 const DashContent = ({ className }) => {
-  const { product, setProduct } = useContext(SharedContext);
+  const { isModalOpen, setIsModalOpen, product, setProduct } = useContext(
+    SharedContext
+  );
 
   useEffect(() => {
     axios
@@ -21,32 +24,36 @@ const DashContent = ({ className }) => {
   }, [setProduct]);
   console.log(product);
   return (
-    <div className={className}>
-      <button type='button'>Add new porduct</button>
-      <div className='table-head'>
-        <div className='wide'>Category</div>
-        <div className='wider'>Name</div>
-        <div>Price</div>
-        <div>Enabled</div>
-        <div>Edit</div>
-        <div>Delete</div>
-      </div>
+    <ModalProvider>
+      <div className={className}>
+        <button type='button' onClick={() => setIsModalOpen(!isModalOpen)}>
+          Add new porduct
+        </button>
+        <div className='table-head'>
+          <div className='wide'>Category</div>
+          <div className='wider'>Name</div>
+          <div>Price</div>
+          <div>Enabled</div>
+          <div>Edit</div>
+          <div>Delete</div>
+        </div>
 
-      <div>
-        {product.map(item => (
-          <DashProductList
-            key={item.id}
-            id={item.id}
-            category={item.category}
-            title={item.title}
-            price={item.price}
-            isEnabled={item.is_enabled}
-          />
-        ))}
-      </div>
+        <div>
+          {product.map(item => (
+            <DashProductList
+              key={item.id}
+              id={item.id}
+              category={item.category}
+              title={item.title}
+              price={item.price}
+              isEnabled={item.is_enabled}
+            />
+          ))}
+        </div>
 
-      <DashAddNewProduct />
-    </div>
+        <DashAddNewProduct />
+      </div>
+    </ModalProvider>
   );
 };
 

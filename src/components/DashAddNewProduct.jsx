@@ -1,11 +1,22 @@
-import React from 'react';
-import Modal, { ModalProvider } from 'styled-react-modal';
+import React, { useContext } from 'react';
+import Modal from 'styled-react-modal';
+import { SharedContext } from '../contexts/SharedContext';
 
 const DashAddNewProduct = () => {
+  const { isModalOpen, setIsModalOpen } = useContext(SharedContext);
   return (
-    <ModalProvider>
-      <FancyModalButton />
-    </ModalProvider>
+    <div>
+      <StyledModal
+        isOpen={isModalOpen}
+        onBackgroundClick={() => setIsModalOpen(!isModalOpen)}
+        onEscapeKeydown={() => setIsModalOpen(!isModalOpen)}
+      >
+        <span>I am a modal!</span>
+        <button type='button' onClick={() => setIsModalOpen(!isModalOpen)}>
+          Close me HOOK
+        </button>
+      </StyledModal>
+    </div>
   );
 };
 
@@ -17,42 +28,5 @@ const StyledModal = Modal.styled`
   justify-content: center;
   background-color: ${props => props.theme.colors.white};
 `;
-
-class FancyModalButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false,
-    };
-
-    this.toggleModal = this.toggleModal.bind(this);
-  }
-
-  toggleModal() {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-  }
-
-  render() {
-    const { isOpen } = this.state;
-    return (
-      <div>
-        <button type='button' onClick={this.toggleModal}>
-          Click me
-        </button>
-        <StyledModal
-          isOpen={isOpen}
-          onBackgroundClick={this.toggleModal}
-          onEscapeKeydown={this.toggleModal}
-        >
-          <span>I am a modal!</span>
-          <button type='button' onClick={this.toggleModal}>
-            Close me
-          </button>
-        </StyledModal>
-      </div>
-    );
-  }
-}
 
 export default DashAddNewProduct;

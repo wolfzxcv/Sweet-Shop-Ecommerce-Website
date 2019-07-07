@@ -8,6 +8,7 @@ export default props => {
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
   const [product, setProduct] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogin = user => {
     axios
@@ -47,6 +48,8 @@ export default props => {
     setProduct,
     isLogin,
     setIsLogin,
+    isModalOpen,
+    setIsModalOpen,
     handleLogin,
     handleLogout,
     checkIfLogin,
