@@ -24,25 +24,34 @@ const DashProductList = ({
     >
       <div className='wide'>{category}</div>
       <div className='wider'>{title}</div>
-      <div>{price}</div>
-      <div>{amount}</div>
-      <div>{isEnabled === '0' ? 'NO' : 'YES'}</div>
-      <div
+
+      <Flex justifyContent='flex-end'>{price}</Flex>
+
+      <Flex justifyContent='flex-end'>{amount}</Flex>
+
+      <Flex className='enabled' justifyContent='center'>
+        {isEnabled === '0' ? 'NO' : 'YES'}
+      </Flex>
+      <Flex
+        className='add-hover'
+        justifyContent='center'
         onClick={() => correctProduct(id)}
         onKeyDown={correctProduct}
         role='button'
         tabIndex='0'
       >
         Edit
-      </div>
-      <div
+      </Flex>
+      <Flex
+        className='add-hover'
+        justifyContent='center'
         onClick={() => deleteProduct(id)}
         onKeyDown={deleteProduct}
         role='button'
         tabIndex='0'
       >
         Delete
-      </div>
+      </Flex>
     </Flex>
   );
 };
@@ -67,9 +76,9 @@ const StyledDashProductList = styled(DashProductList)`
   }
 
   div {
-    padding-left: 5px;
-    border-right: 1px solid ${props => props.theme.colors.greenWhite};
+    padding: 0 6px 0 6px;
     line-height: 3;
+    border-left: 1px solid ${props => props.theme.colors.greenWhite};
   }
 
   .wide {
@@ -80,6 +89,18 @@ const StyledDashProductList = styled(DashProductList)`
   }
   div {
     flex: 1;
+  }
+
+  .enabled {
+    color: ${props => (props.isEnabled === '0' ? 'red' : 'green')};
+  }
+
+  .add-hover {
+    &:hover {
+      cursor: pointer;
+      color: ${props => props.theme.colors.orange};
+      background-color: ${props => props.theme.colors.green};
+    }
   }
 `;
 

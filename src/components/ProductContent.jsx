@@ -1,25 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { useMedia } from 'use-media';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ProductExample from './ProductExample';
-import { SharedContext } from '../contexts/SharedContext';
 
 const ProductContent = ({ className }) => {
   const isLaptop = useMedia({ minWidth: 769 });
-  const { product, setProduct } = useContext(SharedContext);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/products/all`
-      )
-      .then(result => setProduct(result.data.products));
-  }, [setProduct]);
-  console.log(product);
 
   return (
     <div className={className}>

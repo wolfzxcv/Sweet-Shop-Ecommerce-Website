@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import ProductSidebar from './ProductSidebar';
 import ProductContent from './ProductContent';
 import backgroundImage from '../images/photo-1512484457149-266d165a4eca.jpg';
 import text from '../svg/sm-想吃甜點是不需要理由的.svg';
+import { SharedContext } from '../contexts/SharedContext';
 
 const Product = ({ className }) => {
+  const { product, setProduct } = useContext(SharedContext);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/products/all`
+      )
+      .then(result => setProduct(result.data.products));
+  }, [setProduct]);
+
+  // filter products category
+  const filterProductsCategory = product.reduce((eachData, category) => {
+    eachData[category.category] = 0;
+    return eachData;
+  }, {});
+  const getProductsCategory = Object.keys(filterProductsCategory);
+  console.log(getProductsCategory);
+
   return (
     <div className={className}>
       <div className='bgi'>
@@ -16,6 +39,11 @@ const Product = ({ className }) => {
         </div>
       </div>
       <ProductContent />
+
+      {getProductsCategory.map(category => (
+        <ProductSidebar key={category} category={category} />
+      ))}
+
       <div className='page'>
         <div>
           <FontAwesomeIcon icon={faCaretLeft} />

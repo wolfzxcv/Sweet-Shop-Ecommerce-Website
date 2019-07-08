@@ -12,6 +12,7 @@ const DashAddNewProduct = () => {
     setForm,
     updateProduct,
     handleForm,
+    resetForm,
   } = useContext(SharedContext);
 
   const id = form.id;
@@ -133,7 +134,7 @@ const DashAddNewProduct = () => {
           m={1}
           width='150px'
           bg='green'
-          onClick={() => setIsModalOpen(false)}
+          onClick={resetForm}
           onKeyDown={e => {
             if (e.keyCode === 27) setIsModalOpen(false);
           }}

@@ -65,18 +65,7 @@ export default props => {
       setForm(form);
       uploadNewProduct(form);
       setIsModalOpen(false);
-      setForm({
-        id: '',
-        title: '',
-        category: '',
-        is_enabled: 1,
-        price: '',
-        unit: '',
-        description: '',
-        content: '',
-        image: '',
-        imageUrl: '',
-      });
+      resetForm();
       alert('Yay!! Upload new product successfully!!');
       window.location.reload();
     } else {
@@ -84,6 +73,22 @@ export default props => {
         `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 99`
       );
     }
+  };
+
+  const resetForm = () => {
+    setForm({
+      id: '',
+      title: '',
+      category: '',
+      is_enabled: 1,
+      price: '',
+      unit: '',
+      description: '',
+      content: '',
+      image: '',
+      imageUrl: '',
+    });
+    setIsModalOpen(false);
   };
 
   const uploadNewProduct = () => {
@@ -158,6 +163,7 @@ export default props => {
     handleLogout,
     checkIfLogin,
     handleForm,
+    resetForm,
     correctProduct,
     updateProduct,
     deleteProduct,

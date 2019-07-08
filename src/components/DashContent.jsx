@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ModalProvider } from 'styled-react-modal';
-import { Button } from 'rebass';
+import { Button, Flex } from 'rebass';
 import DashProductList from './DashProductList';
 import DashAddNewProduct from './DashAddNewProduct';
 import { SharedContext } from '../contexts/SharedContext';
@@ -20,8 +20,6 @@ const DashContent = ({ className }) => {
       )
       .then(result => setProduct(result.data.products));
   }, [setProduct]);
-
-  console.log(product);
 
   return (
     <ModalProvider>
@@ -61,11 +59,9 @@ const DashContent = ({ className }) => {
             />
           ))}
         </div>
-        <div>
-          {`There are  
-          ${product.length}  
-          products, add more, Go Go Go!`}
-        </div>
+        <Flex mt={2} justifyContent='flex-end'>
+          {`${product.length} products in total.`}
+        </Flex>
         <DashAddNewProduct />
       </div>
     </ModalProvider>
