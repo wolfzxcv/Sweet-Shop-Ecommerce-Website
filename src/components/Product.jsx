@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Box, Flex } from 'rebass';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import ProductSidebar from './ProductSidebar';
@@ -11,7 +12,7 @@ import text from '../svg/sm-想吃甜點是不需要理由的.svg';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Product = ({ className }) => {
-  const { product, setProduct } = useContext(SharedContext);
+  const { product, setProduct, select, setSelect } = useContext(SharedContext);
 
   useEffect(() => {
     axios
@@ -29,7 +30,16 @@ const Product = ({ className }) => {
     return eachData;
   }, {});
   const getProductsCategory = Object.keys(filterProductsCategory);
-  console.log(getProductsCategory);
+
+  // print out the result based on what user select
+  const handleChange = category => {
+    setSelect(category);
+  };
+  const showProduct = product
+    .filter(item => item.category.includes(select))
+    .filter(check => check.is_enabled !== '0');
+
+  console.log(showProduct);
 
   return (
     <div className={className}>
@@ -38,11 +48,54 @@ const Product = ({ className }) => {
           <img src={text} alt='no reason' />
         </div>
       </div>
-      <ProductContent />
 
-      {getProductsCategory.map(category => (
-        <ProductSidebar key={category} category={category} />
-      ))}
+      <Flex flexDirection={['column', 'row']}>
+        <StyledSidebar flexDirection='column'>
+          <Box
+            width={['97vw', '230px']}
+            ml={['0', '40px']}
+            bg='green'
+            color='white'
+          >
+            <Flex justifyContent='center' alignItems='center'>
+              Category
+            </Flex>
+          </Box>
+          <Box ml={['0', '40px']}>
+            <Flex
+              justifyContent='center'
+              alignItems='center'
+              onClick={() => setSelect('')}
+            >
+              {`All (${
+                product.filter(check => check.is_enabled !== '0').length
+              })`}
+            </Flex>
+          </Box>
+          {getProductsCategory.map(category => (
+            <ProductSidebar
+              key={category}
+              category={category}
+              handleChange={handleChange}
+            />
+          ))}
+        </StyledSidebar>
+        <Box width={['97vw', '1000px']}>
+          <Flex flexWrap='wrap' justifyContent='space-around'>
+            {showProduct.map(item => (
+              <ProductContent
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                image={item.imageUrl}
+                price={item.price}
+                advice={item.description}
+                detail={item.content}
+              />
+            ))}
+          </Flex>
+        </Box>
+      </Flex>
 
       <div className='page'>
         <div>
@@ -62,6 +115,18 @@ const Product = ({ className }) => {
 Product.propTypes = {
   className: PropTypes.string.isRequired,
 };
+
+const StyledSidebar = styled(Flex)`
+  font-size: 24px;
+  div {
+    height: 65px;
+    border: 1px solid ${props => props.theme.colors.greenWhite};
+    &:hover:not(:first-child) {
+      background-color: ${props => props.theme.colors.greenWhite};
+      cursor: pointer;
+    }
+  }
+`;
 
 const StyledProduct = styled(Product)`
   margin: 20px auto;

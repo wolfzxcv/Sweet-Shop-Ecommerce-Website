@@ -1,90 +1,30 @@
 import React from 'react';
-import { useMedia } from 'use-media';
+import { Box, Flex, Image, Text } from 'rebass';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ProductExample from './ProductExample';
 
-const ProductContent = ({ className }) => {
-  const isLaptop = useMedia({ minWidth: 769 });
-
+const ProductContent = ({ id, title, image, price, advice, detail }) => {
   return (
-    <div className={className}>
-      <div className='left'>
-        <div>Category</div>
-        <div>All (48)</div>
-        <div>Best Choice(10)</div>
-        <div>Popular(26)</div>
-        <div>New Arrivals(12)</div>
-      </div>
-      <div className='right'>
-        <ProductExample />
-        <ProductExample />
-        <ProductExample />
-        {isLaptop && <ProductExample />}
-        {isLaptop && <ProductExample />}
-        {isLaptop && <ProductExample />}
-      </div>
-    </div>
+    <Flex>
+      <Box width='300px'>
+        <Text>{id}</Text>
+        <Text>{title}</Text>
+        <Text>{price}</Text>
+        <Image width='240px' src={image} borderRadius={8} />
+        <Text>{advice}</Text>
+        <Text>{detail}</Text>
+      </Box>
+    </Flex>
   );
 };
 
 ProductContent.propTypes = {
-  className: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  advice: PropTypes.string.isRequired,
+  detail: PropTypes.string.isRequired,
 };
 
-const StyledProductContent = styled(ProductContent)`
-  .left {
-    display: flex;
-    flex-direction: column;
-    font-size: 24px;
-
-    div {
-      height: 65px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      &:first-child {
-        background-color: ${props => props.theme.colors.green};
-        color: ${props => props.theme.colors.white};
-      }
-      &:not(:first-child) {
-        border: 1px solid ${props => props.theme.colors.greenWhite};
-      }
-      &:hover:not(:first-child) {
-        background-color: ${props => props.theme.colors.greenWhite};
-        cursor: pointer;
-      }
-    }
-  }
-
-  @media (min-width: 769px) {
-    display: flex;
-    justify-content: center;
-
-    .left {
-      width: 230px;
-    }
-
-    .right {
-      width: 75%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .left {
-      width: 97vw;
-      margin-bottom: 30px;
-    }
-  }
-`;
-
-StyledProductContent.displayName = 'Product';
-
-export default StyledProductContent;
+export default ProductContent;

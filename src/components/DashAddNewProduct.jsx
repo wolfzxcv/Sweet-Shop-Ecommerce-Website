@@ -116,9 +116,9 @@ const DashAddNewProduct = () => {
             </div>
 
             <div>
-              <div>Details</div>
+              <div>Detail</div>
               <textarea
-                placeholder='Details...'
+                placeholder='Detail...'
                 rows='10'
                 cols='60'
                 value={form.content}

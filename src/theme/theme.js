@@ -5,6 +5,7 @@ const greenWhite = '#EAF0ED';
 const orange = '#FFE180';
 
 export default {
+  breakpoint: ['768px'],
   colors: {
     green,
     white,
