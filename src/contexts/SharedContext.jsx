@@ -9,6 +9,7 @@ export default props => {
   const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [product, setProduct] = useState([]);
+  const [item, setItem] = useState({});
   const [select, setSelect] = useState('');
   const [page, setPage] = useState(0);
   const [form, setForm] = useState({
@@ -23,6 +24,26 @@ export default props => {
     image: '',
     imageUrl: '',
   });
+
+  const getAllProduct = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/products/all`
+      )
+      .then(result => setProduct(result.data.products));
+  };
+
+  const fetchProductDetail = id => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/product/${id}`
+      )
+      .then(result => console.log(result, id));
+  };
 
   const handleLogin = user => {
     axios
@@ -115,7 +136,6 @@ export default props => {
   };
 
   const updateProduct = id => {
-    console.log(id);
     axios
       .put(
         `${process.env.REACT_APP_API}/api/${
@@ -133,7 +153,6 @@ export default props => {
   };
 
   const deleteProduct = id => {
-    console.log(id);
     axios
       .delete(
         `${process.env.REACT_APP_API}/api/${
@@ -156,6 +175,8 @@ export default props => {
     setForm,
     product,
     setProduct,
+    item,
+    setItem,
     select,
     setSelect,
     page,
@@ -165,6 +186,8 @@ export default props => {
     isModalOpen,
     setIsModalOpen,
 
+    getAllProduct,
+    fetchProductDetail,
     handleLogin,
     handleLogout,
     checkIfLogin,

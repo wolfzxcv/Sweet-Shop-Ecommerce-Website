@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import { useMedia } from 'use-media';
-import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Flex } from 'rebass';
@@ -14,19 +13,18 @@ import { SharedContext } from '../contexts/SharedContext';
 
 const Product = ({ className }) => {
   const isLaptop = useMedia({ minWidth: 769 });
-  const { product, setProduct, select, setSelect, page, setPage } = useContext(
-    SharedContext
-  );
+  const {
+    getAllProduct,
+    product,
+    select,
+    setSelect,
+    page,
+    setPage,
+  } = useContext(SharedContext);
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/products/all`
-      )
-      .then(result => setProduct(result.data.products));
-  }, [setProduct]);
+    getAllProduct();
+  }, [getAllProduct]);
 
   // filter products category
   const filterProductsCategory = product.reduce((eachData, category) => {
@@ -97,8 +95,6 @@ const Product = ({ className }) => {
                 title={item.title}
                 image={item.imageUrl}
                 price={item.price}
-                advice={item.description}
-                detail={item.content}
               />
             ))}
           </Flex>

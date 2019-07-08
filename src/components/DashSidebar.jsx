@@ -18,16 +18,16 @@ DashSidebar.propTypes = {
 };
 
 const StyledDashSidebar = styled(DashSidebar)`
-margin-top: 4px;
+  margin-top: 4px;
   div {
     padding: 0 8px 0 8px;
     height: 65px;
     line-height: 2;
     font-family: 'Shadows Into Light', cursive;
     font-size: 24px;
-    border-top: 1px solid  ${props => props.theme.colors.greenWhite};
+    border-top: 1px solid ${props => props.theme.colors.greenWhite};
     color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.green}
+    background-color: ${props => props.theme.colors.green};
     display: flex;
     align-items: center;
     &:hover {

@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ModalProvider } from 'styled-react-modal';
@@ -9,17 +8,11 @@ import DashAddNewProduct from './DashAddNewProduct';
 import { SharedContext } from '../contexts/SharedContext';
 
 const DashContent = ({ className }) => {
-  const { setIsModalOpen, product, setProduct } = useContext(SharedContext);
+  const { getAllProduct, setIsModalOpen, product } = useContext(SharedContext);
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/products/all`
-      )
-      .then(result => setProduct(result.data.products));
-  }, [setProduct]);
+    getAllProduct();
+  }, [getAllProduct]);
 
   return (
     <ModalProvider>

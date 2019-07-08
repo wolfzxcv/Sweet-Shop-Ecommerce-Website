@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import product from '../images/cake.png';
+import { SharedContext } from '../contexts/SharedContext';
 
-const ProductExample = ({ className }) => {
+const ProductDetail = ({ className, id }) => {
+  const { item, fetchProductDetail } = useContext(SharedContext);
+
+  useEffect(() => {
+    fetchProductDetail(id);
+  }, [id, fetchProductDetail]);
+
+  console.log(item);
+
   return (
     <div className={className}>
-      <div className='img'>
-        <div className='select'>Daily select</div>
-        <div>
-          <FontAwesomeIcon icon={faHeart} />
-        </div>
-      </div>
+      <div>123</div>
       <div className='name'>
         <div>Sweet</div>
         <div>€ 6.20</div>
@@ -23,24 +24,14 @@ const ProductExample = ({ className }) => {
   );
 };
 
-ProductExample.propTypes = {
+ProductDetail.propTypes = {
   className: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
-const StyledProductExample = styled(ProductExample)`
+const StyledProductDetail = styled(ProductDetail)`
   margin: 0 0 20px 20px;
-  .img {
-    background-image: url(${product});
-    background-size: cover;
-    width: 315px;
-    height: 315px;
-    display: flex;
-    justify-content: space-between;
-    div {
-      margin: 0 15px;
-      padding: 10px;
-      font-size: 16px;
-    }
+  
     .select {
       height: 20px;
       background-color: ${props => props.theme.colors.green};
@@ -76,6 +67,6 @@ const StyledProductExample = styled(ProductExample)`
   }
 `;
 
-StyledProductExample.displayName = 'ProductExample';
+StyledProductDetail.displayName = 'ProductDetail';
 
-export default StyledProductExample;
+export default StyledProductDetail;
