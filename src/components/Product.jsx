@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { useMedia } from 'use-media';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -12,7 +13,10 @@ import text from '../svg/sm-想吃甜點是不需要理由的.svg';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Product = ({ className }) => {
-  const { product, setProduct, select, setSelect } = useContext(SharedContext);
+  const isLaptop = useMedia({ minWidth: 769 });
+  const { product, setProduct, select, setSelect, page, setPage } = useContext(
+    SharedContext
+  );
 
   useEffect(() => {
     axios
@@ -39,18 +43,21 @@ const Product = ({ className }) => {
     .filter(item => item.category.includes(select))
     .filter(check => check.is_enabled !== '0');
 
-  console.log(showProduct);
+  // 4 data per page
+  const pages = showProduct.length / 4;
 
   return (
     <div className={className}>
-      <div className='bgi'>
-        <div>
-          <img src={text} alt='no reason' />
+      {isLaptop && (
+        <div className='bgi'>
+          <div>
+            <img src={text} alt='no reason' />
+          </div>
         </div>
-      </div>
+      )}
 
       <Flex flexDirection={['column', 'row']}>
-        <StyledSidebar flexDirection='column'>
+        <StyledSidebar mb={5} flexDirection='column'>
           <Box
             width={['97vw', '230px']}
             ml={['0', '40px']}
@@ -80,9 +87,10 @@ const Product = ({ className }) => {
             />
           ))}
         </StyledSidebar>
+
         <Box width={['97vw', '1000px']}>
           <Flex flexWrap='wrap' justifyContent='space-around'>
-            {showProduct.map(item => (
+            {showProduct.slice(4 * page, 4 * (page + 1)).map(item => (
               <ProductContent
                 key={item.id}
                 id={item.id}
@@ -97,17 +105,33 @@ const Product = ({ className }) => {
         </Box>
       </Flex>
 
-      <div className='page'>
-        <div>
-          <FontAwesomeIcon icon={faCaretLeft} />
+      {pages > 1 && (
+        <div className='pagination'>
+          {page < pages && page !== 0 && (
+            <div
+              className='add-hover'
+              onClick={() => setPage(curr => curr - 1)}
+              onKeyDown={() => setPage(curr => curr - 1)}
+              role='button'
+              tabIndex='0'
+            >
+              <FontAwesomeIcon icon={faCaretLeft} />
+            </div>
+          )}
+          {showProduct.length !== 0 && <div>{page + 1}</div>}
+          {pages > page + 1 && (
+            <div
+              className='add-hover'
+              onClick={() => setPage(curr => curr + 1)}
+              onKeyDown={() => setPage(curr => curr + 1)}
+              role='button'
+              tabIndex='0'
+            >
+              <FontAwesomeIcon icon={faCaretRight} />
+            </div>
+          )}
         </div>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>
-          <FontAwesomeIcon icon={faCaretRight} />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -138,14 +162,14 @@ const StyledProduct = styled(Product)`
       width: 940px;
       height: 496px;
     }
-    .page {
+    .pagination {
       margin-right: 50px;
       justify-content: flex-end;
     }
   }
 
   @media (max-width: 768px) {
-    .page {
+    .pagination {
       justify-content: center;
     }
   }
@@ -161,7 +185,7 @@ const StyledProduct = styled(Product)`
     }
   }
 
-  .page {
+  .pagination {
     display: flex;
     div {
       width: 60px;
@@ -171,6 +195,8 @@ const StyledProduct = styled(Product)`
       align-items: center;
       font-size: 20px;
       border: 1px solid ${props => props.theme.colors.greenWhite};
+    }
+    .add-hover {
       &:hover {
         color: ${props => props.theme.colors.white};
         background-color: ${props => props.theme.colors.green};

@@ -9,7 +9,8 @@ export default props => {
   const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [product, setProduct] = useState([]);
-  const [select, setSelect] = useState('')
+  const [select, setSelect] = useState('');
+  const [page, setPage] = useState(0);
   const [form, setForm] = useState({
     id: '',
     title: '',
@@ -155,7 +156,10 @@ export default props => {
     setForm,
     product,
     setProduct,
-    select, setSelect,
+    select,
+    setSelect,
+    page,
+    setPage,
     isLogin,
     setIsLogin,
     isModalOpen,
