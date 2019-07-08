@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Box, Button, Card, Flex, Image, Text } from 'rebass';
 import PropTypes from 'prop-types';
-import { SharedContext } from '../contexts/SharedContext';
 
 const ProductContent = ({ id, title, image, price }) => {
-  const { fetchProductDetail } = useContext(SharedContext);
   return (
     <Flex>
       <Card
@@ -18,11 +16,7 @@ const ProductContent = ({ id, title, image, price }) => {
       >
         <Flex flexDirection='column' alignItems='center'>
           <Link to={`/product/goNorway${id}`}>
-            <StyledImage
-              onClick={() => fetchProductDetail(id)}
-              src={image}
-              borderRadius={8}
-            />
+            <StyledImage src={image} borderRadius={8} />
           </Link>
 
           <StyeldBox width='100%' bg='orange' fontSize='18px'>

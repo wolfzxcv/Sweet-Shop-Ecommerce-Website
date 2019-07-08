@@ -35,16 +35,6 @@ export default props => {
       .then(response => setProduct(response.data.products));
   };
 
-  const fetchProductDetail = id => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/product/${id}`
-      )
-      .then(response => setItem(response.data.product));
-  };
-
   const handleLogin = user => {
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
@@ -188,7 +178,6 @@ export default props => {
     setIsModalOpen,
 
     getAllProduct,
-    fetchProductDetail,
     handleLogin,
     handleLogout,
     checkIfLogin,

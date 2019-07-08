@@ -1,10 +1,25 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { SharedContext } from '../contexts/SharedContext';
 
-const ProductDetail = ({ className }) => {
-  const { item } = useContext(SharedContext);
+const ProductDetail = ({ className, match }) => {
+  const { item, setItem } = useContext(SharedContext);
+
+  React.useEffect(() => {
+    fetchProductDetail();
+  }, []);
+
+  const fetchProductDetail = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/product/${match.params.id}`
+      )
+      .then(response => setItem(response.data.product));
+  };
 
   return (
     <div className={className}>
@@ -18,6 +33,7 @@ const ProductDetail = ({ className }) => {
 
 ProductDetail.propTypes = {
   className: PropTypes.string.isRequired,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const StyledProductDetail = styled(ProductDetail)`
