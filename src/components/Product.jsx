@@ -33,7 +33,7 @@ const Product = ({ className }) => {
     eachData[category.category] = 0;
     return eachData;
   }, {});
-  const getProductsCategory = Object.keys(filterProductsCategory);
+  const getProductsCategory = Object.keys(filterProductsCategory).sort();
 
   // print out the result based on what user select
   const handleChange = category => {
@@ -60,7 +60,7 @@ const Product = ({ className }) => {
         <StyledSidebar mb={5} flexDirection='column'>
           <Box
             width={['97vw', '230px']}
-            ml={['0', '40px']}
+            ml={['0', '20px']}
             bg='green'
             color='white'
           >
@@ -68,7 +68,7 @@ const Product = ({ className }) => {
               Category
             </Flex>
           </Box>
-          <Box ml={['0', '40px']}>
+          <Box ml={['0', '20px']}>
             <Flex
               justifyContent='center'
               alignItems='center'

@@ -7,7 +7,7 @@ const ProductSidebar = ({ category, handleChange }) => {
   const { product } = useContext(SharedContext);
   return (
     <Flex
-      ml={['0', '40px']}
+      ml={['0', '20px']}
       justifyContent='center'
       alignItems='center'
       onClick={() => handleChange(category)}
