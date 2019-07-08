@@ -63,7 +63,7 @@ const Product = ({ className }) => {
             color='white'
           >
             <Flex justifyContent='center' alignItems='center'>
-              Category
+              CATEGORY
             </Flex>
           </Box>
           <Box ml={['0', '20px']}>
@@ -138,6 +138,9 @@ Product.propTypes = {
 
 const StyledSidebar = styled(Flex)`
   font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  font-family: 'Shadows Into Light', cursive;
   div {
     height: 65px;
     border: 1px solid ${props => props.theme.colors.greenWhite};

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Instagram } from 'styled-icons/boxicons-logos/Instagram';
+import { Github } from 'styled-icons/boxicons-logos/Github';
 import lightLogo from '../svg/logo-light.svg';
 import goodDay from '../svg/sm-今天是個吃甜點的好日子.svg';
 import logoDark from '../svg/logotype-lg-dark.svg';
-import icFacebook from '../svg/ic-facebook.svg';
-import icLine from '../svg/ic-line@.svg';
 
 const Footer = ({ className }) => {
   return (
@@ -36,20 +36,32 @@ const Footer = ({ className }) => {
           <div>
             <div>+353-87-654-3210</div>
             <div>dontsendmemail@email.com</div>
-            <div>400 Taichung, Taiwan(R.O.C)</div>
+            <div>400 middle, Nowhere</div>
           </div>
           <div className='icons'>
-            <div>
-              <img src={icFacebook} alt='ic-facebook' />
-            </div>
-            <div>
-              <img src={icLine} alt='ic-lineo' />
-            </div>
+            <a
+              href='https://github.com/wolfzxcv'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div>
+                <Github />
+              </div>
+            </a>
+            <a
+              href='https://www.instagram.com/nienyingchou/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div>
+                <Instagram />
+              </div>
+            </a>
           </div>
         </div>
         <div className='footer-right'>
           <div className='good-day' />
-          <div className='copyright'>© 2019 Sweetaste* All Rights Reserved</div>
+          <div className='copyright'>© 2019 non commercial usage</div>
         </div>
       </div>
     </footer>
@@ -139,8 +151,9 @@ const StyledFooter = styled(Footer)`
           padding-right: 8px;
           width: 40px;
           height: 40px;
+          transition: 0.5s all;
           &:hover {
-            cursor: pointer;
+            transform: scale(1.5);
           }
         }
       }

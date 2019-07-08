@@ -47,8 +47,8 @@ const Login = ({ className }) => {
             />
           </div>
           <div className='remember'>
-            <input type='checkbox' value='remember me' />
-            remember me
+            <input type='checkbox' value='forget me' />
+            forget me
           </div>
 
           <button type='submit' onClick={() => handleLogin(user)}>
