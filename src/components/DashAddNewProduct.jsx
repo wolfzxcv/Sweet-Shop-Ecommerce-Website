@@ -15,14 +15,10 @@ const DashAddNewProduct = () => {
     resetForm,
   } = useContext(SharedContext);
 
-  const id = form.id;
   return (
-    <StyledModal
-      isOpen={isModalOpen}
-      onEscapeKeydown={() => setIsModalOpen(false)}
-    >
+    <StyledModal isOpen={isModalOpen}>
       <StyledTitle>
-        {id === '' ? 'Add New Product' : `Edit ${form.title}`}
+        {form.id === '' ? 'Add New Product' : `Edit ${form.title}`}
       </StyledTitle>
 
       <form
@@ -146,7 +142,7 @@ const DashAddNewProduct = () => {
           ml='30px'
           width='150px'
           bg='green'
-          onClick={id === '' ? handleForm : () => updateProduct(id)}
+          onClick={form.id === '' ? handleForm : () => updateProduct(form.id)}
         >
           Submit
         </StyledButton>
