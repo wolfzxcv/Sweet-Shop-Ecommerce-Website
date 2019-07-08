@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import { useMedia } from 'use-media';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Flex } from 'rebass';
@@ -12,8 +11,8 @@ import text from '../svg/sm-想吃甜點是不需要理由的.svg';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Product = ({ className }) => {
-  const isLaptop = useMedia({ minWidth: 769 });
   const {
+    isLaptop,
     getAllProduct,
     product,
     select,

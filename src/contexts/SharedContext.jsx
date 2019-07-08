@@ -1,10 +1,12 @@
 import React, { useState, createContext } from 'react';
+import { useMedia } from 'use-media';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 export const SharedContext = createContext();
 
 export default props => {
+  const isLaptop = useMedia({ minWidth: 769 });
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -160,6 +162,7 @@ export default props => {
   };
 
   const value = {
+    isLaptop,
     user,
     setUser,
     form,

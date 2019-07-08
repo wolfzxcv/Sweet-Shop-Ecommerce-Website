@@ -1,13 +1,14 @@
-import React from 'react';
-import { useMedia } from 'use-media';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CartExample from './CartExample';
 import CartExampleM from './CartExampleM';
 import Underline from './Underline';
+import { SharedContext } from '../contexts/SharedContext';
 
 const Cart = ({ className }) => {
-  const isLaptop = useMedia({ minWidth: 769 });
+  const { isLaptop } = useContext(SharedContext);
+
   return (
     <div className={className}>
       <div className='left'>

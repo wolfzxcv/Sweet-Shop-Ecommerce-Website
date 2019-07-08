@@ -1,18 +1,24 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { Box, Flex } from 'rebass';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
+import { LinkedinSquare } from 'styled-icons/boxicons-logos/LinkedinSquare';
+import { Github } from 'styled-icons/boxicons-logos/Github';
+import { Instagram } from 'styled-icons/boxicons-logos/Instagram';
 import { SharedContext } from '../contexts/SharedContext';
-import icFacebook from '../svg/ic-facebook-logotype.svg';
-import icGoogle from '../svg/ic-google.svg';
-import icYahoo from '../svg/ic-yahoo.svg';
 
 const Login = ({ className }) => {
-  const { user, setUser, isLogin, handleLogin, checkIfLogin } = useContext(
-    SharedContext
-  );
+  const {
+    isLaptop,
+    user,
+    setUser,
+    isLogin,
+    handleLogin,
+    checkIfLogin,
+  } = useContext(SharedContext);
 
   if (isLogin) {
     return <Redirect to='/dashboard' />;
@@ -57,17 +63,52 @@ const Login = ({ className }) => {
         </form>
       </div>
 
-      <div className='socialmedia'>
-        <div>
-          <img src={icFacebook} alt='ic-facebook' />
-        </div>
-        <div>
-          <img src={icGoogle} alt='ic-google' />
-        </div>
-        <div>
-          <img src={icYahoo} alt='ic-yahoo' />
-        </div>
-      </div>
+      <StyledFlex>
+        <Box width={['105px', '330px']} bg={['', 'white']}>
+          <a
+            href='https://www.linkedin.com/in/nien-ying-chou-169604186/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Flex justifyContent='center'>
+              <div className='icon'>
+                <LinkedinSquare />
+              </div>
+              {isLaptop && <div>LinkedIn</div>}
+            </Flex>
+          </a>
+        </Box>
+
+        <Box width={['105px', '330px']} bg={['', 'white']}>
+          <a
+            href='https://github.com/wolfzxcv'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Flex justifyContent='center'>
+              <div className='icon'>
+                <Github />
+              </div>
+              {isLaptop && <div>GitHub</div>}
+            </Flex>
+          </a>
+        </Box>
+
+        <Box width={['105px', '330px']} bg={['', 'white']}>
+          <a
+            href='https://www.instagram.com/nienyingchou/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Flex justifyContent='center'>
+              <div className='icon'>
+                <Instagram />
+              </div>
+              {isLaptop && <div>Instagram</div>}
+            </Flex>
+          </a>
+        </Box>
+      </StyledFlex>
     </div>
   );
 };
@@ -75,6 +116,30 @@ const Login = ({ className }) => {
 Login.propTypes = {
   className: PropTypes.string.isRequired,
 };
+
+const StyledFlex = styled.div`
+  width: 390px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: ${props => props.theme.colors.greenWhite};
+  @media (min-width: 769px) {
+    padding: 20px;
+    font-size: 26px;
+    height: 330px;
+    flex-direction: column;
+    div {
+      line-height: 2.2;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+    order: -1;
+    font-size: 30px;
+    height: 100px;
+  }
+`;
 
 const StyledLogin = styled(Login)`
   .title {
@@ -146,36 +211,23 @@ const StyledLogin = styled(Login)`
     }
   }
 
+  .icon {
+    width: 40px;
+    height: 40px;
+    transition: 0.5s all;
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+
   @media (min-width: 769px) {
     margin: 100px 0;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .socialmedia {
-      width: 390px;
+    .social {
       height: 350px;
-      background-color: ${props => props.theme.colors.greenWhite};
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      div {
-        width: 330px;
-        height: 56px;
-        background-color: ${props => props.theme.colors.white};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-          cursor: pointer;
-          background-color: ${props => props.theme.colors.orange};
-        }
-      }
-      img {
-        width: 108px;
-        height: 21px;
-      }
     }
   }
 
@@ -185,31 +237,6 @@ const StyledLogin = styled(Login)`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .socialmedia {
-      width: 390px;
-      height: 116px;
-      background-color: ${props => props.theme.colors.greenWhite};
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      order: -1;
-      div {
-        width: 105px;
-        height: 56px;
-        background-color: ${props => props.theme.colors.white};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-          cursor: pointer;
-          background-color: ${props => props.theme.colors.orange};
-        }
-      }
-      img {
-        width: 83px;
-        height: 16px;
-      }
-    }
   }
 `;
 
