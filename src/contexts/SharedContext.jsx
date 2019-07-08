@@ -32,7 +32,7 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/products/all`
       )
-      .then(result => setProduct(result.data.products));
+      .then(response => setProduct(response.data.products));
   };
 
   const fetchProductDetail = id => {
@@ -42,14 +42,14 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/product/${id}`
       )
-      .then(result => console.log(result, id));
+      .then(response => setItem(response.data.product));
   };
 
   const handleLogin = user => {
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
-      .then(result => {
-        if (result.data.message === '登入成功') setIsLogin(true);
+      .then(response => {
+        if (response.data.message === '登入成功') setIsLogin(true);
       })
       .catch(error => {
         console.log(error.message);
@@ -65,8 +65,8 @@ export default props => {
   const checkIfLogin = () => {
     axios
       .post(`${process.env.REACT_APP_API}/api/user/check`)
-      .then(result => {
-        if (result.data.success === true) setIsLogin(true);
+      .then(response => {
+        if (response.data.success === true) setIsLogin(true);
       })
       .catch(error => {
         console.log(error.message);
@@ -122,8 +122,9 @@ export default props => {
         }/admin/product`,
         { data: form }
       )
-      .then(result => {
-        if (result.data.success) console.log('Upload new product successfully');
+      .then(response => {
+        if (response.data.success)
+          console.log('Upload new product successfully');
       })
       .catch(error => {
         console.log(error.message);
@@ -143,8 +144,8 @@ export default props => {
         }/admin/product/${id}`,
         { data: form }
       )
-      .then(result => {
-        console.log(result.data.message);
+      .then(response => {
+        console.log(response.data.message);
         window.location.reload();
       })
       .catch(error => {
@@ -159,8 +160,8 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/admin/product/${id}`
       )
-      .then(result => {
-        console.log(result.data.message);
+      .then(response => {
+        console.log(response.data.message);
         window.location.reload();
       })
       .catch(error => {
