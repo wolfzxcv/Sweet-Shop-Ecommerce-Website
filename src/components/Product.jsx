@@ -35,6 +35,7 @@ const Product = ({ className }) => {
   // print out the result based on what user select
   const handleChange = category => {
     setSelect(category);
+    setPage(0);
   };
   const showProduct = product
     .filter(item => item.category.includes(select))
@@ -151,7 +152,7 @@ const StyledSidebar = styled(Flex)`
 `;
 
 const StyledProduct = styled(Product)`
-  margin: 20px auto;
+  margin: 0 auto 20px auto;
 
   @media (min-width: 769px) {
     .bgi {

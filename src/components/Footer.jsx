@@ -97,6 +97,10 @@ const StyledFooter = styled(Footer)`
       height: 56px;
       display: flex;
       color: ${props => props.theme.colors.green};
+      input {
+        font-family: ${props => props.theme.fonts.main};
+        color: ${props => props.theme.colors.green};
+      }
       .envelope {
         margin: 0;
         padding: 0;

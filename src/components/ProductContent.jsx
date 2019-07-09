@@ -8,8 +8,8 @@ const ProductContent = ({ id, title, image, price }) => {
   return (
     <Flex>
       <Card
-        width='350px'
-        mb={5}
+        width='300px'
+        mb={3}
         border='1px solid green'
         borderRadius={8}
         boxShadow='0 2px 16px rgba(0, 0, 0, 0.25)'
@@ -19,16 +19,16 @@ const ProductContent = ({ id, title, image, price }) => {
             <StyledImage src={image} borderRadius={8} />
           </Link>
 
-          <StyeldBox width='100%' bg='orange' fontSize='18px'>
+          <StyeldBox width='100%' bg='orange' fontSize='16px'>
             <Flex justifyContent='space-between' alignItems='center'>
-              <Text width='75%' pl={1} fontWeight='bold'>
+              <Text width='70%' pl={1} fontWeight='bold'>
                 {title}
               </Text>
-              <Text width='25%' pl={3}>{`€ ${price}`}</Text>
+              <Text width='30%' pl={3}>{`€ ${price}`}</Text>
             </Flex>
           </StyeldBox>
 
-          <StyledButton width='350px' bg='green' id={id} fontSize='26px'>
+          <StyledButton width='300px' bg='green' id={id} fontSize='26px'>
             Add to cart
           </StyledButton>
         </Flex>
