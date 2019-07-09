@@ -18,12 +18,18 @@ const Layout = () => {
     <Router>
       {!isLogin && <Header />}
       <Switch>
-        <Route component={Home} exact path='/' />
-        <Route component={Login} path='/login' />
-        <Route component={Cart} path='/cart' />
-        <Route component={Product} exact path='/product' />
-        <Route component={ProductDetail} path='/product/goNorway:id' />
-        <PrivateRoute component={Dashboard} path='/dashboard' />
+        <Route component={Home} exact path='/Sweet-for-happiness/' />
+        <Route component={Login} path='/Sweet-for-happiness/login' />
+        <Route component={Cart} path='/Sweet-for-happiness/cart' />
+        <Route component={Product} exact path='/Sweet-for-happiness/product' />
+        <Route
+          component={ProductDetail}
+          path='/Sweet-for-happiness/product/goNorway:id'
+        />
+        <PrivateRoute
+          component={Dashboard}
+          path='/Sweet-for-happiness/dashboard'
+        />
         <Route component={PageNotFound} />
       </Switch>
       {!isLogin && <Footer />}

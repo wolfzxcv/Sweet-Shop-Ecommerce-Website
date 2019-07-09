@@ -16,19 +16,19 @@ const HeaderMobileOverlay = ({ className, menuClose }) => {
         tabIndex='0'
       >
         <div className='link'>
-          <Link to='/'>
+          <Link to='/Sweet-for-happiness/'>
             <div>HOME</div>
           </Link>
 
-          <Link to='/product'>
+          <Link to='/Sweet-for-happiness/product'>
             <div>PRODUCT</div>
           </Link>
 
-          <Link to='/login'>
+          <Link to='/Sweet-for-happiness/login'>
             <div>LOGIN</div>
           </Link>
 
-          <Link to='/cart'>
+          <Link to='/Sweet-for-happiness/cart'>
             <div>
               <FontAwesomeIcon icon={faShoppingCart} />
             </div>
