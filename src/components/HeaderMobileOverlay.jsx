@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const HeaderMobileOverlay = ({ className, menuClose }) => {
   return (
@@ -26,12 +24,6 @@ const HeaderMobileOverlay = ({ className, menuClose }) => {
 
           <Link to='/Sweet-for-happiness/login'>
             <div>LOGIN</div>
-          </Link>
-
-          <Link to='/Sweet-for-happiness/cart'>
-            <div>
-              <FontAwesomeIcon icon={faShoppingCart} />
-            </div>
           </Link>
         </div>
       </div>

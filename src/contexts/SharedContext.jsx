@@ -14,6 +14,8 @@ export default props => {
   const [item, setItem] = useState({});
   const [select, setSelect] = useState('');
   const [page, setPage] = useState(0);
+  const [amount, setAmount] = useState(1);
+  const [orderList, setOrderList] = useState([]);
   const [form, setForm] = useState({
     id: '',
     title: '',
@@ -126,7 +128,7 @@ export default props => {
       });
   };
 
-  const correctProduct = id => {
+  const editProduct = id => {
     setForm(product.find(x => x.id === id));
     setIsModalOpen(true);
   };
@@ -164,10 +166,47 @@ export default props => {
       });
   };
 
+  const addToCart = (id, qty = 1) => {
+    const cart = {
+      product_id: id,
+      qty,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
+        { data: cart }
+      )
+      .then(response => {
+        if (response.data.success) console.log(`${id} added successfully`);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+    getCart();
+  };
+
+  const getCart = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
+      )
+      .then(response => {
+        if (response.data.success) setOrderList(response.data.data.carts);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
   const value = {
     isLaptop,
     user,
     setUser,
+    amount,
+    setAmount,
+    orderList,
+    setOrderList,
     form,
     setForm,
     product,
@@ -189,9 +228,11 @@ export default props => {
     checkIfLogin,
     handleForm,
     resetForm,
-    correctProduct,
+    editProduct,
     updateProduct,
     deleteProduct,
+    addToCart,
+    getCart,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

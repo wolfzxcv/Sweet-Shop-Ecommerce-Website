@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Box, Button, Card, Heading, Flex, Image, Text } from 'rebass';
@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 import { SharedContext } from '../contexts/SharedContext';
 
 const ProductDetail = ({ className, match }) => {
-  const { item, setItem, isLaptop } = useContext(SharedContext);
+  const { item, setItem, amount, setAmount, isLaptop, addToCart } = useContext(
+    SharedContext
+  );
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchProductDetail();
   }, []);
 
@@ -22,34 +24,59 @@ const ProductDetail = ({ className, match }) => {
       .then(response => setItem(response.data.product));
   };
 
+  let qty = amount;
+
   return (
     <div className={className}>
       <Flex width={['97vw', '90%']} flexDirection={['column', 'row']} mx='auto'>
-        <Card>
-          <Image src={item.imageUrl} />
+        <Card pt={['20px', '']}>
           <Flex justifyContent='center'>
-            <StyledButton
-              width={['97vw', '300px']}
-              bg='green'
-              id={match.params.id}
-              fontSize='26px'
-            >
-              Add to cart
-            </StyledButton>
+            {!isLaptop && <Heading>{item.title}</Heading>}
           </Flex>
+          <Image src={item.imageUrl} />
+
+          <Flex justifyContent='center'>
+            <AmountButton
+              bg='greenWhite'
+              onClick={() => setAmount(amount - 1)}
+              disabled={amount === 1}
+            >
+              -
+            </AmountButton>
+            <AmountButton bg='orange'>{amount}</AmountButton>
+            <AmountButton
+              bg='greenWhite'
+              onClick={() => setAmount(amount + 1)}
+              disabled={amount >= item.unit}
+            >
+              +
+            </AmountButton>
+          </Flex>
+
+          <StyledButton
+            onClick={() => addToCart(match.params.id, qty)}
+            width={['97vw', '300px']}
+            bg='green'
+            id={match.params.id}
+            fontSize='26px'
+          >
+            Add to cart
+          </StyledButton>
         </Card>
         <Box px={3} pt={['25px', '']} fontSize='20px'>
           <Flex flexDirection='column' justifyContent='space-between'>
-            <Heading>{item.title}</Heading>
-            <Flex justifyContent='flex-end'>
+            {isLaptop && <Heading>{item.title}</Heading>}
+            <Flex justifyContent={['space-between', 'flex-end']}>
+              {!isLaptop && <Text>{`${item.unit} available`}</Text>}
               <Heading>{`€ ${item.price}`}</Heading>
             </Flex>
 
             <br />
 
-            <Flex>
-              <Text pr={3}>Allergens</Text>
+            <Flex justifyContent='space-between'>
+              <Text>Allergens</Text>
               <Text bg='greenWhite'>{item.description}</Text>
+              {isLaptop && <Text>{`${item.unit} available`}</Text>}
             </Flex>
 
             {isLaptop && <br />}
@@ -76,6 +103,17 @@ ProductDetail.propTypes = {
   match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
+const AmountButton = styled(Button)`
+  margin-bottom: 10px;
+  height: 50px;
+  width: 50px;
+  color: ${props => props.theme.colors.green};
+  border: 1px solid ${props => props.theme.colors.green};
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+`;
+
 const StyledButton = styled(Button)`
   height: 60px;
   transition: 0.3s all;
@@ -93,8 +131,7 @@ const StyledProductDetail = styled(ProductDetail)`
   margin-top: 10px;
 
   @media (min-width: 769px) {
-    padding-top: 50px;
-    height: 400px;
+    height: 450px;
   }
   @media (max-width: 768px) {
     height: 1050px;

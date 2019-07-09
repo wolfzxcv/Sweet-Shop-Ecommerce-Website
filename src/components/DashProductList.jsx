@@ -13,7 +13,7 @@ const DashProductList = ({
   isEnabled,
   amount,
 }) => {
-  const { correctProduct, deleteProduct } = useContext(SharedContext);
+  const { editProduct, deleteProduct } = useContext(SharedContext);
 
   return (
     <Flex
@@ -35,8 +35,8 @@ const DashProductList = ({
       <Flex
         className='add-hover'
         justifyContent='center'
-        onClick={() => correctProduct(id)}
-        onKeyDown={correctProduct}
+        onClick={() => editProduct(id)}
+        onKeyDown={editProduct}
         role='button'
         tabIndex='0'
       >

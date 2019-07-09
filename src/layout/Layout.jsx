@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from '../components/PrivateRoute';
 import Header from '../components/Header';
+import CartOnScreen from '../components/CartOnScreen';
 import Login from '../components/Login';
 import Cart from '../components/Cart';
 import Home from '../components/Home';
@@ -17,6 +18,7 @@ const Layout = () => {
   return (
     <Router>
       {!isLogin && <Header />}
+      <CartOnScreen />
       <Switch>
         <Route component={Home} exact path='/Sweet-for-happiness/' />
         <Route component={Login} path='/Sweet-for-happiness/login' />

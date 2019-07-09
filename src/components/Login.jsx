@@ -25,7 +25,7 @@ const Login = ({ className }) => {
   } else {
     checkIfLogin();
   }
-  console.log(isLogin);
+
   return (
     <div className={className}>
       <div className='login'>

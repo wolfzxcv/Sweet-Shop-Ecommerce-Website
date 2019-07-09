@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Box, Button, Card, Flex, Image, Text } from 'rebass';
 import PropTypes from 'prop-types';
+import { SharedContext } from '../contexts/SharedContext';
 
 const ProductContent = ({ id, title, image, price }) => {
+  const { addToCart } = useContext(SharedContext);
   return (
     <Flex>
       <Card
@@ -28,7 +30,13 @@ const ProductContent = ({ id, title, image, price }) => {
             </Flex>
           </StyeldBox>
 
-          <StyledButton width='300px' bg='green' id={id} fontSize='26px'>
+          <StyledButton
+            onClick={() => addToCart(id)}
+            width='300px'
+            bg='green'
+            id={id}
+            fontSize='26px'
+          >
             Add to cart
           </StyledButton>
         </Flex>
