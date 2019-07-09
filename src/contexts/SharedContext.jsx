@@ -54,7 +54,7 @@ export default props => {
     axios.post(`${process.env.REACT_APP_API}/logout`, user).then(res => {
       if (res.data.success) {
         setIsLogin(false);
-        return <Redirect to='/Sweet-for-happiness/login' />;
+        return <Redirect to='/Sweet-for-happiness/loginadmin' />;
       }
     });
   };
@@ -69,7 +69,7 @@ export default props => {
         console.log(error.message);
       });
     if (!isLogin) {
-      return <Redirect to='/Sweet-for-happiness/login' />;
+      return <Redirect to='/Sweet-for-happiness/loginadmin' />;
     }
   };
 
@@ -184,7 +184,11 @@ export default props => {
         console.log(error.message);
       });
     getCart();
+    setAmount(1);
+    shakeCart();
   };
+
+  const shakeCart = () => {};
 
   const getCart = () => {
     axios
@@ -233,6 +237,7 @@ export default props => {
     deleteProduct,
     addToCart,
     getCart,
+    shakeCart,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

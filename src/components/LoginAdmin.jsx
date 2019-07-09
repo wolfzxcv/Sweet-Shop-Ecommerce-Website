@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { Box, Flex } from 'rebass';
 import PropTypes from 'prop-types';
@@ -9,8 +10,21 @@ import { Github } from 'styled-icons/boxicons-logos/Github';
 import { Instagram } from 'styled-icons/boxicons-logos/Instagram';
 import { SharedContext } from '../contexts/SharedContext';
 
-const Login = ({ className }) => {
-  const { isLaptop, user, setUser, handleLogin } = useContext(SharedContext);
+const LoginAdmin = ({ className }) => {
+  const {
+    isLaptop,
+    user,
+    setUser,
+    isLogin,
+    handleLogin,
+    checkIfLogin,
+  } = useContext(SharedContext);
+
+  if (isLogin) {
+    return <Redirect to='/Sweet-for-happiness/dashboard' />;
+  } else {
+    checkIfLogin();
+  }
 
   return (
     <div className={className}>
@@ -104,7 +118,7 @@ const Login = ({ className }) => {
   );
 };
 
-Login.propTypes = {
+LoginAdmin.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
@@ -138,7 +152,7 @@ const StyledFlex = styled.div`
   }
 `;
 
-const StyledLogin = styled(Login)`
+const StyledLoginAdmin = styled(LoginAdmin)`
   .title {
     padding: 0;
     font-size: 24px;
@@ -232,6 +246,6 @@ const StyledLogin = styled(Login)`
   }
 `;
 
-StyledLogin.displayName = 'Login';
+StyledLoginAdmin.displayName = 'LoginAdmin';
 
-export default StyledLogin;
+export default StyledLoginAdmin;
