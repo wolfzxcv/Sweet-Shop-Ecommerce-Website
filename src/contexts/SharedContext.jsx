@@ -64,7 +64,7 @@ export default props => {
         console.log(error.message);
       });
     if (!isLogin) {
-      return <Redirect to='/login' />;
+      return <Redirect to='/Sweet-for-happiness/login' />;
     }
   };
 

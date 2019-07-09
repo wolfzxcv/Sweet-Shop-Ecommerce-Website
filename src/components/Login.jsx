@@ -21,7 +21,7 @@ const Login = ({ className }) => {
   } = useContext(SharedContext);
 
   if (isLogin) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/Sweet-for-happiness/dashboard' />;
   } else {
     checkIfLogin();
   }
