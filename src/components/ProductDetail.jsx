@@ -29,7 +29,7 @@ const ProductDetail = ({ className, match }) => {
           <Image src={item.imageUrl} />
           <Flex justifyContent='center'>
             <StyledButton
-              width='300px'
+              width={['97vw', '300px']}
               bg='green'
               id={match.params.id}
               fontSize='26px'
@@ -46,6 +46,7 @@ const ProductDetail = ({ className, match }) => {
             </Flex>
 
             <br />
+
             <Flex>
               <Text pr={3}>Allergens</Text>
               <Text bg='greenWhite'>{item.description}</Text>
@@ -54,6 +55,7 @@ const ProductDetail = ({ className, match }) => {
             {isLaptop && <br />}
             {isLaptop && <br />}
             <br />
+
             <Flex justifyContent='flex-end'>
               <Flex alignItems='center'>
                 <Text pr={3}>Detail</Text>
@@ -95,8 +97,7 @@ const StyledProductDetail = styled(ProductDetail)`
     height: 400px;
   }
   @media (max-width: 768px) {
-    /* padding-top: 50px; */
-    height: 1000px;
+    height: 1050px;
   }
 `;
 
