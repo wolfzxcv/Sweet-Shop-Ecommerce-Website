@@ -7,8 +7,9 @@ import Underline from './Underline';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Cart = ({ className }) => {
-  const { isLaptop } = useContext(SharedContext);
+  const { isLaptop, orderList } = useContext(SharedContext);
 
+  console.log(orderList);
   return (
     <div className={className}>
       <div className='left'>

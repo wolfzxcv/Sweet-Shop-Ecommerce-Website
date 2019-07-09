@@ -23,7 +23,7 @@ const Product = ({ className }) => {
 
   useEffect(() => {
     getAllProduct();
-  }, [getAllProduct]);
+  }, []);
 
   // filter products category
   const filterProductsCategory = product.reduce((eachData, category) => {

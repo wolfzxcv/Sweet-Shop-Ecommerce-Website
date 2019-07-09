@@ -12,7 +12,7 @@ const DashContent = ({ className }) => {
 
   useEffect(() => {
     getAllProduct();
-  }, [getAllProduct]);
+  }, []);
 
   return (
     <ModalProvider>

@@ -44,10 +44,10 @@ export default props => {
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
       .then(response => {
         if (response.data.message === '登入成功') setIsLogin(true);
-      })
-      .catch(error => {
-        console.log(error.message);
       });
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
   };
 
   const handleLogout = user => {
@@ -60,14 +60,12 @@ export default props => {
   };
 
   const checkIfLogin = () => {
-    axios
-      .post(`${process.env.REACT_APP_API}/api/user/check`)
-      .then(response => {
-        if (response.data.success === true) setIsLogin(true);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+    axios.post(`${process.env.REACT_APP_API}/api/user/check`).then(response => {
+      if (response.data.success === true) setIsLogin(true);
+    });
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
     if (!isLogin) {
       return <Redirect to='/Sweet-for-happiness/loginadmin' />;
     }
@@ -112,20 +110,19 @@ export default props => {
   };
 
   const uploadNewProduct = () => {
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/admin/product`,
-        { data: form }
-      )
-      .then(response => {
-        if (response.data.success)
-          console.log('Upload new product successfully');
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+    axios.post(
+      `${process.env.REACT_APP_API}/api/${
+        process.env.REACT_APP_CUSTOM
+      }/admin/product`,
+      { data: form }
+    );
+    // .then(response => {
+    //   if (response.data.success)
+    //     console.log('Upload new product successfully');
+    // })
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
   };
 
   const editProduct = id => {
@@ -141,13 +138,10 @@ export default props => {
         }/admin/product/${id}`,
         { data: form }
       )
-      .then(response => {
-        console.log(response.data.message);
-        window.location.reload();
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+      .then(window.location.reload());
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
   };
 
   const deleteProduct = id => {
@@ -157,13 +151,10 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/admin/product/${id}`
       )
-      .then(response => {
-        console.log(response.data.message);
-        window.location.reload();
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+      .then(window.location.reload());
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
   };
 
   const addToCart = (id, qty = 1) => {
@@ -172,17 +163,16 @@ export default props => {
       qty,
     };
 
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
-        { data: cart }
-      )
-      .then(response => {
-        if (response.data.success) console.log(`${id} added successfully`);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+    axios.post(
+      `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
+      { data: cart }
+    );
+    // .then(response => {
+    //   if (response.data.success) console.log(`${id} added successfully`);
+    // });
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
     getCart();
     setAmount(1);
     shakeCart();
@@ -197,10 +187,10 @@ export default props => {
       )
       .then(response => {
         if (response.data.success) setOrderList(response.data.data.carts);
-      })
-      .catch(error => {
-        console.log(error.message);
       });
+    // .catch(error => {
+    //   console.log(error.message);
+    // });
   };
 
   const value = {
