@@ -1,27 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa344e0c0cf19d03a31fbc0f9f163f27",
+    "revision": "00cbc9d8a1fa4078ae2b8a27b931845e",
     "url": "/Sweet-for-happiness/index.html"
   },
   {
-    "revision": "7d5c7bd2314353b04e2e",
+    "revision": "239a058ff25909376021",
     "url": "/Sweet-for-happiness/static/css/main.34de6062.chunk.css"
   },
   {
-    "revision": "3b77e2481a7961b1d21f",
-    "url": "/Sweet-for-happiness/static/js/2.b9f1fab4.chunk.js"
+    "revision": "1502bf086b7701e2a62b",
+    "url": "/Sweet-for-happiness/static/js/2.f7af3fe8.chunk.js"
   },
   {
-    "revision": "7d5c7bd2314353b04e2e",
-    "url": "/Sweet-for-happiness/static/js/main.b6152dde.chunk.js"
+    "revision": "239a058ff25909376021",
+    "url": "/Sweet-for-happiness/static/js/main.fda9fd5f.chunk.js"
   },
   {
     "revision": "d52b57e0f4aff5cbaf94",
     "url": "/Sweet-for-happiness/static/js/runtime~main.59a71eb7.js"
-  },
-  {
-    "revision": "a56f10110174f1a2df3d305e0a53f8ad",
-    "url": "/Sweet-for-happiness/static/media/cake.a56f1011.png"
   },
   {
     "revision": "0bd653f6305dab15afae64b2340ac0ba",
