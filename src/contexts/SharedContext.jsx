@@ -55,7 +55,7 @@ export default props => {
     axios.post(`${process.env.REACT_APP_API}/logout`, user).then(res => {
       if (res.data.success) {
         setIsLogin(false);
-        return <Redirect to='/Sweet-for-happiness/#/login' />;
+        return <Redirect to='/Sweet-for-happiness/login' />;
       }
     });
   };
@@ -68,7 +68,7 @@ export default props => {
     //   console.log(error.message);
     // });
     if (!isLogin) {
-      return <Redirect to='/Sweet-for-happiness/#/login' />;
+      return <Redirect to='/Sweet-for-happiness/login' />;
     }
   };
 
