@@ -16,6 +16,7 @@ export default props => {
   const [page, setPage] = useState(0);
   const [amount, setAmount] = useState(1);
   const [orderList, setOrderList] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [form, setForm] = useState({
     id: '',
     title: '',
@@ -194,11 +195,27 @@ export default props => {
         `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
       )
       .then(response => {
-        if (response.data.success) setOrderList(response.data.data.carts);
+        if (response.data.success) {
+          setOrderList(response.data.data.carts);
+          setTotalPrice(response.data.data.final_total.toFixed(2));
+        }
       });
     // .catch(error => {
     //   console.log(error.message);
     // });
+  };
+
+  const deleteOrder = id => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/cart/${id}`
+      )
+      .then(res => {
+        console.log(res.data.message);
+        window.location.reload();
+      });
   };
 
   const value = {
@@ -209,6 +226,8 @@ export default props => {
     setAmount,
     orderList,
     setOrderList,
+    totalPrice,
+    setTotalPrice,
     form,
     setForm,
     product,
@@ -236,6 +255,7 @@ export default props => {
     addToCart,
     getCart,
     shakeCart,
+    deleteOrder,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

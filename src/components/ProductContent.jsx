@@ -55,9 +55,13 @@ ProductContent.propTypes = {
 const StyledImage = styled(Image)`
   transition: 0.8s all;
   &:hover {
-    transform: scale(1.1) rotate(-7deg);
     box-shadow: 0 2px 3px 3px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+  }
+  @media (min-width: 769px) {
+    &:hover {
+      transform: scale(1.1) rotate(-7deg);
+    }
   }
 `;
 
@@ -72,11 +76,15 @@ const StyledButton = styled(Button)`
   height: 60px;
   transition: 0.3s all;
   &:hover {
-    transform: scale(1.1);
     box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
     background-color: ${props => props.theme.colors.greenWhite};
     color: ${props => props.theme.colors.green};
     cursor: pointer;
+  }
+  @media (min-width: 769px) {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
