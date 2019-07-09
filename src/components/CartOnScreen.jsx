@@ -22,7 +22,7 @@ const CartOnScreen = () => {
   }, [orderList.length]);
 
   return (
-    <Link to='/Sweet-for-happiness/cart'>
+    <Link to='/Sweet-for-happiness/#/cart'>
       <StyledCartButton>
         <animated.div
           style={{

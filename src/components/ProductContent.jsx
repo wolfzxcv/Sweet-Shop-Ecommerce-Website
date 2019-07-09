@@ -17,7 +17,7 @@ const ProductContent = ({ id, title, image, price }) => {
         boxShadow='0 2px 16px rgba(0, 0, 0, 0.25)'
       >
         <Flex flexDirection='column' alignItems='center'>
-          <Link to={`/Sweet-for-happiness/product/goNorway${id}`}>
+          <Link to={`/Sweet-for-happiness/product/#/goNorway${id}`}>
             <StyledImage src={image} borderRadius={8} />
           </Link>
 

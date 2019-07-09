@@ -40,7 +40,7 @@ const HeaderMobile = ({ className }) => {
         role='button'
         tabIndex='0'
       >
-        <Link to='/Sweet-for-happiness/'>
+        <Link to='/Sweet-for-happiness/#/'>
           <img src={logoSmallDark} alt='logo' />
         </Link>
       </div>
@@ -51,7 +51,7 @@ const HeaderMobile = ({ className }) => {
         role='button'
         tabIndex='0'
       >
-        <Link to='/Sweet-for-happiness/cart'>
+        <Link to='/Sweet-for-happiness/#/cart'>
           <FontAwesomeIcon icon={faShoppingCart} />
         </Link>
       </div>
