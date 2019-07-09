@@ -54,7 +54,7 @@ export default props => {
     axios.post(`${process.env.REACT_APP_API}/logout`, user).then(res => {
       if (res.data.success) {
         setIsLogin(false);
-        return <Redirect to='/Sweet-for-happiness/loginadmin' />;
+        return <Redirect to='/Sweet-for-happiness/login' />;
       }
     });
   };
@@ -67,7 +67,7 @@ export default props => {
     //   console.log(error.message);
     // });
     if (!isLogin) {
-      return <Redirect to='/Sweet-for-happiness/loginadmin' />;
+      return <Redirect to='/Sweet-for-happiness/login' />;
     }
   };
 
@@ -110,16 +110,17 @@ export default props => {
   };
 
   const uploadNewProduct = () => {
-    axios.post(
-      `${process.env.REACT_APP_API}/api/${
-        process.env.REACT_APP_CUSTOM
-      }/admin/product`,
-      { data: form }
-    );
-    // .then(response => {
-    //   if (response.data.success)
-    //     console.log('Upload new product successfully');
-    // })
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/product`,
+        { data: form }
+      )
+      .then(response => {
+        if (response.data.success)
+          console.log('Upload new product successfully');
+      });
     // .catch(error => {
     //   console.log(error.message);
     // });
@@ -138,7 +139,10 @@ export default props => {
         }/admin/product/${id}`,
         { data: form }
       )
-      .then(window.location.reload());
+      .then(res => {
+        console.log(res.data.message);
+        window.location.reload();
+      });
     // .catch(error => {
     //   console.log(error.message);
     // });
@@ -151,7 +155,10 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/admin/product/${id}`
       )
-      .then(window.location.reload());
+      .then(res => {
+        console.log(res.data.message);
+        window.location.reload();
+      });
     // .catch(error => {
     //   console.log(error.message);
     // });
@@ -163,13 +170,14 @@ export default props => {
       qty,
     };
 
-    axios.post(
-      `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
-      { data: cart }
-    );
-    // .then(response => {
-    //   if (response.data.success) console.log(`${id} added successfully`);
-    // });
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
+        { data: cart }
+      )
+      .then(response => {
+        if (response.data.success) console.log(`${id} added successfully`);
+      });
     // .catch(error => {
     //   console.log(error.message);
     // });

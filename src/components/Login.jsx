@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { Box, Flex } from 'rebass';
 import PropTypes from 'prop-types';
@@ -10,7 +11,20 @@ import { Instagram } from 'styled-icons/boxicons-logos/Instagram';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Login = ({ className }) => {
-  const { isLaptop, user, setUser, handleLogin } = useContext(SharedContext);
+  const {
+    isLaptop,
+    user,
+    setUser,
+    isLogin,
+    handleLogin,
+    checkIfLogin,
+  } = useContext(SharedContext);
+
+  if (isLogin) {
+    return <Redirect to='/Sweet-for-happiness/dashboard' />;
+  } else {
+    checkIfLogin();
+  }
 
   return (
     <div className={className}>

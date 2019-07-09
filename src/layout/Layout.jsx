@@ -4,7 +4,6 @@ import PrivateRoute from '../components/PrivateRoute';
 import Header from '../components/Header';
 import CartOnScreen from '../components/CartOnScreen';
 import Login from '../components/Login';
-import LoginAdmin from '../components/LoginAdmin';
 import Cart from '../components/Cart';
 import Home from '../components/Home';
 import Product from '../components/Product';
@@ -23,7 +22,6 @@ const Layout = () => {
       <Switch>
         <Route component={Home} exact path='/Sweet-for-happiness/' />
         <Route component={Login} exact path='/Sweet-for-happiness/login' />
-        <Route component={LoginAdmin} path='/Sweet-for-happiness/loginadmin' />
         <Route component={Cart} path='/Sweet-for-happiness/cart' />
         <Route component={Product} exact path='/Sweet-for-happiness/product' />
         <Route
