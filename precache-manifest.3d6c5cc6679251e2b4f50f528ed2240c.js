@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "32fd8cde687a6a781e5167466a512d14",
+    "revision": "7d03c6ab5a8a215d99bd6dec241ed668",
     "url": "/Sweet-for-happiness/index.html"
   },
   {
-    "revision": "77f329e700b61a4f21e4",
+    "revision": "84284b798113fedbf7d9",
     "url": "/Sweet-for-happiness/static/css/main.34de6062.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Sweet-for-happiness/static/js/2.64c494e6.chunk.js"
   },
   {
-    "revision": "77f329e700b61a4f21e4",
-    "url": "/Sweet-for-happiness/static/js/main.46a0629e.chunk.js"
+    "revision": "84284b798113fedbf7d9",
+    "url": "/Sweet-for-happiness/static/js/main.fe6e584d.chunk.js"
   },
   {
     "revision": "d52b57e0f4aff5cbaf94",
