@@ -123,6 +123,12 @@ const StyledFlex = styled.div`
   justify-content: space-around;
   align-items: center;
   background: ${props => props.theme.colors.greenWhite};
+  div {
+    transition: 0.5s all;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
   @media (min-width: 769px) {
     padding: 20px;
     font-size: 26px;
@@ -214,10 +220,6 @@ const StyledLogin = styled(Login)`
   .icon {
     width: 40px;
     height: 40px;
-    transition: 0.5s all;
-    &:hover {
-      transform: scale(1.5);
-    }
   }
 
   @media (min-width: 769px) {
@@ -225,9 +227,8 @@ const StyledLogin = styled(Login)`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .social {
-      height: 350px;
+    .icon {
+      margin-right: 20px;
     }
   }
 
