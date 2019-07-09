@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Flex, Box, Text } from 'rebass';
@@ -8,8 +8,9 @@ import DashContent from './DashContent';
 
 const Dashboard = ({ className }) => {
   const { user, handleLogout, checkIfLogin } = useContext(SharedContext);
-
-  checkIfLogin();
+  useEffect(() => {
+    checkIfLogin();
+  }, []);
 
   return (
     <div className={className}>
