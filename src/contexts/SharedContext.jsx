@@ -48,7 +48,7 @@ export default props => {
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
       .then(response => {
         console.log('handleLogin ', response.data.message);
-        if (response.data.message === '登入成功') {
+        if (response.data.success === true) {
           setIsLogin(true);
         }
       });
