@@ -35,7 +35,7 @@ const Checkout = ({ className }) => {
           </Heading>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'> Name</Flex>
             </Text>
             <input
@@ -53,7 +53,7 @@ const Checkout = ({ className }) => {
           </Flex>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'> E-mail</Flex>
             </Text>
 
@@ -72,7 +72,7 @@ const Checkout = ({ className }) => {
           </Flex>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'>Tel</Flex>
             </Text>
 
@@ -91,7 +91,7 @@ const Checkout = ({ className }) => {
           </Flex>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'>Address</Flex>
             </Text>
 
@@ -110,7 +110,7 @@ const Checkout = ({ className }) => {
           </Flex>
 
           <div>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='flex-end'>Message</Flex>
             </Text>
             <textarea
@@ -217,7 +217,16 @@ const StyledForm = styled(Card)`
 
 const StyledCheckout = styled(Checkout)`
   margin-top: 30px;
+  @media (max-width: 768px) {
+    input {
+      width: 75vw;
+    }
 
+    textarea {
+      width: 90vw;
+      margin-left: 7px;
+    }
+  }
   .confirm {
     margin: 20px 0 20px 0;
     width: 100%;

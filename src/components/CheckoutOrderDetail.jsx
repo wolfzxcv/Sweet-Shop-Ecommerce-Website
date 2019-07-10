@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -6,13 +7,12 @@ import { Box, Button, Card, Flex, Heading } from 'rebass';
 import { SharedContext } from '../contexts/SharedContext';
 
 const CheckoutOrderDetail = ({ match }) => {
-  const { orderDetail, setOrderDetail, confirmPayment, getCart } = useContext(
+  const { orderDetail, setOrderDetail, confirmPayment } = useContext(
     SharedContext
   );
 
   useEffect(() => {
     getOrederDetail();
-    getCart();
   }, []);
 
   const getOrederDetail = () => {
@@ -58,7 +58,10 @@ const CheckoutOrderDetail = ({ match }) => {
           </StyledFlex>
         </Card>
         <StyledButton
-          onClick={() => confirmPayment(orderDetail.order.id)}
+          onClick={() => {
+            confirmPayment(orderDetail.order.id);
+            getOrederDetail();
+          }}
           width={['97vw', '390px']}
           bg='green'
           fontSize='26px'

@@ -299,7 +299,6 @@ export default props => {
       )
       .then(response => {
         console.log(`confirmPayment ${id}`, response.data.message);
-        getCart();
       });
   };
 
