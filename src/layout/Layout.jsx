@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import CartOnScreen from '../components/CartOnScreen';
 import Login from '../components/Login';
 import Cart from '../components/Cart';
+import Checkout from '../components/Checkout';
 import Home from '../components/Home';
 import Product from '../components/Product';
 import ProductDetail from '../components/ProductDetail';
@@ -23,6 +24,11 @@ const Layout = () => {
         <Route component={Home} exact path='/Sweet-for-happiness/' />
         <Route component={Login} exact path='/Sweet-for-happiness/login' />
         <Route component={Cart} path='/Sweet-for-happiness/cart' />
+        <Route
+          component={Checkout}
+          exact
+          path='/Sweet-for-happiness/checkout'
+        />
         <Route component={Product} exact path='/Sweet-for-happiness/product' />
         <Route
           component={ProductDetail}

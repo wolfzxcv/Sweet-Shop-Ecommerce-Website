@@ -8,8 +8,8 @@ const DashAddNewProduct = () => {
   const {
     isModalOpen,
     setIsModalOpen,
-    form,
-    setForm,
+    productForm,
+    setProductForm,
     updateProduct,
     handleForm,
     resetForm,
@@ -18,112 +18,124 @@ const DashAddNewProduct = () => {
   return (
     <StyledModal isOpen={isModalOpen}>
       <StyledTitle>
-        {form.id === '' ? 'Add New Product' : `Edit ${form.title}`}
+        {productForm.id === ''
+          ? 'Add New Product'
+          : `Edit ${productForm.title}`}
       </StyledTitle>
 
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          alert('Love you');
-        }}
-      >
-        <Flex m={2} justifyContent='space-around'>
-          <StyledFlex flexDirection='column' justifyContent='center'>
-            <div>Input image url</div>
+      <Flex m={2} justifyContent='space-around'>
+        <StyledFlex flexDirection='column' justifyContent='center'>
+          <div>Input image url</div>
+          <input
+            type='text'
+            placeholder='Input image url'
+            value={productForm.imageUrl}
+            onChange={e =>
+              setProductForm({ ...productForm, imageUrl: e.target.value })
+            }
+          />
+          <Image width='240px' src={productForm.imageUrl} borderRadius={8} />
+        </StyledFlex>
+        <Flex flexDirection='column' justifyContent='space-around'>
+          <div>
+            Title
             <input
               type='text'
-              placeholder='Input image url'
-              value={form.imageUrl}
-              onChange={e => setForm({ ...form, imageUrl: e.target.value })}
+              placeholder='write your product name'
+              size='50'
+              value={productForm.title}
+              onChange={e =>
+                setProductForm({ ...productForm, title: e.target.value })
+              }
             />
-            <Image width='240px' src={form.imageUrl} borderRadius={8} />
-          </StyledFlex>
-          <Flex flexDirection='column' justifyContent='space-around'>
-            <div>
-              Title
-              <input
-                type='text'
-                placeholder='write your product name'
-                size='50'
-                value={form.title}
-                onChange={e => setForm({ ...form, title: e.target.value })}
-              />
-            </div>
+          </div>
 
-            <div>
-              Category
-              <input
-                type='text'
-                placeholder='write your category'
-                size='20'
-                value={form.category}
-                onChange={e => setForm({ ...form, category: e.target.value })}
-              />
-            </div>
+          <div>
+            Category
+            <input
+              type='text'
+              placeholder='write your category'
+              size='20'
+              value={productForm.category}
+              onChange={e =>
+                setProductForm({ ...productForm, category: e.target.value })
+              }
+            />
+          </div>
 
-            <div>
-              Enabled
-              <select
-                value={form.is_enabled}
-                onChange={e => setForm({ ...form, is_enabled: e.target.value })}
-              >
-                <option value='1'>YES</option>
-                <option value='0'>NO</option>
-              </select>
-            </div>
+          <div>
+            Enabled
+            <select
+              value={productForm.is_enabled}
+              onChange={e =>
+                setProductForm({ ...productForm, is_enabled: e.target.value })
+              }
+            >
+              <option value='1'>YES</option>
+              <option value='0'>NO</option>
+            </select>
+          </div>
 
-            <div>
-              Price
-              <input
-                type='text'
-                placeholder='€99.99'
-                maxLength='5'
-                size='5'
-                style={{ direction: 'rtl' }}
-                value={form.price}
-                onChange={e => setForm({ ...form, price: e.target.value })}
-              />
-            </div>
+          <div>
+            Price
+            <input
+              type='text'
+              placeholder='€99.99'
+              maxLength='5'
+              size='5'
+              style={{ direction: 'rtl' }}
+              value={productForm.price}
+              onChange={e =>
+                setProductForm({ ...productForm, price: e.target.value })
+              }
+            />
+          </div>
 
-            <div>
-              Amount
-              <input
-                type='text'
-                placeholder='99'
-                maxLength='2'
-                size='1'
-                style={{ direction: 'rtl' }}
-                value={form.unit}
-                onChange={e => setForm({ ...form, unit: e.target.value })}
-              />
-            </div>
+          <div>
+            Amount
+            <input
+              type='text'
+              placeholder='99'
+              maxLength='2'
+              size='1'
+              style={{ direction: 'rtl' }}
+              value={productForm.unit}
+              onChange={e =>
+                setProductForm({ ...productForm, unit: e.target.value })
+              }
+            />
+          </div>
 
-            <div>
-              <div>Allergy Advice</div>
-              <textarea
-                placeholder='Allergy Advice...'
-                rows='3'
-                cols='60'
-                value={form.description}
-                onChange={e =>
-                  setForm({ ...form, description: e.target.value })
-                }
-              />
-            </div>
+          <div>
+            <div>Allergy Advice</div>
+            <textarea
+              placeholder='Allergy Advice...'
+              rows='3'
+              cols='60'
+              value={productForm.description}
+              onChange={e =>
+                setProductForm({
+                  ...productForm,
+                  description: e.target.value,
+                })
+              }
+            />
+          </div>
 
-            <div>
-              <div>Detail</div>
-              <textarea
-                placeholder='Detail...'
-                rows='10'
-                cols='60'
-                value={form.content}
-                onChange={e => setForm({ ...form, content: e.target.value })}
-              />
-            </div>
-          </Flex>
+          <div>
+            <div>Detail</div>
+            <textarea
+              placeholder='Detail...'
+              rows='10'
+              cols='60'
+              value={productForm.content}
+              onChange={e =>
+                setProductForm({ ...productForm, content: e.target.value })
+              }
+            />
+          </div>
         </Flex>
-      </form>
+      </Flex>
 
       <Flex justifyContent='flex-end'>
         <StyledButton
@@ -143,9 +155,9 @@ const DashAddNewProduct = () => {
           width='150px'
           bg='green'
           onClick={
-            form.id === ''
-              ? () => handleForm(form)
-              : () => updateProduct(form.id)
+            productForm.id === ''
+              ? () => handleForm(productForm)
+              : () => updateProduct(productForm.id)
           }
         >
           Submit

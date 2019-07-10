@@ -17,7 +17,7 @@ export default props => {
   const [amount, setAmount] = useState(1);
   const [orderList, setOrderList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [form, setForm] = useState({
+  const [productForm, setProductForm] = useState({
     id: '',
     title: '',
     category: '',
@@ -28,6 +28,13 @@ export default props => {
     content: '',
     image: '',
     imageUrl: '',
+  });
+  const [orderForm, setOrderForm] = useState({
+    name: '',
+    email: '',
+    tel: '',
+    address: '',
+    message: '',
   });
 
   const getAllProduct = () => {
@@ -48,7 +55,7 @@ export default props => {
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
       .then(response => {
         console.log('handleLogin ', response.data.message);
-        if (response.data.message === '登入成功') {
+        if (response.data.success === true) {
           setIsLogin(true);
         }
       });
@@ -78,15 +85,15 @@ export default props => {
 
   const handleForm = () => {
     if (
-      form.title.trim().length > 5 &&
-      form.category.trim().length > 0 &&
-      form.price < 99.99 &&
-      form.price > 0 &&
-      form.unit < 999 &&
-      form.unit > 0
+      productForm.title.trim().length > 5 &&
+      productForm.category.trim().length > 0 &&
+      productForm.price < 100 &&
+      productForm.price > 0 &&
+      productForm.unit < 100 &&
+      productForm.unit > 0
     ) {
-      setForm(form);
-      uploadNewProduct(form);
+      setProductForm(productForm);
+      uploadNewProduct(productForm);
     } else {
       alert(
         `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 99`
@@ -95,7 +102,7 @@ export default props => {
   };
 
   const resetForm = () => {
-    setForm({
+    setProductForm({
       id: '',
       title: '',
       category: '',
@@ -116,10 +123,13 @@ export default props => {
         `${process.env.REACT_APP_API}/api/${
           process.env.REACT_APP_CUSTOM
         }/admin/product`,
-        { data: form }
+        { data: productForm }
       )
       .then(response => {
-        console.log(`uploadNewProduct ${form.title}`, response.data.message);
+        console.log(
+          `uploadNewProduct ${productForm.title}`,
+          response.data.message
+        );
         if (response.data.success) {
           // alert('Yay!! Upload new product successfully!!');
           getAllProduct();
@@ -130,7 +140,7 @@ export default props => {
   };
 
   const editProduct = id => {
-    setForm(product.find(x => x.id === id));
+    setProductForm(product.find(x => x.id === id));
     setIsModalOpen(true);
   };
 
@@ -140,10 +150,13 @@ export default props => {
         `${process.env.REACT_APP_API}/api/${
           process.env.REACT_APP_CUSTOM
         }/admin/product/${id}`,
-        { data: form }
+        { data: productForm }
       )
       .then(response => {
-        console.log(`updateProduct ${form.title}`, response.data.message);
+        console.log(
+          `updateProduct ${productForm.title}`,
+          response.data.message
+        );
         if (response.data.success) {
           getAllProduct();
           setIsModalOpen(false);
@@ -227,10 +240,12 @@ export default props => {
     setAmount,
     orderList,
     setOrderList,
+    orderForm,
+    setOrderForm,
     totalPrice,
     setTotalPrice,
-    form,
-    setForm,
+    productForm,
+    setProductForm,
     product,
     setProduct,
     item,
