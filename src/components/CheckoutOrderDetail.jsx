@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
