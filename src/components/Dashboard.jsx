@@ -12,7 +12,7 @@ const Dashboard = ({ className }) => {
   );
   useEffect(() => {
     checkIfLogin();
-    console.log(isLogin);
+    console.log('isLogin ', isLogin);
   }, []);
 
   return (

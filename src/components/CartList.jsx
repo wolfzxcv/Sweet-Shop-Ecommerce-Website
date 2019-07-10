@@ -45,7 +45,7 @@ CartList.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  qty: PropTypes.string.isRequired,
+  qty: PropTypes.number.isRequired,
   total: PropTypes.string.isRequired,
 };
 

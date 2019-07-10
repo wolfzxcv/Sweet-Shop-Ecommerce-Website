@@ -37,23 +37,27 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/products/all`
       )
-      .then(response => setProduct(response.data.products));
+      .then(response => {
+        console.log('getAllProduct ', response.data.success);
+        setProduct(response.data.products);
+      });
   };
 
   const handleLogin = user => {
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
       .then(response => {
-        if (response.data.message === '登入成功') setIsLogin(true);
+        console.log('handleLogin ', response.data.message);
+        if (response.data.message === '登入成功') {
+          setIsLogin(true);
+        }
       });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
   };
 
   const handleLogout = user => {
-    axios.post(`${process.env.REACT_APP_API}/logout`, user).then(res => {
-      if (res.data.success) {
+    axios.post(`${process.env.REACT_APP_API}/logout`, user).then(response => {
+      console.log('handleLogout ', response.data.message);
+      if (response.data.success) {
         setIsLogin(false);
         return <Redirect to='/Sweet-for-happiness/login' />;
       }
@@ -62,11 +66,11 @@ export default props => {
 
   const checkIfLogin = () => {
     axios.post(`${process.env.REACT_APP_API}/api/user/check`).then(response => {
-      if (response.data.success === true) setIsLogin(true);
+      console.log('checkIfLogin ', response.data.success);
+      if (response.data.success === true) {
+        setIsLogin(true);
+      }
     });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
     if (!isLogin) {
       return <Redirect to='/Sweet-for-happiness/login' />;
     }
@@ -115,16 +119,13 @@ export default props => {
         { data: form }
       )
       .then(response => {
+        console.log(`uploadNewProduct ${form.title}`, response.data.message);
         if (response.data.success) {
           // alert('Yay!! Upload new product successfully!!');
           getAllProduct();
           setIsModalOpen(false);
           resetForm();
-          console.log(response.data.message);
         }
-      })
-      .catch(error => {
-        console.log(error.message);
       });
   };
 
@@ -142,16 +143,13 @@ export default props => {
         { data: form }
       )
       .then(response => {
+        console.log(`updateProduct ${form.title}`, response.data.message);
         if (response.data.success) {
           getAllProduct();
           setIsModalOpen(false);
           resetForm();
-          console.log(response.data.message);
         }
       });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
   };
 
   const deleteProduct = id => {
@@ -162,14 +160,11 @@ export default props => {
         }/admin/product/${id}`
       )
       .then(response => {
+        console.log(`deleteProduct ${id}`, response.data.message);
         if (response.data.success) {
           getAllProduct();
-          console.log(response.data.message);
         }
       });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
   };
 
   const addToCart = (id, qty = 1) => {
@@ -184,16 +179,13 @@ export default props => {
         { data: cart }
       )
       .then(response => {
+        console.log('addToCart ', response.data.message);
         if (response.data.success) {
           getCart();
-          console.log(`Order ${id} added successfully`);
+          setAmount(1);
+          shakeCart();
         }
       });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
-    setAmount(1);
-    shakeCart();
   };
 
   const shakeCart = () => {};
@@ -204,14 +196,12 @@ export default props => {
         `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
       )
       .then(response => {
+        console.log('getCart ', response.data.success);
         if (response.data.success) {
           setOrderList(response.data.data.carts);
           setTotalPrice(response.data.data.final_total.toFixed(2));
         }
       });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
   };
 
   const deleteOrder = id => {
@@ -222,6 +212,7 @@ export default props => {
         }/cart/${id}`
       )
       .then(response => {
+        console.log('deleteOrder ', response.data.message);
         if (response.data.success) {
           getCart();
         }
