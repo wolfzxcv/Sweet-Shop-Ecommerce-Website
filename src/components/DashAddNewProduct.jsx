@@ -142,7 +142,11 @@ const DashAddNewProduct = () => {
           ml='30px'
           width='150px'
           bg='green'
-          onClick={form.id === '' ? handleForm : () => updateProduct(form.id)}
+          onClick={
+            form.id === ''
+              ? () => handleForm(form)
+              : () => updateProduct(form.id)
+          }
         >
           Submit
         </StyledButton>

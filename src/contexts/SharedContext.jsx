@@ -83,10 +83,6 @@ export default props => {
     ) {
       setForm(form);
       uploadNewProduct(form);
-      setIsModalOpen(false);
-      resetForm();
-      alert('Yay!! Upload new product successfully!!');
-      window.location.reload();
     } else {
       alert(
         `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 99`
@@ -119,12 +115,17 @@ export default props => {
         { data: form }
       )
       .then(response => {
-        if (response.data.success)
-          console.log('Upload new product successfully');
+        if (response.data.success) {
+          // alert('Yay!! Upload new product successfully!!');
+          getAllProduct();
+          setIsModalOpen(false);
+          resetForm();
+          console.log(response.data.message);
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
       });
-    // .catch(error => {
-    //   console.log(error.message);
-    // });
   };
 
   const editProduct = id => {
@@ -140,9 +141,13 @@ export default props => {
         }/admin/product/${id}`,
         { data: form }
       )
-      .then(res => {
-        console.log(res.data.message);
-        window.location.reload();
+      .then(response => {
+        if (response.data.success) {
+          getAllProduct();
+          setIsModalOpen(false);
+          resetForm();
+          console.log(response.data.message);
+        }
       });
     // .catch(error => {
     //   console.log(error.message);
@@ -156,9 +161,11 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/admin/product/${id}`
       )
-      .then(res => {
-        console.log(res.data.message);
-        window.location.reload();
+      .then(response => {
+        if (response.data.success) {
+          getAllProduct();
+          console.log(response.data.message);
+        }
       });
     // .catch(error => {
     //   console.log(error.message);
@@ -177,12 +184,14 @@ export default props => {
         { data: cart }
       )
       .then(response => {
-        if (response.data.success) console.log(`${id} added successfully`);
+        if (response.data.success) {
+          getCart();
+          console.log(`Order ${id} added successfully`);
+        }
       });
     // .catch(error => {
     //   console.log(error.message);
     // });
-    getCart();
     setAmount(1);
     shakeCart();
   };
@@ -212,9 +221,10 @@ export default props => {
           process.env.REACT_APP_CUSTOM
         }/cart/${id}`
       )
-      .then(res => {
-        console.log(res.data.message);
-        window.location.reload();
+      .then(response => {
+        if (response.data.success) {
+          getCart();
+        }
       });
   };
 

@@ -7,9 +7,12 @@ import DashSidebar from './DashSidebar';
 import DashContent from './DashContent';
 
 const Dashboard = ({ className }) => {
-  const { user, handleLogout, checkIfLogin } = useContext(SharedContext);
+  const { user, handleLogout, checkIfLogin, isLogin } = useContext(
+    SharedContext
+  );
   useEffect(() => {
     checkIfLogin();
+    console.log(isLogin);
   }, []);
 
   return (
