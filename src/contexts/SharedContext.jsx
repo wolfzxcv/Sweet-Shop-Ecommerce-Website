@@ -80,9 +80,9 @@ export default props => {
     if (
       form.title.trim().length > 5 &&
       form.category.trim().length > 0 &&
-      form.price < 99.99 &&
+      form.price < 100 &&
       form.price > 0 &&
-      form.unit < 999 &&
+      form.unit < 100 &&
       form.unit > 0
     ) {
       setForm(form);

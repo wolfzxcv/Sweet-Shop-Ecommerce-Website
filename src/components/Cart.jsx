@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CartList from './CartList';
@@ -42,8 +43,11 @@ const Cart = ({ className }) => {
             <div>{`€ ${totalPrice}`}</div>
           </div>
         </div>
-
-        <div className='checkout'>Proceed to checkout</div>
+        <div className='checkout'>
+          {orderList.length !== 0 && (
+            <Link to='/Sweet-for-happiness/checkout'>Proceed to checkout</Link>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -145,9 +149,6 @@ const StyledCart = styled(Cart)`
       font-size: 24px;
       color: ${props => props.theme.colors.green};
       background-color: ${props => props.theme.colors.orange};
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 `;
