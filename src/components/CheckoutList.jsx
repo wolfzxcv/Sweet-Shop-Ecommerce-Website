@@ -40,7 +40,6 @@ const StyledFlex = styled(Flex)`
       background-color: ${props => props.theme.colors.orange};
       color: ${props => props.theme.colors.green};
     }
-
     &:nth-child(even) {
       background-color: ${props => props.theme.colors.green};
       color: ${props => props.theme.colors.orange};

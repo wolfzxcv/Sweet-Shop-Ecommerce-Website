@@ -2,32 +2,121 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Box, Card, Flex, Heading } from 'rebass';
+import { Box, Card, Flex, Heading, Text } from 'rebass';
 import CheckoutList from './CheckoutList';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Checkout = ({ className }) => {
-  const { totalPrice, orderList } = useContext(SharedContext);
+  const {
+    isLaptop,
+    totalPrice,
+    orderList,
+    orderForm,
+    setOrderForm,
+  } = useContext(SharedContext);
 
   return (
     <div className={className}>
-      <Flex justifyContent={['', 'center']}>
+      <Flex justifyContent={['', 'space-around']}>
+        <StyledForm>
+          <Heading bg='greenWhite' my={1}>
+            <Flex justifyContent='center'>Recipient</Flex>
+          </Heading>
+
+          <Flex>
+            <Text width='70px'>
+              <Flex alignItems='center'> Name</Flex>
+            </Text>
+            <input
+              type='text'
+              placeholder='write your name'
+              size='45'
+              value={orderForm.name}
+              onChange={e =>
+                setOrderForm({ ...orderForm, name: e.target.value })
+              }
+            />
+          </Flex>
+
+          <Flex>
+            <Text width='70px'>
+              <Flex alignItems='center'> E-mail</Flex>
+            </Text>
+
+            <input
+              type='email'
+              placeholder='write your E-mail'
+              size='45'
+              value={orderForm.email}
+              onChange={e =>
+                setOrderForm({ ...orderForm, email: e.target.value })
+              }
+            />
+          </Flex>
+
+          <Flex>
+            <Text width='70px'>
+              <Flex alignItems='center'>Tel</Flex>
+            </Text>
+
+            <input
+              type='tel'
+              placeholder='write your phone number'
+              size='45'
+              value={orderForm.tel}
+              onChange={e =>
+                setOrderForm({ ...orderForm, tel: e.target.value })
+              }
+            />
+          </Flex>
+
+          <Flex>
+            <Text width='70px'>
+              <Flex alignItems='center'>Address</Flex>
+            </Text>
+
+            <input
+              type='text'
+              placeholder='write your address'
+              size='45'
+              value={orderForm.address}
+              onChange={e =>
+                setOrderForm({ ...orderForm, address: e.target.value })
+              }
+            />
+          </Flex>
+
+          <div>
+            <Text width='70px'>
+              <Flex alignItems='flex-end'>Message</Flex>
+            </Text>
+            <textarea
+              placeholder='Message...'
+              rows='4'
+              cols='57'
+              value={orderForm.message}
+              onChange={e =>
+                setOrderForm({ ...orderForm, message: e.target.value })
+              }
+            />
+          </div>
+        </StyledForm>
+
         <Card width={['95vw', '390px']}>
           <Heading bg='greenWhite' my={1}>
             <Flex justifyContent='center'>Order info</Flex>
           </Heading>
 
-          <div className='colorful'>
-            {orderList.map(item => (
-              <CheckoutList
-                key={item.id}
-                title={item.product.title}
-                price={item.product.price}
-                total={item.final_total.toFixed(2)}
-                qty={item.qty}
-              />
-            ))}
-          </div>
+          {orderList.map(item => (
+            <CheckoutList
+              key={item.id}
+              title={item.product.title}
+              price={item.product.price}
+              total={item.final_total.toFixed(2)}
+              qty={item.qty}
+            />
+          ))}
+
           <Box bg='greenWhite' width={['95vw', '390px']} fontSize='20px' my={1}>
             <Flex justifyContent='space-between'>
               <Box>
@@ -50,12 +139,15 @@ const Checkout = ({ className }) => {
               </Box>
             </Flex>
           </Box>
-        </Card>
-        <div>
-          {orderList.length !== 0 && (
-            <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
+
+          {isLaptop && (
+            <div className='confirm'>
+              {orderList.length !== 0 && (
+                <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
+              )}
+            </div>
           )}
-        </div>
+        </Card>
       </Flex>
     </div>
   );
@@ -65,10 +157,27 @@ Checkout.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
+const StyledForm = styled(Card)`
+  height: 350px;
+  div {
+    height: 30px;
+    /* border: 1px solid red; */
+  }
+`;
+
 const StyledCheckout = styled(Checkout)`
-  .colorful {
-    div {
-    }
+  margin-top: 30px;
+
+  .confirm {
+    margin: 20px 0 20px 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: ${props => props.theme.colors.orange};
+    background-color: ${props => props.theme.colors.green};
   }
 `;
 
