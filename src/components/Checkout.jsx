@@ -17,9 +17,12 @@ const Checkout = ({ className }) => {
 
   return (
     <div className={className}>
-      <Flex justifyContent={['', 'space-around']}>
+      <Flex
+        flexDirection={['column', 'row']}
+        justifyContent={['', 'space-around']}
+      >
         <StyledForm>
-          <Heading bg='greenWhite' my={1}>
+          <Heading width={['97vw', '435px']} bg='greenWhite' my={1}>
             <Flex justifyContent='center'>Recipient</Flex>
           </Heading>
 
@@ -102,52 +105,66 @@ const Checkout = ({ className }) => {
           </div>
         </StyledForm>
 
-        <Card width={['95vw', '390px']}>
-          <Heading bg='greenWhite' my={1}>
-            <Flex justifyContent='center'>Order info</Flex>
-          </Heading>
+        <Flex order={['-1', '1']}>
+          <Card width={['95vw', '390px']}>
+            <Heading bg='greenWhite' my={1}>
+              <Flex justifyContent='center'>Order info</Flex>
+            </Heading>
 
-          {orderList.map(item => (
-            <CheckoutList
-              key={item.id}
-              title={item.product.title}
-              price={item.product.price}
-              total={item.final_total.toFixed(2)}
-              qty={item.qty}
-            />
-          ))}
+            {orderList.map(item => (
+              <CheckoutList
+                key={item.id}
+                title={item.product.title}
+                price={item.product.price}
+                total={item.final_total.toFixed(2)}
+                qty={item.qty}
+              />
+            ))}
 
-          <Box bg='greenWhite' width={['95vw', '390px']} fontSize='20px' my={1}>
-            <Flex justifyContent='space-between'>
-              <Box>
-                <Flex>
-                  <div>price</div>
-                  <div>{`€ ${totalPrice}`}</div>
-                </Flex>
-              </Box>
-              <Box>
-                <Flex>
-                  <div>shipment</div>
-                  <div>€ 0.00</div>
-                </Flex>
-              </Box>
-              <Box>
-                <Flex>
-                  <div>Total</div>
-                  <div>{`€ ${totalPrice}`}</div>
-                </Flex>
-              </Box>
-            </Flex>
-          </Box>
+            <Box
+              bg='greenWhite'
+              width={['95vw', '390px']}
+              fontSize='20px'
+              my={1}
+            >
+              <Flex justifyContent='space-between'>
+                <Box>
+                  <Flex>
+                    <div>price</div>
+                    <div>{`€ ${totalPrice}`}</div>
+                  </Flex>
+                </Box>
+                <Box>
+                  <Flex>
+                    <div>shipment</div>
+                    <div>€ 0.00</div>
+                  </Flex>
+                </Box>
+                <Box>
+                  <Flex>
+                    <div>Total</div>
+                    <div>{`€ ${totalPrice}`}</div>
+                  </Flex>
+                </Box>
+              </Flex>
+            </Box>
 
-          {isLaptop && (
-            <div className='confirm'>
-              {orderList.length !== 0 && (
-                <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
-              )}
-            </div>
-          )}
-        </Card>
+            {isLaptop && (
+              <div className='confirm'>
+                {orderList.length !== 0 && (
+                  <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
+                )}
+              </div>
+            )}
+          </Card>
+        </Flex>
+        {!isLaptop && (
+          <div className='confirm'>
+            {orderList.length !== 0 && (
+              <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
+            )}
+          </div>
+        )}
       </Flex>
     </div>
   );
@@ -158,7 +175,13 @@ Checkout.propTypes = {
 };
 
 const StyledForm = styled(Card)`
-  height: 350px;
+  @media (min-width: 769px) {
+    height: 350px;
+  }
+  @media (max-width: 768px) {
+    height: 250px;
+  }
+
   div {
     height: 30px;
     /* border: 1px solid red; */

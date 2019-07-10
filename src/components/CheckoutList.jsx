@@ -20,19 +20,23 @@ CheckoutList.propTypes = {
 };
 
 const StyledFlex = styled(Flex)`
+  margin: 0 auto;
   div {
     height: 30px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid ${props => props.theme.colors.greenWhite};
     &:first-child {
+      padding-left: 5px;
       width: 290px;
     }
     &:nth-child(2) {
+      padding-right: 5px;
       width: 30px;
       justify-content: flex-end;
     }
     &:nth-child(3) {
+      padding-right: 5px;
       width: 70px;
       justify-content: flex-end;
     }
