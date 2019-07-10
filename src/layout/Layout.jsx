@@ -6,6 +6,7 @@ import CartOnScreen from '../components/CartOnScreen';
 import Login from '../components/Login';
 import Cart from '../components/Cart';
 import Checkout from '../components/Checkout';
+import CheckoutOrderDetail from '../components/CheckoutOrderDetail';
 import Home from '../components/Home';
 import Product from '../components/Product';
 import ProductDetail from '../components/ProductDetail';
@@ -33,6 +34,10 @@ const Layout = () => {
         <Route
           component={ProductDetail}
           path='/Sweet-for-happiness/product/goNorway:id'
+        />
+        <Route
+          component={CheckoutOrderDetail}
+          path='/Sweet-for-happiness/checkout/goNorway:id'
         />
         <PrivateRoute
           component={Dashboard}

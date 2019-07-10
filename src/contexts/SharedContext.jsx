@@ -17,6 +17,7 @@ export default props => {
   const [amount, setAmount] = useState(1);
   const [orderList, setOrderList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [orderId, setOrderId] = useState('');
   const [productForm, setProductForm] = useState({
     id: '',
     title: '',
@@ -30,11 +31,37 @@ export default props => {
     imageUrl: '',
   });
   const [orderForm, setOrderForm] = useState({
-    name: '',
-    email: '',
-    tel: '',
-    address: '',
-    message: '',
+    user: {
+      name: ' ',
+      email: ' ',
+      tel: ' ',
+      address: ' ',
+    },
+    message: ' ',
+  });
+  const [orderDetail, setOrderDetail] = useState({
+    success: true,
+    order: {
+      create_at: ' ',
+      id: ' ',
+      is_paid: false,
+      message: ' ',
+      payment_method: ' ',
+      products: [
+        {
+          id: ' ',
+          product_id: ' ',
+          qty: ' ',
+        },
+      ],
+      total: '',
+      user: {
+        address: ' ',
+        email: ' ',
+        name: ' ',
+        tel: ' ',
+      },
+    },
   });
 
   const getAllProduct = () => {
@@ -66,7 +93,6 @@ export default props => {
       console.log('handleLogout ', response.data.message);
       if (response.data.success) {
         setIsLogin(false);
-        return <Redirect to='/Sweet-for-happiness/login' />;
       }
     });
   };
@@ -222,7 +248,7 @@ export default props => {
         `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
       )
       .then(response => {
-        console.log('getCart ', response.data.success);
+        console.log('getCart ', response.data.success, 'detail', response.data);
         if (response.data.success) {
           setOrderList(response.data.data.carts);
           setTotalPrice(response.data.data.final_total.toFixed(2));
@@ -245,6 +271,38 @@ export default props => {
       });
   };
 
+  const sendOrderForm = orderForm => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/order`,
+        { data: orderForm }
+      )
+      .then(response => {
+        console.log(response.data);
+        console.log('sendOrderForm', response.data.message);
+        setOrderId(response.data.orderId);
+        if (response.data.success) {
+          console.log('Redirect to checkout/goNorway');
+          getCart();
+        }
+      });
+  };
+
+  const confirmPayment = id => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/pay/${id}`
+      )
+      .then(response => {
+        console.log(`confirmPayment ${id}`, response.data.message);
+        getCart();
+      });
+  };
+
   const value = {
     isLaptop,
     user,
@@ -255,8 +313,12 @@ export default props => {
     setOrderList,
     orderForm,
     setOrderForm,
+    orderId,
+    setOrderId,
     totalPrice,
     setTotalPrice,
+    orderDetail,
+    setOrderDetail,
     productForm,
     setProductForm,
     product,
@@ -285,6 +347,8 @@ export default props => {
     getCart,
     shakeCart,
     deleteOrder,
+    sendOrderForm,
+    confirmPayment,
   };
 
   return <SharedContext.Provider value={value} {...props} />;
