@@ -20,19 +20,19 @@ const HeaderLaptop = ({ className }) => {
       </div>
 
       <div className='link'>
-        <Link to='/Sweet-for-happiness/#/'>
+        <Link to='/Sweet-for-happiness/'>
           <div>HOME</div>
         </Link>
 
-        <Link to='/Sweet-for-happiness/#/product'>
+        <Link to='/Sweet-for-happiness/product'>
           <div>PRODUCT</div>
         </Link>
 
-        <Link to='/Sweet-for-happiness/#/login'>
+        <Link to='/Sweet-for-happiness/login'>
           <div>LOGIN</div>
         </Link>
 
-        <Link to='/Sweet-for-happiness/#/cart'>
+        <Link to='/Sweet-for-happiness/cart'>
           <div>
             <FontAwesomeIcon icon={faShoppingCart} />
           </div>

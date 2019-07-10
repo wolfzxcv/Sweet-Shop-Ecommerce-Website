@@ -20,21 +20,17 @@ const Layout = () => {
       {!isLogin && <Header />}
       {!isLogin && <CartOnScreen />}
       <Switch>
-        <Route component={Home} exact path='/Sweet-for-happiness/#/' />
-        <Route component={Login} exact path='/Sweet-for-happiness/#/login' />
-        <Route component={Cart} path='/Sweet-for-happiness/#/cart' />
-        <Route
-          component={Product}
-          exact
-          path='/Sweet-for-happiness/#/product'
-        />
+        <Route component={Home} exact path='/Sweet-for-happiness/' />
+        <Route component={Login} exact path='/Sweet-for-happiness/login' />
+        <Route component={Cart} path='/Sweet-for-happiness/cart' />
+        <Route component={Product} exact path='/Sweet-for-happiness/product' />
         <Route
           component={ProductDetail}
-          path='/Sweet-for-happiness/product/#/goNorway:id'
+          path='/Sweet-for-happiness/product/goNorway:id'
         />
         <PrivateRoute
           component={Dashboard}
-          path='/Sweet-for-happiness/#/dashboard'
+          path='/Sweet-for-happiness/dashboard'
         />
         <Route component={PageNotFound} />
       </Switch>

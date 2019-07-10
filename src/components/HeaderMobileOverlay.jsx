@@ -14,15 +14,15 @@ const HeaderMobileOverlay = ({ className, menuClose }) => {
         tabIndex='0'
       >
         <div className='link'>
-          <Link to='/Sweet-for-happiness/#/'>
+          <Link to='/Sweet-for-happiness/'>
             <div>HOME</div>
           </Link>
 
-          <Link to='/Sweet-for-happiness/#/product'>
+          <Link to='/Sweet-for-happiness/product'>
             <div>PRODUCT</div>
           </Link>
 
-          <Link to='/Sweet-for-happiness/#/login'>
+          <Link to='/Sweet-for-happiness/login'>
             <div>LOGIN</div>
           </Link>
         </div>
@@ -41,7 +41,7 @@ const StyledHeaderMobileOverlay = styled(HeaderMobileOverlay)`
   top: 100px;
   left: 0;
   z-index: 200;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.white};
 
   .whole-page {
     width: 100vw;

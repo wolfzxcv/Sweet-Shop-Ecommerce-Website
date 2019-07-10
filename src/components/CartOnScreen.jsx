@@ -22,7 +22,7 @@ const CartOnScreen = () => {
   }, [orderList.length]);
 
   return (
-    <Link to='/Sweet-for-happiness/#/cart'>
+    <Link to='/Sweet-for-happiness/cart'>
       <StyledCartButton>
         <animated.div
           style={{
@@ -56,9 +56,6 @@ const StyledCartButton = styled.div`
   text-align: center;
   z-index: 500;
   right: 30px;
-  &:hover {
-    transform: scale(1.3);
-  }
 
   .cart-button-total {
     background: ${props => props.theme.colors.white};
@@ -74,6 +71,9 @@ const StyledCartButton = styled.div`
     height: 60px;
     font-size: 46px;
     bottom: 50px;
+    &:hover {
+      transform: scale(1.3);
+    }
     .cart-button-total {
       width: 36px;
       height: 36px;
@@ -87,7 +87,7 @@ const StyledCartButton = styled.div`
     width: 64px;
     height: 48px;
     font-size: 36px;
-    bottom: 30px;
+    top: 25px;
     .cart-button-total {
       width: 24px;
       height: 24px;

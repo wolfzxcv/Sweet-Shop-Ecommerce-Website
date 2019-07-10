@@ -1,24 +1,29 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import CartExample from './CartExample';
-import CartExampleM from './CartExampleM';
-import Underline from './Underline';
+import CartList from './CartList';
 import { SharedContext } from '../contexts/SharedContext';
 
 const Cart = ({ className }) => {
-  const { isLaptop, orderList } = useContext(SharedContext);
+  const { totalPrice, orderList } = useContext(SharedContext);
 
-  console.log(orderList);
   return (
     <div className={className}>
       <div className='left'>
         <div className='yourcart'>Your cart</div>
-        {isLaptop ? <CartExample /> : <CartExampleM />}
-        {isLaptop && <Underline />}
-        {isLaptop ? <CartExample /> : <CartExampleM />}
-        {isLaptop && <Underline />}
-        {isLaptop ? <CartExample /> : <CartExampleM />}
+        {orderList.length === 0 && <div>Oops! Your cart is empty.</div>}
+
+        {orderList.map(item => (
+          <CartList
+            key={item.id}
+            id={item.id}
+            title={item.product.title}
+            image={item.product.imageUrl}
+            price={item.product.price}
+            total={item.final_total.toFixed(2)}
+            qty={item.qty}
+          />
+        ))}
       </div>
 
       <div className='right'>
@@ -26,15 +31,15 @@ const Cart = ({ className }) => {
         <div>
           <div className='price'>
             <div>price</div>
-            <div>€ 26.49</div>
+            <div>{`€ ${totalPrice}`}</div>
           </div>
           <div className='shipment'>
             <div>shipment</div>
-            <div>€ 15.00</div>
+            <div>€ 0.00</div>
           </div>
           <div className='total'>
             <div>Total</div>
-            <div>€ 41.49</div>
+            <div>{`€ ${totalPrice}`}</div>
           </div>
         </div>
 
@@ -54,8 +59,9 @@ const StyledCart = styled(Cart)`
 
   @media (min-width: 769px) {
     margin: 50px 0;
-    .yourcart {
-      width: 92%;
+    .left {
+      margin-right: 30px;
+      width: 600px;
     }
     .right {
       color: ${props => props.theme.colors.greenWhite};
