@@ -135,6 +135,9 @@ export default props => {
           getAllProduct();
           setIsModalOpen(false);
           resetForm();
+        } else {
+          setIsLogin(false);
+          checkIfLogin();
         }
       });
   };
@@ -161,6 +164,9 @@ export default props => {
           getAllProduct();
           setIsModalOpen(false);
           resetForm();
+        } else {
+          setIsLogin(false);
+          checkIfLogin();
         }
       });
   };
@@ -173,9 +179,16 @@ export default props => {
         }/admin/product/${id}`
       )
       .then(response => {
-        console.log(`deleteProduct ${id}`, response.data.message);
+        console.log(
+          `deleteProduct ${id}`,
+          response.data.message,
+          response.data
+        );
         if (response.data.success) {
           getAllProduct();
+        } else {
+          setIsLogin(false);
+          checkIfLogin();
         }
       });
   };
