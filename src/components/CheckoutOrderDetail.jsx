@@ -65,7 +65,9 @@ const CheckoutOrderDetail = ({ match }) => {
           bg='green'
           fontSize='26px'
         >
-          Confirm payment
+          {orderDetail.order.is_paid === true
+            ? 'Payment Completed'
+            : 'Confirm Payment'}
         </StyledButton>
       </Flex>
     </Box>
