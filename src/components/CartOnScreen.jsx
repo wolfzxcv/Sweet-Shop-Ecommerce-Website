@@ -7,7 +7,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../contexts/SharedContext';
 
 const CartOnScreen = () => {
-  const { shakeCart, orderList, getCart } = useContext(SharedContext);
+  const { orderList, getCart } = useContext(SharedContext);
   const [state, toggle] = useState(true);
   const { x } = useSpring({
     from: { x: 0 },
@@ -15,7 +15,6 @@ const CartOnScreen = () => {
     config: { duration: 1000 },
   });
 
-  shakeCart();
   useEffect(() => {
     getCart();
     toggle(!state);

@@ -46,7 +46,7 @@ const Checkout = ({ className }) => {
               onChange={e =>
                 setOrderForm({
                   ...orderForm,
-                  [orderForm.user.name]: e.target.value,
+                  [orderForm.user.email]: e.target.value,
                 })
               }
             />

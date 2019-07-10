@@ -157,7 +157,6 @@ export default props => {
           response.data.message
         );
         if (response.data.success) {
-          // alert('Yay!! Upload new product successfully!!');
           getAllProduct();
           setIsModalOpen(false);
           resetForm();
@@ -205,11 +204,7 @@ export default props => {
         }/admin/product/${id}`
       )
       .then(response => {
-        console.log(
-          `deleteProduct ${id}`,
-          response.data.message,
-          response.data
-        );
+        console.log(`deleteProduct ${id}`, response.data.message);
         if (response.data.success) {
           getAllProduct();
         } else {
@@ -235,12 +230,9 @@ export default props => {
         if (response.data.success) {
           getCart();
           setAmount(1);
-          shakeCart();
         }
       });
   };
-
-  const shakeCart = () => {};
 
   const getCart = () => {
     axios
@@ -248,7 +240,7 @@ export default props => {
         `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
       )
       .then(response => {
-        console.log('getCart ', response.data.success, 'detail', response.data);
+        console.log('getCart ', response.data.success);
         if (response.data.success) {
           setOrderList(response.data.data.carts);
           setTotalPrice(response.data.data.final_total.toFixed(2));
@@ -280,11 +272,9 @@ export default props => {
         { data: orderForm }
       )
       .then(response => {
-        console.log(response.data);
-        console.log('sendOrderForm', response.data.message);
+        console.log('sendOrderForm', response.data.message, response.data);
         setOrderId(response.data.orderId);
         if (response.data.success) {
-          console.log('Redirect to checkout/goNorway');
           getCart();
         }
       });
@@ -344,7 +334,6 @@ export default props => {
     deleteProduct,
     addToCart,
     getCart,
-    shakeCart,
     deleteOrder,
     sendOrderForm,
     confirmPayment,
