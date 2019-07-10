@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Card, Flex, Heading, Text } from 'rebass';
@@ -13,7 +13,15 @@ const Checkout = ({ className }) => {
     orderList,
     orderForm,
     setOrderForm,
+    sendOrderForm,
+    orderId,
   } = useContext(SharedContext);
+  console.log('orderId  ', orderId);
+  console.log(orderForm);
+
+  if (orderId.length > 0) {
+    return <Redirect to={`/Sweet-for-happiness/checkout/goNorway${orderId}`} />;
+  }
 
   return (
     <div className={className}>
@@ -27,7 +35,7 @@ const Checkout = ({ className }) => {
           </Heading>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'> Name</Flex>
             </Text>
             <input
@@ -36,13 +44,16 @@ const Checkout = ({ className }) => {
               size='45'
               value={orderForm.name}
               onChange={e =>
-                setOrderForm({ ...orderForm, name: e.target.value })
+                setOrderForm({
+                  ...orderForm,
+                  [orderForm.user.name]: e.target.value,
+                })
               }
             />
           </Flex>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'> E-mail</Flex>
             </Text>
 
@@ -52,13 +63,16 @@ const Checkout = ({ className }) => {
               size='45'
               value={orderForm.email}
               onChange={e =>
-                setOrderForm({ ...orderForm, email: e.target.value })
+                setOrderForm({
+                  ...orderForm,
+                  [orderForm.user.email]: e.target.value,
+                })
               }
             />
           </Flex>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'>Tel</Flex>
             </Text>
 
@@ -68,13 +82,16 @@ const Checkout = ({ className }) => {
               size='45'
               value={orderForm.tel}
               onChange={e =>
-                setOrderForm({ ...orderForm, tel: e.target.value })
+                setOrderForm({
+                  ...orderForm,
+                  [orderForm.user.tel]: e.target.value,
+                })
               }
             />
           </Flex>
 
           <Flex>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='center'>Address</Flex>
             </Text>
 
@@ -84,13 +101,16 @@ const Checkout = ({ className }) => {
               size='45'
               value={orderForm.address}
               onChange={e =>
-                setOrderForm({ ...orderForm, address: e.target.value })
+                setOrderForm({
+                  ...orderForm,
+                  [orderForm.user.address]: e.target.value,
+                })
               }
             />
           </Flex>
 
           <div>
-            <Text width='70px'>
+            <Text width='70px' ml={['5px', '']}>
               <Flex alignItems='flex-end'>Message</Flex>
             </Text>
             <textarea
@@ -150,19 +170,27 @@ const Checkout = ({ className }) => {
             </Box>
 
             {isLaptop && (
-              <div className='confirm'>
-                {orderList.length !== 0 && (
-                  <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
-                )}
+              <div
+                className='confirm'
+                onClick={() => sendOrderForm(orderForm)}
+                onKeyDown={sendOrderForm}
+                role='button'
+                tabIndex='0'
+              >
+                {orderList.length !== 0 && <>Confirm Order</>}
               </div>
             )}
           </Card>
         </Flex>
         {!isLaptop && (
-          <div className='confirm'>
-            {orderList.length !== 0 && (
-              <Link to='/Sweet-for-happiness/checkout'>Confirm Order</Link>
-            )}
+          <div
+            className='confirm'
+            onClick={() => sendOrderForm(orderForm)}
+            onKeyDown={sendOrderForm}
+            role='button'
+            tabIndex='0'
+          >
+            {orderList.length !== 0 && <>Confirm Order</>}
           </div>
         )}
       </Flex>
@@ -184,13 +212,21 @@ const StyledForm = styled(Card)`
 
   div {
     height: 30px;
-    /* border: 1px solid red; */
   }
 `;
 
 const StyledCheckout = styled(Checkout)`
   margin-top: 30px;
+  @media (max-width: 768px) {
+    input {
+      width: 75vw;
+    }
 
+    textarea {
+      width: 90vw;
+      margin-left: 7px;
+    }
+  }
   .confirm {
     margin: 20px 0 20px 0;
     width: 100%;
@@ -201,6 +237,9 @@ const StyledCheckout = styled(Checkout)`
     font-size: 24px;
     color: ${props => props.theme.colors.orange};
     background-color: ${props => props.theme.colors.green};
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
