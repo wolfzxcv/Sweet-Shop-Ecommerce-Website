@@ -1,14 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const DashSidebar = ({ className }) => {
   return (
     <div className={className}>
-      <div>Product list</div>
-      <div>Order list</div>
+      <Link to='/Sweet-for-happiness/dashboard'>
+        <div>Product list</div>
+      </Link>
+      <Link to='/Sweet-for-happiness/dashboard/order'>
+        <div>Order list</div>
+      </Link>
       <div>Coupon</div>
-      <div>Mock list</div>
+
+      <div>Back Home</div>
     </div>
   );
 };

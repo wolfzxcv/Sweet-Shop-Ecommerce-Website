@@ -1,9 +1,11 @@
 import React, { useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Flex, Box, Text } from 'rebass';
 import DashSidebar from './DashSidebar';
-import DashContent from './DashContent';
+import DashProduct from './Products/DashProduct';
+import DashOrder from './Orders/DashOrder';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const Dashboard = ({ className }) => {
@@ -17,27 +19,39 @@ const Dashboard = ({ className }) => {
 
   return (
     <div className={className}>
-      <Flex pl={1} color='green' bg='orange' alignItems='center'>
-        <Text fontWeight='bold'>Dashboard</Text>
-        <Box mx='auto' />
-        <Text
-          className='button'
-          p={1}
-          width='80px'
-          color='white'
-          bg='green'
-          onClick={() => {
-            handleLogout(user);
-          }}
-        >
-          <Flex justifyContent='center'> Log out </Flex>
-        </Text>
-      </Flex>
+      <Router>
+        <Flex pl={1} color='green' bg='orange' alignItems='center'>
+          <Text fontWeight='bold'>Dashboard</Text>
+          <Box mx='auto' />
+          <Text
+            className='button'
+            p={1}
+            width='80px'
+            color='white'
+            bg='green'
+            onClick={() => {
+              handleLogout(user);
+            }}
+          >
+            <Flex justifyContent='center'> Log out </Flex>
+          </Text>
+        </Flex>
 
-      <Flex>
-        <DashSidebar className='left' />
-        <DashContent className='right' />
-      </Flex>
+        <Flex>
+          <DashSidebar className='left' />
+          <Route
+            className='right'
+            component={DashProduct}
+            exact
+            path='/Sweet-for-happiness/dashboard'
+          />
+          <Route
+            className='right'
+            component={DashOrder}
+            path='/Sweet-for-happiness/dashboard/order'
+          />
+        </Flex>
+      </Router>
     </div>
   );
 };

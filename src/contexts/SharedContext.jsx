@@ -11,7 +11,8 @@ export default props => {
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [item, setItem] = useState({});
   const [select, setSelect] = useState('');
   const [page, setPage] = useState(0);
@@ -65,7 +66,7 @@ export default props => {
     },
   });
 
-  const getAllProduct = () => {
+  const getAllProducts = () => {
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -73,8 +74,8 @@ export default props => {
         }/products/all`
       )
       .then(response => {
-        console.log('getAllProduct ', response.data.success);
-        setProduct(response.data.products);
+        console.log('getAllProducts ', response.data.success);
+        setProducts(response.data.products);
       });
   };
 
@@ -158,7 +159,7 @@ export default props => {
           response.data.message
         );
         if (response.data.success) {
-          getAllProduct();
+          getAllProducts();
           setIsModalOpen(false);
           resetForm();
         } else {
@@ -169,7 +170,7 @@ export default props => {
   };
 
   const editProduct = id => {
-    setProductForm(product.find(x => x.id === id));
+    setProductForm(products.find(x => x.id === id));
     setIsModalOpen(true);
   };
 
@@ -187,7 +188,7 @@ export default props => {
           response.data.message
         );
         if (response.data.success) {
-          getAllProduct();
+          getAllProducts();
           setIsModalOpen(false);
           resetForm();
         } else {
@@ -207,7 +208,7 @@ export default props => {
       .then(response => {
         console.log(`deleteProduct ${id}`, response.data.message);
         if (response.data.success) {
-          getAllProduct();
+          getAllProducts();
         } else {
           setIsModalOpen(false);
           handleLogout();
@@ -293,6 +294,20 @@ export default props => {
       });
   };
 
+  const getAllOrders = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/orders?page=:page`
+      )
+      .then(response => {
+        console.log('getAllOrders ', response.data.success);
+        console.log('getAllOrders serOrders', response.data.orders);
+        setOrders(response.data.orders);
+      });
+  };
+
   const value = {
     isLaptop,
     menuOpen,
@@ -313,8 +328,10 @@ export default props => {
     setOrderDetail,
     productForm,
     setProductForm,
-    product,
-    setProduct,
+    products,
+    setProducts,
+    orders,
+    setOrders,
     item,
     setItem,
     select,
@@ -326,7 +343,7 @@ export default props => {
     isModalOpen,
     setIsModalOpen,
 
-    getAllProduct,
+    getAllProducts,
     handleLogin,
     handleLogout,
     checkIfLogin,
@@ -340,6 +357,7 @@ export default props => {
     deleteOrder,
     sendOrderForm,
     confirmPayment,
+    getAllOrders,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

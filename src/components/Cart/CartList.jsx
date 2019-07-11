@@ -46,7 +46,7 @@ CartList.propTypes = {
   image: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   qty: PropTypes.number.isRequired,
-  total: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
 };
 
 const StyledCartList = styled(CartList)`

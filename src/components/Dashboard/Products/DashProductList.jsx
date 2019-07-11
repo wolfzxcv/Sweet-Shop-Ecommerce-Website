@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
-import { SharedContext } from '../../contexts/SharedContext';
+import { SharedContext } from '../../../contexts/SharedContext';
 
 const DashProductList = ({
   className,
