@@ -156,7 +156,7 @@ const Checkout = ({ className }) => {
             <Box
               bg='greenWhite'
               width={['95vw', '390px']}
-              fontSize='20px'
+              fontSize='18px'
               my={1}
             >
               <Flex justifyContent='space-between'>
