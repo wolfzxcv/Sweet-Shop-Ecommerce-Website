@@ -136,7 +136,7 @@ const StyledProductDetail = styled(ProductDetail)`
   margin-top: 10px;
 
   @media (min-width: 769px) {
-    height: 450px;
+    height: 500px;
   }
   @media (max-width: 768px) {
     height: 1100px;
