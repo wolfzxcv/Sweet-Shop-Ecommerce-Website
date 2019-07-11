@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import background01 from '../images/photo-1473256599800-b48c7c88cd7e.jpg';
-import background02 from '../images/photo-1499635842761-4f1f28fafcff.jpg';
-import background03 from '../images/photo-1504114133367-631ecd3db3ca.jpg';
-import background04 from '../images/photo-1499638472904-ea5c6178a300.jpg';
-import background05 from '../images/photo-1519730722595-a5ff788dea4d.jpg';
-import background06 from '../svg/lg-為什麼選擇了做甜點.svg';
-import background07 from '../svg/lg-為什麼一定要吃甜點.svg';
-import background08 from '../images/photo-1501432781167-c0ccfd492297.jpg';
-import background09 from '../svg/sm-想吃甜點是不需要理由的.svg';
-import background10 from '../svg/sm-橫式-為什麼選擇了做甜點.svg';
-import background11 from '../svg/sm-橫式-為什麼一定要吃甜點.svg';
-import background12 from '../svg/sm-橫式-想吃甜點是不需要理由的.svg';
+import background01 from '../../images/photo-1473256599800-b48c7c88cd7e.jpg';
+import background02 from '../../images/photo-1499635842761-4f1f28fafcff.jpg';
+import background03 from '../../images/photo-1504114133367-631ecd3db3ca.jpg';
+import background04 from '../../images/photo-1499638472904-ea5c6178a300.jpg';
+import background05 from '../../images/photo-1519730722595-a5ff788dea4d.jpg';
+import background06 from '../../svg/lg-為什麼選擇了做甜點.svg';
+import background07 from '../../svg/lg-為什麼一定要吃甜點.svg';
+import background08 from '../../images/photo-1501432781167-c0ccfd492297.jpg';
+import background09 from '../../svg/sm-想吃甜點是不需要理由的.svg';
+import background10 from '../../svg/sm-橫式-為什麼選擇了做甜點.svg';
+import background11 from '../../svg/sm-橫式-為什麼一定要吃甜點.svg';
+import background12 from '../../svg/sm-橫式-想吃甜點是不需要理由的.svg';
 
 const Home = ({ className }) => {
   return (

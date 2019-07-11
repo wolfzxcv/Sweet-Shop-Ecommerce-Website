@@ -2,9 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Flex, Box, Text } from 'rebass';
-import { SharedContext } from '../contexts/SharedContext';
 import DashSidebar from './DashSidebar';
 import DashContent from './DashContent';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const Dashboard = ({ className }) => {
   const { user, handleLogout, checkIfLogin, isLogin } = useContext(

@@ -9,7 +9,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import HeaderMobileOverlay from './HeaderMobileOverlay';
-import logoSmallDark from '../svg/logotype-sm-dark.svg';
+import logoSmallDark from '../../svg/logotype-sm-dark.svg';
 
 const HeaderMobile = ({ className }) => {
   const [menuOpen, setMenuOpen] = useState(false);

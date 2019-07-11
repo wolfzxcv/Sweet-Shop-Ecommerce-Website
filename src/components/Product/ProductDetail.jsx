@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Box, Button, Card, Heading, Flex, Image, Text } from 'rebass';
 import PropTypes from 'prop-types';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const ProductDetail = ({ className, match }) => {
   const { item, setItem, amount, setAmount, isLaptop, addToCart } = useContext(

@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Button, Card, Flex, Heading } from 'rebass';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const CheckoutOrderDetail = ({ match }) => {
   const { orderDetail, setOrderDetail, confirmPayment } = useContext(

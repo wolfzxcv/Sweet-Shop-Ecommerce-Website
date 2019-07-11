@@ -5,7 +5,7 @@ import { ModalProvider } from 'styled-react-modal';
 import { Button, Flex } from 'rebass';
 import DashProductList from './DashProductList';
 import DashAddNewProduct from './DashAddNewProduct';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const DashContent = ({ className }) => {
   const { getAllProduct, setIsModalOpen, product } = useContext(SharedContext);

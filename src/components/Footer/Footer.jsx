@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Instagram } from 'styled-icons/boxicons-logos/Instagram';
 import { Github } from 'styled-icons/boxicons-logos/Github';
-import lightLogo from '../svg/logo-light.svg';
-import goodDay from '../svg/sm-今天是個吃甜點的好日子.svg';
-import logoDark from '../svg/logotype-lg-dark.svg';
+import lightLogo from '../../svg/logo-light.svg';
+import goodDay from '../../svg/sm-今天是個吃甜點的好日子.svg';
+import logoDark from '../../svg/logotype-lg-dark.svg';
 
 const Footer = ({ className }) => {
   return (

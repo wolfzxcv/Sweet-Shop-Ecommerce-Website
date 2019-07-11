@@ -1,19 +1,19 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from '../components/PrivateRoute';
-import Header from '../components/Header';
-import CartOnScreen from '../components/CartOnScreen';
-import Login from '../components/Login';
-import Cart from '../components/Cart';
-import Checkout from '../components/Checkout';
-import CheckoutOrderDetail from '../components/CheckoutOrderDetail';
-import Home from '../components/Home';
-import Product from '../components/Product';
-import ProductDetail from '../components/ProductDetail';
-import Dashboard from '../components/Dashboard';
-import Footer from '../components/Footer';
-import PageNotFound from '../components/PageNotFound';
-import { SharedContext } from '../contexts/SharedContext';
+import PrivateRoute from '../PrivateRoute';
+import Header from '../Header/Header';
+import CartOnScreen from '../Cart/CartOnScreen';
+import Login from '../Login/Login/Login';
+import Cart from '../Cart/Cart';
+import Checkout from '../Checkout/Checkout';
+import CheckoutOrderDetail from '../Checkout/CheckoutOrderDetail';
+import Home from '../Home/Home/Home';
+import Product from '../Product/Product';
+import ProductDetail from '../Product/ProductDetail';
+import Dashboard from '../Dashboard/Dashboard';
+import Footer from '../Footer/Footer/Footer';
+import PageNotFound from '../PageNotFound';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const Layout = () => {
   const { isLogin } = useContext(SharedContext);
