@@ -4,7 +4,7 @@ import { Flex } from 'rebass';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const ProductSidebar = ({ category, handleChange }) => {
-  const { product } = useContext(SharedContext);
+  const { products } = useContext(SharedContext);
   return (
     <Flex
       ml={['0', '20px']}
@@ -14,7 +14,7 @@ const ProductSidebar = ({ category, handleChange }) => {
     >
       {category.charAt(0).toUpperCase() + category.slice(1)}
       {`(${
-        product
+        products
           .filter(item => category.includes(item.category))
           .filter(check => check.is_enabled !== '0').length
       })`}

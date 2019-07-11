@@ -13,8 +13,8 @@ import { SharedContext } from '../../contexts/SharedContext';
 const Product = ({ className }) => {
   const {
     isLaptop,
-    getAllProduct,
-    product,
+    getAllProducts,
+    products,
     select,
     setSelect,
     page,
@@ -22,11 +22,11 @@ const Product = ({ className }) => {
   } = useContext(SharedContext);
 
   useEffect(() => {
-    getAllProduct();
+    getAllProducts();
   }, []);
 
   // filter products category
-  const filterProductsCategory = product.reduce((eachData, category) => {
+  const filterProductsCategory = products.reduce((eachData, category) => {
     eachData[category.category] = 0;
     return eachData;
   }, {});
@@ -37,7 +37,7 @@ const Product = ({ className }) => {
     setSelect(category);
     setPage(0);
   };
-  const showProduct = product
+  const showProduct = products
     .filter(item => item.category.includes(select))
     .filter(check => check.is_enabled !== '0');
 
@@ -73,7 +73,7 @@ const Product = ({ className }) => {
               onClick={() => setSelect('')}
             >
               {`All (${
-                product.filter(check => check.is_enabled !== '0').length
+                products.filter(check => check.is_enabled !== '0').length
               })`}
             </Flex>
           </Box>

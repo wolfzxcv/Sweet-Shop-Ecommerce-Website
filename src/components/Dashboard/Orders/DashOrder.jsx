@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ModalProvider } from 'styled-react-modal';
 import { Button, Flex } from 'rebass';
-import DashProductList from './DashProductList';
-import DashAddNewProduct from './DashAddNewProduct';
-import { SharedContext } from '../../contexts/SharedContext';
+import DashOrderList from './DashOrderList';
+// import DashProductModal from './DashProductModal';
+import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashContent = ({ className }) => {
-  const { getAllProduct, setIsModalOpen, product } = useContext(SharedContext);
+const DashOrder = ({ className }) => {
+  const { getAllOrders, orders } = useContext(SharedContext);
 
   useEffect(() => {
-    getAllProduct();
+    console.log('object');
+    getAllOrders();
   }, []);
-
   return (
     <ModalProvider>
       <div className={className}>
@@ -25,7 +25,7 @@ const DashContent = ({ className }) => {
           mx='auto'
           color='green'
           bg='greenWhite'
-          onClick={() => setIsModalOpen(true)}
+          // onClick={() => setIsModalOpen(true)}
         >
           Add new porduct
         </Button>
@@ -39,36 +39,36 @@ const DashContent = ({ className }) => {
           <div>Delete</div>
         </div>
 
-        <div className='product-list'>
-          {product.map(item => (
-            <DashProductList
-              key={item.id}
-              id={item.id}
-              category={item.category}
-              title={item.title}
-              price={item.price}
-              isEnabled={item.is_enabled.toString()}
-              amount={item.unit}
+        <div className='order-list'>
+          {orders.map(order => (
+            <DashOrderList
+              key={order.id}
+              id={order.id}
+              create_at={order.create_at}
+              email={order.user.email}
+              total={order.total}
+              is_paid={order.is_paid}
+              paid_date={order.paid_date}
             />
           ))}
         </div>
         <Flex mt={2} justifyContent='flex-end'>
-          {`${product.length} products in total.`}
+          {`${orders.length} orders in total.`}
         </Flex>
-        <DashAddNewProduct />
+        {/* <DashOrderModal /> */}
       </div>
     </ModalProvider>
   );
 };
 
-DashContent.propTypes = {
+DashOrder.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
-const StyledDashContent = styled(DashContent)`
+const StyledDashOrder = styled(DashOrder)`
   margin: 0 auto;
   margin-bottom: 30px;
-  .product-list {
+  .order-list {
   }
   .add-new-porduct {
     &:hover {
@@ -95,6 +95,6 @@ const StyledDashContent = styled(DashContent)`
   }
 `;
 
-StyledDashContent.displayName = 'DashContent';
+StyledDashOrder.displayName = 'DashOrder';
 
-export default StyledDashContent;
+export default StyledDashOrder;
