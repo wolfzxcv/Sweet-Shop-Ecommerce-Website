@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import backgroundImage from '../images/photo-1505935428862-770b6f24f629.jpg';
+import backgroundImage from '../../images/photo-1505935428862-770b6f24f629.jpg';
 
 const PageNotFound = ({ className }) => {
   return (

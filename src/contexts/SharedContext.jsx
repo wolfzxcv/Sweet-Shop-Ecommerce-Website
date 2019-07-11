@@ -7,6 +7,7 @@ export const SharedContext = createContext();
 
 export default props => {
   const isLaptop = useMedia({ minWidth: 769 });
+  const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -113,7 +114,7 @@ export default props => {
     if (
       productForm.title.trim().length > 5 &&
       productForm.category.trim().length > 0 &&
-      productForm.price < 100 &&
+      productForm.price < 1000 &&
       productForm.price > 0 &&
       productForm.unit < 100 &&
       productForm.unit > 0
@@ -122,7 +123,7 @@ export default props => {
       uploadNewProduct(productForm);
     } else {
       alert(
-        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 99`
+        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 999\nAmount must be a less than 99`
       );
     }
   };
@@ -243,7 +244,7 @@ export default props => {
         console.log('getCart ', response.data.success);
         if (response.data.success) {
           setOrderList(response.data.data.carts);
-          setTotalPrice(response.data.data.final_total.toFixed(2));
+          setTotalPrice(response.data.data.final_total);
         }
       });
   };
@@ -294,6 +295,8 @@ export default props => {
 
   const value = {
     isLaptop,
+    menuOpen,
+    setMenuOpen,
     user,
     setUser,
     amount,

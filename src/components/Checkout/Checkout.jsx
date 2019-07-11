@@ -30,7 +30,7 @@ const Checkout = ({ className }) => {
         justifyContent={['', 'space-around']}
       >
         <StyledForm>
-          <Heading width={['97vw', '435px']} bg='greenWhite' my={1}>
+          <Heading width={['95vw', '440px']} bg='greenWhite' my={1}>
             <Flex justifyContent='center'>Recipient</Flex>
           </Heading>
 
@@ -140,7 +140,7 @@ const Checkout = ({ className }) => {
         <Flex order={['-1', '1']}>
           <Card width={['95vw', '390px']}>
             <Heading bg='greenWhite' my={1}>
-              <Flex justifyContent='center'>Order info</Flex>
+              <Flex justifyContent='center'>Order</Flex>
             </Heading>
 
             {orderList.map(item => (
@@ -156,26 +156,26 @@ const Checkout = ({ className }) => {
             <Box
               bg='greenWhite'
               width={['95vw', '390px']}
-              fontSize='20px'
+              fontSize='18px'
               my={1}
             >
               <Flex justifyContent='space-between'>
                 <Box>
                   <Flex>
-                    <div>price</div>
-                    <div>{`€ ${totalPrice}`}</div>
+                    <Text mr={2}>price:</Text>
+                    <div>{`kr ${totalPrice}`}</div>
                   </Flex>
                 </Box>
                 <Box>
                   <Flex>
-                    <div>shipment</div>
-                    <div>€ 0.00</div>
+                    <Text mr={2}>shipment:</Text>
+                    <div>kr 0</div>
                   </Flex>
                 </Box>
                 <Box>
                   <Flex>
-                    <div>Total</div>
-                    <div>{`€ ${totalPrice}`}</div>
+                    <Text mr={2}>Total:</Text>
+                    <div>{`kr ${totalPrice}`}</div>
                   </Flex>
                 </Box>
               </Flex>
@@ -229,18 +229,18 @@ const StyledForm = styled(Card)`
 
 const StyledCheckout = styled(Checkout)`
   margin-top: 30px;
+
   @media (max-width: 768px) {
     input {
       width: 75vw;
     }
-
     textarea {
       width: 90vw;
       margin-left: 7px;
     }
   }
   .confirm {
-    margin: 20px 0 20px 0;
+    margin: 20px auto;
     width: 100%;
     height: 50px;
     display: flex;

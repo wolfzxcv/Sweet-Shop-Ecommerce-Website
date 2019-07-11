@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -10,9 +10,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import HeaderMobileOverlay from './HeaderMobileOverlay';
 import logoSmallDark from '../../svg/logotype-sm-dark.svg';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const HeaderMobile = ({ className }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { menuOpen, setMenuOpen } = useContext(SharedContext);
   const menuClose = () => setMenuOpen(false);
 
   return (

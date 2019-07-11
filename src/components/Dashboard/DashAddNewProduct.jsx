@@ -80,8 +80,8 @@ const DashAddNewProduct = () => {
             Price
             <input
               type='text'
-              placeholder='€99.99'
-              maxLength='5'
+              placeholder='kr 999'
+              maxLength='3'
               size='5'
               style={{ direction: 'rtl' }}
               value={productForm.price}
