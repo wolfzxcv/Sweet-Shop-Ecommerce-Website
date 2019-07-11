@@ -68,7 +68,7 @@ const ProductDetail = ({ className, match }) => {
             {isLaptop && <Heading>{item.title}</Heading>}
             <Flex justifyContent={['space-between', 'flex-end']}>
               {!isLaptop && <Text>{`${item.unit} available`}</Text>}
-              <Heading>{`€ ${item.price}`}</Heading>
+              <Heading>{`kr ${item.price}`}</Heading>
             </Flex>
 
             <br />

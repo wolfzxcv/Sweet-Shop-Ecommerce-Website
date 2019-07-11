@@ -163,19 +163,19 @@ const Checkout = ({ className }) => {
                 <Box>
                   <Flex>
                     <div>price</div>
-                    <div>{`€ ${totalPrice}`}</div>
+                    <div>{`kr ${totalPrice}`}</div>
                   </Flex>
                 </Box>
                 <Box>
                   <Flex>
                     <div>shipment</div>
-                    <div>€ 0.00</div>
+                    <div>kr 0.00</div>
                   </Flex>
                 </Box>
                 <Box>
                   <Flex>
                     <div>Total</div>
-                    <div>{`€ ${totalPrice}`}</div>
+                    <div>{`kr ${totalPrice}`}</div>
                   </Flex>
                 </Box>
               </Flex>

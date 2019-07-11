@@ -26,7 +26,7 @@ const ProductContent = ({ id, title, image, price }) => {
               <Text width='70%' pl={1} fontWeight='bold'>
                 {title}
               </Text>
-              <Text width='30%' pl={3}>{`€ ${price}`}</Text>
+              <Text width='30%' pl={3}>{`kr ${price}`}</Text>
             </Flex>
           </StyeldBox>
 

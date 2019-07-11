@@ -8,7 +8,7 @@ const CheckoutList = ({ title, qty, total }) => {
     <StyledFlex>
       <div>{title}</div>
       <div>{qty}</div>
-      <div>{`€ ${total}`}</div>
+      <div>{`kr ${total}`}</div>
     </StyledFlex>
   );
 };

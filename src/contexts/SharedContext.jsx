@@ -113,7 +113,7 @@ export default props => {
     if (
       productForm.title.trim().length > 5 &&
       productForm.category.trim().length > 0 &&
-      productForm.price < 100 &&
+      productForm.price < 1000 &&
       productForm.price > 0 &&
       productForm.unit < 100 &&
       productForm.unit > 0
@@ -122,7 +122,7 @@ export default props => {
       uploadNewProduct(productForm);
     } else {
       alert(
-        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 99.99\nAmount must be a less than 99`
+        `title must greater than 5 character\nCategory must not be empty\nPrice must be less than 999\nAmount must be a less than 99`
       );
     }
   };

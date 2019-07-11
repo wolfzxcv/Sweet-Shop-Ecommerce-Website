@@ -42,7 +42,7 @@ const CheckoutOrderDetail = ({ match }) => {
             <div>
               {orderDetail.order.is_paid === true ? 'paid' : 'need to pay'}
             </div>
-            <div>{`€ ${orderDetail.order.total}`}</div>
+            <div>{`kr ${orderDetail.order.total}`}</div>
           </StyledFlex>
 
           <Heading bg='greenWhite' my={1}>
