@@ -15,7 +15,7 @@ const CartList = ({ className, id, title, image, price, qty, total }) => {
       </div>
       <div className='items'>
         <div>{title}</div>
-        <div>{`€  ${price}`}</div>
+        <div>{`kr ${price}`}</div>
       </div>
 
       <Flex flexDirection={['column', 'row']} alignItems={['center', '']}>
@@ -23,7 +23,7 @@ const CartList = ({ className, id, title, image, price, qty, total }) => {
           <Flex justifyContent='flex-end'>{qty}</Flex>
         </div>
         <div className='total'>
-          <Flex justifyContent='flex-end'>{`€  ${total}`}</Flex>
+          <Flex justifyContent='flex-end'>{`kr ${total}`}</Flex>
         </div>
         <div
           className='trash'

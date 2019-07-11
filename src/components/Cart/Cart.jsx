@@ -32,15 +32,15 @@ const Cart = ({ className }) => {
         <div>
           <div className='price'>
             <div>price</div>
-            <div>{`€ ${totalPrice}`}</div>
+            <div>{`kr ${totalPrice}`}</div>
           </div>
           <div className='shipment'>
             <div>shipment</div>
-            <div>€ 0.00</div>
+            <div>kr 0.00</div>
           </div>
           <div className='total'>
             <div>Total</div>
-            <div>{`€ ${totalPrice}`}</div>
+            <div>{`kr ${totalPrice}`}</div>
           </div>
         </div>
         <div className='checkout'>
