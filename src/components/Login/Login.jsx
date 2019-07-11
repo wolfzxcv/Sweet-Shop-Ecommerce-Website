@@ -8,7 +8,7 @@ import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import { LinkedinSquare } from 'styled-icons/boxicons-logos/LinkedinSquare';
 import { Github } from 'styled-icons/boxicons-logos/Github';
 import { Instagram } from 'styled-icons/boxicons-logos/Instagram';
-import { SharedContext } from '../../contexts/SharedContextext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const Login = ({ className }) => {
   const {

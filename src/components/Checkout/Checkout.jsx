@@ -47,7 +47,7 @@ const Checkout = ({ className }) => {
                 setOrderForm({
                   ...orderForm,
                   user: {
-                    ...orderForm,
+                    ...orderForm.user,
                     name: e.target.value,
                   },
                 })
@@ -69,7 +69,7 @@ const Checkout = ({ className }) => {
                 setOrderForm({
                   ...orderForm,
                   user: {
-                    ...orderForm,
+                    ...orderForm.user,
                     email: e.target.value,
                   },
                 })
@@ -91,7 +91,7 @@ const Checkout = ({ className }) => {
                 setOrderForm({
                   ...orderForm,
                   user: {
-                    ...orderForm,
+                    ...orderForm.user,
                     tel: e.target.value,
                   },
                 })
@@ -113,7 +113,7 @@ const Checkout = ({ className }) => {
                 setOrderForm({
                   ...orderForm,
                   user: {
-                    ...orderForm,
+                    ...orderForm.user,
                     address: e.target.value,
                   },
                 })
@@ -148,7 +148,7 @@ const Checkout = ({ className }) => {
                 key={item.id}
                 title={item.product.title}
                 price={item.product.price}
-                total={item.final_total.toFixed(2)}
+                total={item.final_total}
                 qty={item.qty}
               />
             ))}

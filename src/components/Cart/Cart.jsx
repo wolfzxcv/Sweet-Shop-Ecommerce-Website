@@ -21,7 +21,7 @@ const Cart = ({ className }) => {
             title={item.product.title}
             image={item.product.imageUrl}
             price={item.product.price}
-            total={item.final_total.toFixed(2)}
+            total={item.final_total}
             qty={item.qty}
           />
         ))}
