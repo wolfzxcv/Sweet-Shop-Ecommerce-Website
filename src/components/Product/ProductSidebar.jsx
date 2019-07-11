@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const ProductSidebar = ({ category, handleChange }) => {
   const { product } = useContext(SharedContext);

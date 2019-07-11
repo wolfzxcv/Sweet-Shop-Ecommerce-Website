@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import lgDark from '../svg/logo-dark.svg';
-import logoDark from '../svg/logotype-lg-dark.svg';
+import lgDark from '../../svg/logo-dark.svg';
+import logoDark from '../../svg/logotype-lg-dark.svg';
 
 const HeaderLaptop = ({ className }) => {
   return (

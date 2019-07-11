@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Modal from 'styled-react-modal';
 import styled from 'styled-components';
 import { Button, Flex, Image } from 'rebass';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const DashAddNewProduct = () => {
   const {

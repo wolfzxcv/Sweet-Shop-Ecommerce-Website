@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const CartList = ({ className, id, title, image, price, qty, total }) => {
   const { deleteOrder } = useContext(SharedContext);

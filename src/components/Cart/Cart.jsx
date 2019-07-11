@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CartList from './CartList';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const Cart = ({ className }) => {
   const { totalPrice, orderList } = useContext(SharedContext);
@@ -21,7 +21,7 @@ const Cart = ({ className }) => {
             title={item.product.title}
             image={item.product.imageUrl}
             price={item.product.price}
-            total={item.final_total.toFixed(2)}
+            total={item.final_total}
             qty={item.qty}
           />
         ))}

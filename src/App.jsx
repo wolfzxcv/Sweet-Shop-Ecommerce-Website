@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './theme/globalStyle';
 import SharedProvider from './contexts/SharedContext';
 import theme from './theme/theme';
-import Layout from './layout/Layout';
+import Layout from '../src/components/layout/Layout';
 
 function App() {
   return (

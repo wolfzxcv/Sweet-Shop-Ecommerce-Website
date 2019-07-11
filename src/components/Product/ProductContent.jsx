@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Button, Card, Flex, Image, Text } from 'rebass';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const ProductContent = ({ id, title, image, price }) => {
   const { addToCart } = useContext(SharedContext);

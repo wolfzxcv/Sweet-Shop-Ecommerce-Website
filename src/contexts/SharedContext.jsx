@@ -161,8 +161,8 @@ export default props => {
           setIsModalOpen(false);
           resetForm();
         } else {
-          setIsLogin(false);
-          checkIfLogin();
+          setIsModalOpen(false);
+          handleLogout();
         }
       });
   };
@@ -190,8 +190,8 @@ export default props => {
           setIsModalOpen(false);
           resetForm();
         } else {
-          setIsLogin(false);
-          checkIfLogin();
+          setIsModalOpen(false);
+          handleLogout();
         }
       });
   };
@@ -208,8 +208,8 @@ export default props => {
         if (response.data.success) {
           getAllProduct();
         } else {
-          setIsLogin(false);
-          checkIfLogin();
+          setIsModalOpen(false);
+          handleLogout();
         }
       });
   };

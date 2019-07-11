@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import ProductSidebar from './ProductSidebar';
 import ProductContent from './ProductContent';
-import backgroundImage from '../images/photo-1512484457149-266d165a4eca.jpg';
-import text from '../svg/sm-想吃甜點是不需要理由的.svg';
-import { SharedContext } from '../contexts/SharedContext';
+import backgroundImage from '../../images/photo-1512484457149-266d165a4eca.jpg';
+import text from '../../svg/sm-想吃甜點是不需要理由的.svg';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const Product = ({ className }) => {
   const {

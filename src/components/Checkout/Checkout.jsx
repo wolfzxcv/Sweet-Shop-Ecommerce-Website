@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Card, Flex, Heading, Text } from 'rebass';
 import CheckoutList from './CheckoutList';
-import { SharedContext } from '../contexts/SharedContext';
+import { SharedContext } from '../../contexts/SharedContext';
 
 const Checkout = ({ className }) => {
   const {
@@ -46,7 +46,10 @@ const Checkout = ({ className }) => {
               onChange={e =>
                 setOrderForm({
                   ...orderForm,
-                  [orderForm.user.email]: e.target.value,
+                  user: {
+                    ...orderForm.user,
+                    name: e.target.value,
+                  },
                 })
               }
             />
@@ -65,7 +68,10 @@ const Checkout = ({ className }) => {
               onChange={e =>
                 setOrderForm({
                   ...orderForm,
-                  [orderForm.user.email]: e.target.value,
+                  user: {
+                    ...orderForm.user,
+                    email: e.target.value,
+                  },
                 })
               }
             />
@@ -84,7 +90,10 @@ const Checkout = ({ className }) => {
               onChange={e =>
                 setOrderForm({
                   ...orderForm,
-                  [orderForm.user.tel]: e.target.value,
+                  user: {
+                    ...orderForm.user,
+                    tel: e.target.value,
+                  },
                 })
               }
             />
@@ -103,7 +112,10 @@ const Checkout = ({ className }) => {
               onChange={e =>
                 setOrderForm({
                   ...orderForm,
-                  [orderForm.user.address]: e.target.value,
+                  user: {
+                    ...orderForm.user,
+                    address: e.target.value,
+                  },
                 })
               }
             />
@@ -136,7 +148,7 @@ const Checkout = ({ className }) => {
                 key={item.id}
                 title={item.product.title}
                 price={item.product.price}
-                total={item.final_total.toFixed(2)}
+                total={item.final_total}
                 qty={item.qty}
               />
             ))}
