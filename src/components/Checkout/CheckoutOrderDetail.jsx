@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Box, Button, Card, Flex, Heading } from 'rebass';
+import { Box, Button, Card, Flex, Heading, Text } from 'rebass';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const CheckoutOrderDetail = ({ match }) => {
@@ -24,7 +24,6 @@ const CheckoutOrderDetail = ({ match }) => {
       .then(response => {
         setOrderDetail(response.data);
         console.log('getOrederDetail ', response.data);
-        console.log('orderDetail', response.data);
       });
   };
   const time = new Date(orderDetail.order.create_at * 1000);
@@ -34,26 +33,66 @@ const CheckoutOrderDetail = ({ match }) => {
       <Flex justifyContent='center' alignItems='center' flexDirection='column'>
         <Card width={['95vw', '390px']}>
           <Heading bg='greenWhite' my={1}>
-            <Flex justifyContent='center'>Order info</Flex>
+            <Flex justifyContent='center'>Order</Flex>
           </Heading>
 
           <StyledFlex flexDirection='column'>
-            <div>{time.toLocaleString()}</div>
             <div>
-              {orderDetail.order.is_paid === true ? 'paid' : 'need to pay'}
+              <Text width='100px' pl={2}>
+                Create at
+              </Text>
+              <Text>{time.toLocaleString()}</Text>
             </div>
-            <div>{`kr ${orderDetail.order.total}`}</div>
+            <div>
+              <Text width='100px' pl={2}>
+                Status
+              </Text>
+              <PaymentColor>
+                {orderDetail.order.is_paid === true ? 'paid' : 'need to pay'}
+              </PaymentColor>
+            </div>
+            <div>
+              <Text width='100px' pl={2}>
+                Total
+              </Text>
+              <Text>{`kr ${orderDetail.order.total}`}</Text>
+            </div>
           </StyledFlex>
 
           <Heading bg='greenWhite' my={1}>
-            <Flex justifyContent='center'>receiver info</Flex>
+            <Flex justifyContent='center'>Recipient</Flex>
           </Heading>
           <StyledFlex flexDirection='column'>
-            <div>{orderDetail.order.user.name}</div>
-            <div>{orderDetail.order.user.email}</div>
-            <div>{orderDetail.order.user.tel}</div>
-            <div>{orderDetail.order.user.address}</div>
-            <div>{orderDetail.order.message}</div>
+            <div>
+              <Text width='100px' pl={2}>
+                Name
+              </Text>
+              <Text>{orderDetail.order.user.name}</Text>
+            </div>
+            <div>
+              <Text width='100px' pl={2}>
+                Email
+              </Text>
+              <Text>{orderDetail.order.user.email}</Text>
+            </div>
+            <div>
+              <Text width='100px' pl={2}>
+                Tel
+              </Text>
+              <Text>{orderDetail.order.user.tel}</Text>
+            </div>
+            <div>
+              <Text width='100px' pl={2}>
+                Address
+              </Text>
+              <Text>{orderDetail.order.user.address}</Text>
+            </div>
+            <div>
+              <Text width='100px' pl={2}>
+                Message
+              </Text>
+              <Text>{orderDetail.order.message}</Text>
+            </div>
           </StyledFlex>
         </Card>
         <StyledButton
@@ -83,32 +122,22 @@ const StyledFlex = styled(Flex)`
     display: flex;
     align-items: center;
     border-bottom: 1px solid ${props => props.theme.colors.greenWhite};
-
-    &:nth-child(odd) {
-      background-color: ${props => props.theme.colors.orange};
-      color: ${props => props.theme.colors.green};
-    }
-    &:nth-child(even) {
-      background-color: ${props => props.theme.colors.green};
-      color: ${props => props.theme.colors.orange};
-    }
+    background-color: ${props => props.theme.colors.orange};
   }
 `;
 
 const StyledButton = styled(Button)`
   height: 60px;
-  transition: 0.3s all;
   &:hover {
     box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
     background-color: ${props => props.theme.colors.greenWhite};
     color: ${props => props.theme.colors.green};
     cursor: pointer;
   }
-  @media (min-width: 769px) {
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+`;
+
+const PaymentColor = styled(Text)`
+  color: green;
 `;
 
 export default CheckoutOrderDetail;

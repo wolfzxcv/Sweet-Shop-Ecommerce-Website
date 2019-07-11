@@ -67,7 +67,7 @@ const StyledImage = styled(Image)`
 
 const StyeldBox = styled(Box)`
   line-height: 3;
-  div {
+  div:first-child {
     border: 1px solid ${props => props.theme.colors.greenWhite};
   }
 `;
