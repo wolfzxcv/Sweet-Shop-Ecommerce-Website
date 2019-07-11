@@ -7,7 +7,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const CartOnScreen = () => {
-  const { orderList, getCart } = useContext(SharedContext);
+  const { orderList, getCart, setMenuOpen } = useContext(SharedContext);
   const [state, toggle] = useState(true);
   const { x } = useSpring({
     from: { x: 0 },
@@ -22,7 +22,7 @@ const CartOnScreen = () => {
 
   return (
     <Link to='/Sweet-for-happiness/cart'>
-      <StyledCartButton>
+      <StyledCartButton onClick={() => setMenuOpen(false)}>
         <animated.div
           style={{
             transform: x

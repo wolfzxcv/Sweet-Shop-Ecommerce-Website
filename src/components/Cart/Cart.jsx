@@ -36,7 +36,7 @@ const Cart = ({ className }) => {
           </div>
           <div className='shipment'>
             <div>shipment</div>
-            <div>kr 0.00</div>
+            <div>kr 0</div>
           </div>
           <div className='total'>
             <div>Total</div>
@@ -98,6 +98,9 @@ const StyledCart = styled(Cart)`
       .summary {
         margin-top: 20px;
         background-color: ${props => props.theme.colors.greenWhite};
+      }
+      .checkout {
+        margin-bottom: 20px;
       }
     }
   }

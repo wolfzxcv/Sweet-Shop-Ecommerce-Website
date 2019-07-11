@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from '../PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 import Header from '../Header/Header';
 import CartOnScreen from '../Cart/CartOnScreen';
 import Login from '../Login/Login';
@@ -12,7 +12,7 @@ import Product from '../Product/Product';
 import ProductDetail from '../Product/ProductDetail';
 import Dashboard from '../Dashboard/Dashboard';
 import Footer from '../Footer/Footer';
-import PageNotFound from '../PageNotFound';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const Layout = () => {

@@ -7,6 +7,7 @@ export const SharedContext = createContext();
 
 export default props => {
   const isLaptop = useMedia({ minWidth: 769 });
+  const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState({ username: '', password: '' });
   const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -243,7 +244,7 @@ export default props => {
         console.log('getCart ', response.data.success);
         if (response.data.success) {
           setOrderList(response.data.data.carts);
-          setTotalPrice(response.data.data.final_total.toFixed(2));
+          setTotalPrice(response.data.data.final_total);
         }
       });
   };
@@ -294,6 +295,8 @@ export default props => {
 
   const value = {
     isLaptop,
+    menuOpen,
+    setMenuOpen,
     user,
     setUser,
     amount,
