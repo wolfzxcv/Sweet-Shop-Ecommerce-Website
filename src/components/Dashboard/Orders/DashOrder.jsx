@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ModalProvider } from 'styled-react-modal';
-import { Button, Flex } from 'rebass';
+import { Flex } from 'rebass';
 import DashOrderList from './DashOrderList';
 // import DashProductModal from './DashProductModal';
 import { SharedContext } from '../../../contexts/SharedContext';
@@ -17,24 +17,13 @@ const DashOrder = ({ className }) => {
   return (
     <ModalProvider>
       <div className={className}>
-        <Button
-          className='add-new-porduct'
-          type='button'
-          width='100%'
-          m={1}
-          mx='auto'
-          color='green'
-          bg='greenWhite'
-          // onClick={() => setIsModalOpen(true)}
-        >
-          Add new porduct
-        </Button>
         <div className='table-head'>
-          <div className='wide'>Category</div>
-          <div className='wider'>Name</div>
+          <Flex className='wide' pl='10px'>
+            Category
+          </Flex>
+          <div className='wider'>E-mail</div>
           <div>Price</div>
-          <div>Amount</div>
-          <div>Enabled</div>
+          <div>Paid</div>
           <div>Edit</div>
           <div>Delete</div>
         </div>
@@ -48,13 +37,10 @@ const DashOrder = ({ className }) => {
               email={order.user.email}
               total={order.total}
               is_paid={order.is_paid}
-              paid_date={order.paid_date}
             />
           ))}
         </div>
-        <Flex mt={2} justifyContent='flex-end'>
-          {`${orders.length} orders in total.`}
-        </Flex>
+
         {/* <DashOrderModal /> */}
       </div>
     </ModalProvider>
@@ -66,24 +52,18 @@ DashOrder.propTypes = {
 };
 
 const StyledDashOrder = styled(DashOrder)`
-  margin: 0 auto;
+  margin-top: 42px;
   margin-bottom: 30px;
-  .order-list {
-  }
-  .add-new-porduct {
-    &:hover {
-      font-weight: 700;
-      border: 1px solid ${props => props.theme.colors.green};
-      cursor: pointer;
-    }
-  }
+  padding-right: 4px;
+  width: 100%;
+
   .table-head {
+    line-height: 3;
     background-color: ${props => props.theme.colors.green};
     color: ${props => props.theme.colors.orange};
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     .wide {
-      padding-left: 3px;
       flex: 2;
     }
     .wider {

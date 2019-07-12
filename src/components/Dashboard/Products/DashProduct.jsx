@@ -32,13 +32,15 @@ const DashProduct = ({ className }) => {
           Add new porduct
         </Button>
         <div className='table-head'>
-          <div className='wide'>Category</div>
+          <Flex className='wide' pl='10px'>
+            Category
+          </Flex>
           <div className='wider'>Name</div>
           <div>Price</div>
           <div>Amount</div>
-          <div>Enabled</div>
-          <div>Edit</div>
-          <div>Delete</div>
+          <Flex justifyContent='center'>Enabled</Flex>
+          <Flex justifyContent='center'>Edit</Flex>
+          <Flex justifyContent='center'>Delete</Flex>
         </div>
 
         <div>
@@ -68,8 +70,9 @@ DashProduct.propTypes = {
 };
 
 const StyledDashProduct = styled(DashProduct)`
-  margin: 0 auto;
   margin-bottom: 30px;
+  padding-right: 4px;
+  width: 100%;
 
   .add-new-porduct {
     &:hover {
@@ -79,12 +82,12 @@ const StyledDashProduct = styled(DashProduct)`
     }
   }
   .table-head {
+    line-height: 3;
     background-color: ${props => props.theme.colors.green};
     color: ${props => props.theme.colors.orange};
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     .wide {
-      padding-left: 3px;
       flex: 2;
     }
     .wider {

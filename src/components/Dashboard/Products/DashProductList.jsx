@@ -67,8 +67,9 @@ DashProductList.propTypes = {
 };
 
 const StyledDashProductList = styled(DashProductList)`
+  padding-right: 4px;
+  width: 100%;
   border: 1px solid ${props => props.theme.colors.greenWhite};
-  background-color: ${props => props.theme.colors.orange};
   font-size: 18px;
   display: flex;
   &:hover {
@@ -82,9 +83,11 @@ const StyledDashProductList = styled(DashProductList)`
   }
 
   .wide {
+    padding-left: 10px;
     flex: 2;
   }
   .wider {
+    padding-left: 10px;
     flex: 5;
   }
   div {
@@ -97,7 +100,7 @@ const StyledDashProductList = styled(DashProductList)`
 
   .add-hover {
     &:hover {
-      cursor: pointer;
+      cursor: crosshair;
       color: ${props => props.theme.colors.orange};
       background-color: ${props => props.theme.colors.green};
     }

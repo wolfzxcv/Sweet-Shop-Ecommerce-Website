@@ -24,9 +24,10 @@ DashSidebar.propTypes = {
 };
 
 const StyledDashSidebar = styled(DashSidebar)`
-  margin-top: 4px;
+  margin: 4px;
   div {
-    padding: 0 8px 0 8px;
+    padding: 0 8px 0 20px;
+    width: 200px;
     height: 65px;
     line-height: 2;
     font-family: 'Shadows Into Light', cursive;
@@ -39,7 +40,6 @@ const StyledDashSidebar = styled(DashSidebar)`
     &:hover {
       color: ${props => props.theme.colors.green};
       background-color: ${props => props.theme.colors.greenWhite};
-      cursor: pointer;
     }
   }
 `;

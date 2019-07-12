@@ -168,7 +168,7 @@ const StyledFooter = styled(Footer)`
     .mail {
       padding: 5px 122px;
       height: 116px;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       .mail-right {
         justify-content: flex-end;
@@ -178,7 +178,7 @@ const StyledFooter = styled(Footer)`
     .footer {
       padding: 0 122px;
       height: 341px;
-      justify-content: space-between;
+      justify-content: space-around;
 
       .logotype-lg-dark {
         margin: 39px 0 115px 0;

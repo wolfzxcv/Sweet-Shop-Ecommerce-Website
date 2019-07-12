@@ -38,15 +38,13 @@ const Dashboard = ({ className }) => {
         </Flex>
 
         <Flex>
-          <DashSidebar className='left' />
+          <DashSidebar />
           <Route
-            className='right'
             component={DashProduct}
             exact
             path='/Sweet-for-happiness/dashboard'
           />
           <Route
-            className='right'
             component={DashOrder}
             path='/Sweet-for-happiness/dashboard/order'
           />

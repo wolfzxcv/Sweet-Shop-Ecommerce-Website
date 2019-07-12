@@ -12,28 +12,29 @@ const ProductContent = ({ id, title, image, price }) => {
       <Card
         width='300px'
         mb={3}
-        border='1px solid green'
-        borderRadius={8}
-        boxShadow='0 2px 16px rgba(0, 0, 0, 0.25)'
+        border='1px solid greenWhite'
+        borderRadius={2}
+        boxShadow='0 2px 8px rgba(0, 0, 0, 0.25)'
       >
         <Flex flexDirection='column' alignItems='center'>
           <Link to={`/Sweet-for-happiness/product/goNorway${id}`}>
-            <StyledImage src={image} borderRadius={8} />
+            <StyledImage src={image} borderRadius={2} />
           </Link>
 
-          <StyeldBox width='100%' bg='orange' fontSize='16px'>
+          <StyeldBox width='100%' fontSize='16px'>
             <Flex justifyContent='space-between' alignItems='center'>
-              <Text width='70%' pl={1} fontWeight='bold'>
+              <Text width='70%' pl={2} fontWeight='bold'>
                 {title}
               </Text>
-              <Text width='30%' pl={3}>{`kr ${price}`}</Text>
+              <Text width='30%' pl={2}>{`kr ${price}`}</Text>
             </Flex>
           </StyeldBox>
 
           <StyledButton
             onClick={() => addToCart(id)}
-            width='300px'
-            bg='green'
+            width='295px'
+            bg='white'
+            color='green'
             id={id}
             fontSize='26px'
           >
@@ -66,17 +67,27 @@ const StyledImage = styled(Image)`
 `;
 
 const StyeldBox = styled(Box)`
-  line-height: 3;
-  div:first-child {
-    border: 1px solid ${props => props.theme.colors.greenWhite};
+  line-height: 2.5;
+
+  div {
+    &:not(:nth-child(2)) {
+      border-top: 1px solid ${props => props.theme.colors.greenWhite};
+      border-bottom: 1px solid ${props => props.theme.colors.greenWhite};
+    }
+    &:first-child {
+      border-right: 1px solid ${props => props.theme.colors.greenWhite};
+    }
   }
 `;
 
 const StyledButton = styled(Button)`
   height: 60px;
   transition: 0.3s all;
+  font-family: 'Shadows Into Light', cursive;
+  letter-spacing: 3px;
+  font-weight: 700;
   &:hover {
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
     background-color: ${props => props.theme.colors.greenWhite};
     color: ${props => props.theme.colors.green};
     cursor: pointer;

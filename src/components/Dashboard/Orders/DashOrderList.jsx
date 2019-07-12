@@ -4,20 +4,11 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashOrderList = ({
-  className,
-  id,
-  create_at,
-  email,
-  total,
-  is_paid,
-  paid_date,
-}) => {
+const DashOrderList = ({ id, create_at, email, total, is_paid }) => {
   const { editProduct, deleteProduct } = useContext(SharedContext);
 
   return (
-    <Flex
-      className={className}
+    <StyledFlex
       width='900px'
       justifyContent='space-between'
       alignItems='center'
@@ -29,8 +20,6 @@ const DashOrderList = ({
       <Flex className='enabled' justifyContent='center'>
         {is_paid === 'false' ? 'NO' : 'YES'}
       </Flex>
-
-      <Flex justifyContent='flex-end'>{paid_date}</Flex>
 
       <Flex
         className='add-hover'
@@ -52,23 +41,22 @@ const DashOrderList = ({
       >
         Delete
       </Flex>
-    </Flex>
+    </StyledFlex>
   );
 };
 
 DashOrderList.propTypes = {
-  className: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   create_at: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   is_paid: PropTypes.bool.isRequired,
-  paid_date: PropTypes.number.isRequired,
 };
 
-const StyledDashOrderList = styled(DashOrderList)`
+const StyledFlex = styled(Flex)`
+  padding-right: 4px;
+  width: 100%;
   border: 1px solid ${props => props.theme.colors.greenWhite};
-  background-color: ${props => props.theme.colors.orange};
   font-size: 18px;
   display: flex;
   &:hover {
@@ -103,7 +91,5 @@ const StyledDashOrderList = styled(DashOrderList)`
     }
   }
 `;
-
-StyledDashOrderList.displayName = 'DashOrderList';
 
 export default DashOrderList;
