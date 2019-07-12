@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Button, Card, Flex, Image, Text } from 'rebass';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const ProductContent = ({ id, title, image, price }) => {
@@ -38,7 +40,8 @@ const ProductContent = ({ id, title, image, price }) => {
             id={id}
             fontSize='26px'
           >
-            Add to cart
+            <FontAwesomeIcon icon={faShoppingCart} />
+            {`  Add to cart`}
           </StyledButton>
         </Flex>
       </Card>
@@ -85,7 +88,6 @@ const StyledButton = styled(Button)`
   transition: 0.3s all;
   font-family: 'Shadows Into Light', cursive;
   letter-spacing: 3px;
-  font-weight: 700;
   &:hover {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
     background-color: ${props => props.theme.colors.greenWhite};

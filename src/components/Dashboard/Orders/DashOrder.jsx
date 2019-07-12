@@ -8,11 +8,11 @@ import DashOrderList from './DashOrderList';
 import { SharedContext } from '../../../contexts/SharedContext';
 
 const DashOrder = ({ className }) => {
-  const { getAllOrders, orders } = useContext(SharedContext);
+  const { getOrders, orders } = useContext(SharedContext);
 
   useEffect(() => {
     console.log('object');
-    getAllOrders();
+    getOrders();
   }, []);
   return (
     <ModalProvider>

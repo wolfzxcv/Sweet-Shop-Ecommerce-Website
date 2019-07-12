@@ -1,14 +1,21 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Box, Button, Card, Heading, Flex, Image, Text } from 'rebass';
 import PropTypes from 'prop-types';
+import { Box, Button, Card, Heading, Flex, Image, Text } from 'rebass';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const ProductDetail = ({ className, match }) => {
-  const { item, setItem, amount, setAmount, isLaptop, addToCart } = useContext(
-    SharedContext
-  );
+  const {
+    product,
+    setProduct,
+    amount,
+    setAmount,
+    isLaptop,
+    addToCart,
+  } = useContext(SharedContext);
 
   useEffect(() => {
     fetchProductDetail();
@@ -21,7 +28,7 @@ const ProductDetail = ({ className, match }) => {
           process.env.REACT_APP_CUSTOM
         }/product/${match.params.id}`
       )
-      .then(response => setItem(response.data.product));
+      .then(response => setProduct(response.data.product));
   };
 
   let qty = amount;
@@ -31,9 +38,9 @@ const ProductDetail = ({ className, match }) => {
       <Flex width={['97vw', '90%']} flexDirection={['column', 'row']} mx='auto'>
         <Card pt={['20px', '']}>
           <Flex justifyContent='center'>
-            {!isLaptop && <Heading>{item.title}</Heading>}
+            {!isLaptop && <Heading>{product.title}</Heading>}
           </Flex>
-          <Image src={item.imageUrl} />
+          <Image src={product.imageUrl} />
 
           <Flex justifyContent='center'>
             <AmountButton
@@ -47,7 +54,7 @@ const ProductDetail = ({ className, match }) => {
             <AmountButton
               bg='white'
               onClick={() => setAmount(amount + 1)}
-              disabled={amount >= item.unit}
+              disabled={amount >= product.unit}
             >
               +
             </AmountButton>
@@ -61,15 +68,16 @@ const ProductDetail = ({ className, match }) => {
             id={match.params.id}
             fontSize='26px'
           >
-            Add to cart
+            <FontAwesomeIcon icon={faShoppingCart} />
+            {`  Add to cart`}
           </StyledButton>
         </Card>
         <Box px={3} pt={['25px', '']} fontSize='20px'>
           <Flex flexDirection='column' justifyContent='space-between'>
-            {isLaptop && <Heading>{item.title}</Heading>}
+            {isLaptop && <Heading>{product.title}</Heading>}
             <Flex justifyContent={['space-between', 'flex-end']}>
-              {!isLaptop && <Text>{`${item.unit} available`}</Text>}
-              <Heading>{`kr ${item.price}`}</Heading>
+              {!isLaptop && <Text>{`${product.unit} available`}</Text>}
+              <Heading>{`kr ${product.price}`}</Heading>
             </Flex>
 
             <br />
@@ -78,10 +86,10 @@ const ProductDetail = ({ className, match }) => {
               <Box>
                 <Flex>
                   <Text mr={3}>Allergens</Text>
-                  <Text bg='greenWhite'>{item.description}</Text>
+                  <Text bg='greenWhite'>{product.description}</Text>
                 </Flex>
               </Box>
-              {isLaptop && <Text>{`${item.unit} available`}</Text>}
+              {isLaptop && <Text>{`${product.unit} available`}</Text>}
             </Flex>
 
             {isLaptop && <br />}
@@ -93,7 +101,7 @@ const ProductDetail = ({ className, match }) => {
                 <Text pr={3}>Detail</Text>
               </Flex>
               <Text px={2} bg='greenWhite'>
-                {item.content}
+                {product.content}
               </Text>
             </Flex>
           </Flex>
@@ -122,6 +130,8 @@ const AmountButton = styled(Button)`
 const StyledButton = styled(Button)`
   height: 60px;
   transition: 0.3s all;
+  font-family: 'Shadows Into Light', cursive;
+  letter-spacing: 3px;
   border: 1px solid ${props => props.theme.colors.green};
   &:hover {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);

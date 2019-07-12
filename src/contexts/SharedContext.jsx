@@ -6,32 +6,22 @@ import { Redirect } from 'react-router-dom';
 export const SharedContext = createContext();
 
 export default props => {
+  // Display
   const isLaptop = useMedia({ minWidth: 769 });
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState({ username: '', password: '' });
-  const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [item, setItem] = useState({});
-  const [select, setSelect] = useState('');
   const [page, setPage] = useState(0);
-  const [amount, setAmount] = useState(1);
-  const [orderList, setOrderList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [select, setSelect] = useState('');
   const [orderId, setOrderId] = useState('');
-  const [productForm, setProductForm] = useState({
-    id: '',
-    title: '',
-    category: '',
-    is_enabled: 1,
-    price: '',
-    unit: '',
-    description: '',
-    content: '',
-    image: '',
-    imageUrl: '',
-  });
+  const [amount, setAmount] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // Products
+  const [product, setProduct] = useState({});
+  const [products, setProducts] = useState([]);
+
+  // Orders & Cart
+  const [orderList, setOrderList] = useState([]);
   const [orderForm, setOrderForm] = useState({
     user: {
       name: ' ',
@@ -66,6 +56,25 @@ export default props => {
     },
   });
 
+  // Admin
+  const [user, setUser] = useState({ username: '', password: '' });
+  const [isLogin, setIsLogin] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [productForm, setProductForm] = useState({
+    id: '',
+    title: '',
+    category: '',
+    is_enabled: 1,
+    price: '',
+    unit: '',
+    description: '',
+    content: '',
+    image: '',
+    imageUrl: '',
+  });
+
+  // Functions Part Start from Here
+  // Products
   const getAllProducts = () => {
     axios
       .get(
@@ -79,6 +88,86 @@ export default props => {
       });
   };
 
+  // Orders & Cart
+  const addToCart = (id, qty = 1) => {
+    const cart = {
+      product_id: id,
+      qty,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
+        { data: cart }
+      )
+      .then(response => {
+        console.log('addToCart ', response.data.message);
+        if (response.data.success) {
+          getCart();
+          setAmount(1);
+        }
+      });
+  };
+
+  const getCart = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
+      )
+      .then(response => {
+        console.log('getCart ', response.data.success);
+        if (response.data.success) {
+          setOrderList(response.data.data.carts);
+          setTotalPrice(response.data.data.final_total);
+        }
+      });
+  };
+
+  const deleteOrder = id => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/cart/${id}`
+      )
+      .then(response => {
+        console.log('deleteOrder ', response.data.message);
+        if (response.data.success) {
+          getCart();
+        }
+      });
+  };
+
+  const sendOrderForm = orderForm => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/order`,
+        { data: orderForm }
+      )
+      .then(response => {
+        console.log('sendOrderForm', response.data.message, response.data);
+        setOrderId(response.data.orderId);
+        if (response.data.success) {
+          getCart();
+        }
+      });
+  };
+
+  const confirmPayment = id => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/pay/${id}`
+      )
+      .then(response => {
+        console.log(`confirmPayment ${id}`, response.data.message);
+      });
+  };
+
+  // Admin
   const handleLogin = user => {
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
@@ -217,85 +306,7 @@ export default props => {
       });
   };
 
-  const addToCart = (id, qty = 1) => {
-    const cart = {
-      product_id: id,
-      qty,
-    };
-
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
-        { data: cart }
-      )
-      .then(response => {
-        console.log('addToCart ', response.data.message);
-        if (response.data.success) {
-          getCart();
-          setAmount(1);
-        }
-      });
-  };
-
-  const getCart = () => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
-      )
-      .then(response => {
-        console.log('getCart ', response.data.success);
-        if (response.data.success) {
-          setOrderList(response.data.data.carts);
-          setTotalPrice(response.data.data.final_total);
-        }
-      });
-  };
-
-  const deleteOrder = id => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/cart/${id}`
-      )
-      .then(response => {
-        console.log('deleteOrder ', response.data.message);
-        if (response.data.success) {
-          getCart();
-        }
-      });
-  };
-
-  const sendOrderForm = orderForm => {
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/order`,
-        { data: orderForm }
-      )
-      .then(response => {
-        console.log('sendOrderForm', response.data.message, response.data);
-        setOrderId(response.data.orderId);
-        if (response.data.success) {
-          getCart();
-        }
-      });
-  };
-
-  const confirmPayment = id => {
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/pay/${id}`
-      )
-      .then(response => {
-        console.log(`confirmPayment ${id}`, response.data.message);
-      });
-  };
-
-  const getAllOrders = () => {
+  const getOrders = () => {
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -313,36 +324,39 @@ export default props => {
     isLaptop,
     menuOpen,
     setMenuOpen,
-    user,
-    setUser,
+    isModalOpen,
+    setIsModalOpen,
+    page,
+    setPage,
+    select,
+    setSelect,
+    orderId,
+    setOrderId,
     amount,
     setAmount,
+    totalPrice,
+    setTotalPrice,
+
+    product,
+    setProduct,
+    products,
+    setProducts,
+
     orderList,
     setOrderList,
     orderForm,
     setOrderForm,
-    orderId,
-    setOrderId,
-    totalPrice,
-    setTotalPrice,
     orderDetail,
     setOrderDetail,
-    productForm,
-    setProductForm,
-    products,
-    setProducts,
-    orders,
-    setOrders,
-    item,
-    setItem,
-    select,
-    setSelect,
-    page,
-    setPage,
+
+    user,
+    setUser,
     isLogin,
     setIsLogin,
-    isModalOpen,
-    setIsModalOpen,
+    productForm,
+    setProductForm,
+    orders,
+    setOrders,
 
     getAllProducts,
     handleLogin,
@@ -358,7 +372,7 @@ export default props => {
     deleteOrder,
     sendOrderForm,
     confirmPayment,
-    getAllOrders,
+    getOrders,
   };
 
   return <SharedContext.Provider value={value} {...props} />;
