@@ -19,7 +19,7 @@ const DashOrder = ({ className }) => {
       <div className={className}>
         <div className='table-head'>
           <Flex className='wide' pl='10px'>
-            Category
+            Created at
           </Flex>
           <div className='wider'>E-mail</div>
           <div>Price</div>
@@ -37,6 +37,7 @@ const DashOrder = ({ className }) => {
               email={order.user.email}
               total={order.total}
               is_paid={order.is_paid}
+              products={order.products}
             />
           ))}
         </div>

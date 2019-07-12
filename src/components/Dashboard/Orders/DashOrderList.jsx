@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashOrderList = ({ id, create_at, email, total, is_paid }) => {
+const DashOrderList = ({ id, create_at, email, total, is_paid, products }) => {
   const { editProduct, deleteProduct } = useContext(SharedContext);
+  console.log('what user orderd', products);
 
+  const time = new Date(create_at * 1000);
   return (
     <StyledFlex
       width='900px'
       justifyContent='space-between'
       alignItems='center'
     >
-      <div className='wide'>{create_at}</div>
+      <div className='wide'>{time.toLocaleString()}</div>
       <div className='wider'>{email}</div>
 
       <Flex justifyContent='flex-end'>{total}</Flex>
@@ -51,6 +53,7 @@ DashOrderList.propTypes = {
   email: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   is_paid: PropTypes.bool.isRequired,
+  products: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const StyledFlex = styled(Flex)`
