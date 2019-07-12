@@ -123,7 +123,7 @@ export default props => {
       });
   };
 
-  const deleteOrder = id => {
+  const deleteCartOrder = id => {
     axios
       .delete(
         `${process.env.REACT_APP_API}/api/${
@@ -131,7 +131,7 @@ export default props => {
         }/cart/${id}`
       )
       .then(response => {
-        console.log('deleteOrder ', response.data.message);
+        console.log('deleteCartOrder ', response.data.message);
         if (response.data.success) {
           getCart();
         }
@@ -200,7 +200,7 @@ export default props => {
     }
   };
 
-  const handleForm = () => {
+  const handleProductForm = () => {
     if (
       productForm.title.trim().length > 5 &&
       productForm.category.trim().length > 0 &&
@@ -218,7 +218,7 @@ export default props => {
     }
   };
 
-  const resetForm = () => {
+  const resetProductForm = () => {
     setProductForm({
       id: '',
       title: '',
@@ -250,11 +250,11 @@ export default props => {
         if (response.data.success) {
           getAllProducts();
           setIsModalOpen(false);
-          resetForm();
+          resetProductForm();
         } else {
           setIsModalOpen(false);
           handleLogout();
-          resetForm();
+          resetProductForm();
         }
       });
   };
@@ -280,7 +280,7 @@ export default props => {
         if (response.data.success) {
           getAllProducts();
           setIsModalOpen(false);
-          resetForm();
+          resetProductForm();
         } else {
           setIsModalOpen(false);
           handleLogout();
@@ -359,19 +359,22 @@ export default props => {
     setOrders,
 
     getAllProducts,
+
+    addToCart,
+    getCart,
+    deleteCartOrder,
+    sendOrderForm,
+    confirmPayment,
+
     handleLogin,
     handleLogout,
     checkIfLogin,
-    handleForm,
-    resetForm,
+    handleProductForm,
+    resetProductForm,
     editProduct,
     updateProduct,
     deleteProduct,
-    addToCart,
-    getCart,
-    deleteOrder,
-    sendOrderForm,
-    confirmPayment,
+
     getOrders,
   };
 
