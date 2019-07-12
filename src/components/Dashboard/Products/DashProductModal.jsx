@@ -140,17 +140,6 @@ const DashProductModal = () => {
       <Flex justifyContent='flex-end'>
         <StyledButton
           m={1}
-          width='150px'
-          bg='green'
-          onClick={resetProductForm}
-          onKeyDown={e => {
-            if (e.keyCode === 27) setIsModalOpen(false);
-          }}
-        >
-          Close
-        </StyledButton>
-        <StyledButton
-          m={1}
           ml='30px'
           width='150px'
           bg='green'
@@ -161,6 +150,18 @@ const DashProductModal = () => {
           }
         >
           Submit
+        </StyledButton>
+        <StyledButton
+          m={1}
+          width='150px'
+          bg='orange'
+          color='green'
+          onClick={resetProductForm}
+          onKeyDown={e => {
+            if (e.keyCode === 27) setIsModalOpen(false);
+          }}
+        >
+          Close
         </StyledButton>
       </Flex>
     </StyledModal>

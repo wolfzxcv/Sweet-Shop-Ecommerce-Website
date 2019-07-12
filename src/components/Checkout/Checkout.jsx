@@ -229,7 +229,10 @@ const StyledForm = styled(Card)`
 
 const StyledCheckout = styled(Checkout)`
   margin-top: 30px;
-
+  @media (min-width: 769px) {
+    width: 1024px;
+    margin: 0 auto;
+  }
   @media (max-width: 768px) {
     input {
       width: 75vw;

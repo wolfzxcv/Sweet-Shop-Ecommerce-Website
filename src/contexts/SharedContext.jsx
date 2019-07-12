@@ -6,10 +6,11 @@ import { Redirect } from 'react-router-dom';
 export const SharedContext = createContext();
 
 export default props => {
-  // Display
+  // Display  setIsOrderModalOpen
   const isLaptop = useMedia({ minWidth: 769 });
   const [menuOpen, setMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [select, setSelect] = useState('');
   const [orderId, setOrderId] = useState('');
@@ -314,9 +315,44 @@ export default props => {
         }/admin/orders?page=:page`
       )
       .then(response => {
-        console.log('getAllOrders ', response.data.success);
-        console.log('getAllOrders serOrders', response.data.orders);
+        console.log('getOrders ', response.data.success);
+        console.log('getOrders: setOrders ', response.data.orders);
         setOrders(response.data.orders);
+      });
+  };
+
+  const editOrederDetail = id => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/order/${id}`
+      )
+      .then(response => {
+        setOrderDetail(response.data);
+        setIsOrderModalOpen(true);
+        console.log('editOrederDetail ', response.data);
+      });
+  };
+
+  const updateOrderDetail = id => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/order/${id}`,
+        { data: orderDetail }
+      )
+      .then(response => {
+        console.log(`order id ${orderDetail.id}`, response.data.message);
+        // if (response.data.success) {
+        //   getAllProducts();
+        //   setIsModalOpen(false);
+        //   resetProductForm();
+        // } else {
+        //   setIsModalOpen(false);
+        //   handleLogout();
+        // }
       });
   };
 
@@ -326,6 +362,8 @@ export default props => {
     setMenuOpen,
     isModalOpen,
     setIsModalOpen,
+    isOrderModalOpen,
+    setIsOrderModalOpen,
     page,
     setPage,
     select,
@@ -376,6 +414,8 @@ export default props => {
     deleteProduct,
 
     getOrders,
+    editOrederDetail,
+    updateOrderDetail,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

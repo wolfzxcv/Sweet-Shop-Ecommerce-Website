@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashOrderList = ({ id, create_at, email, total, is_paid }) => {
-  const { editProduct, deleteProduct } = useContext(SharedContext);
+const DashOrderList = ({ id, create_at, email, tel, total, is_paid }) => {
+  const { editOrederDetail } = useContext(SharedContext);
 
   const time = new Date(create_at * 1000);
   return (
@@ -16,6 +16,7 @@ const DashOrderList = ({ id, create_at, email, total, is_paid }) => {
     >
       <div className='wide'>{time.toLocaleString()}</div>
       <div className='wider'>{email}</div>
+      <div className='wide'>{tel}</div>
 
       <Flex justifyContent='flex-end'>{total}</Flex>
       <Flex className='enabled' justifyContent='center'>
@@ -25,22 +26,12 @@ const DashOrderList = ({ id, create_at, email, total, is_paid }) => {
       <Flex
         className='add-hover'
         justifyContent='center'
-        onClick={() => editProduct(id)}
-        onKeyDown={editProduct}
+        onClick={() => editOrederDetail(id)}
+        onKeyDown={editOrederDetail}
         role='button'
         tabIndex='0'
       >
         Edit
-      </Flex>
-      <Flex
-        className='add-hover'
-        justifyContent='center'
-        onClick={() => deleteProduct(id)}
-        onKeyDown={deleteProduct}
-        role='button'
-        tabIndex='0'
-      >
-        Delete
       </Flex>
     </StyledFlex>
   );
@@ -50,13 +41,13 @@ DashOrderList.propTypes = {
   id: PropTypes.string.isRequired,
   create_at: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
+  tel: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   is_paid: PropTypes.bool.isRequired,
-  products: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const StyledFlex = styled(Flex)`
-  padding-right: 4px;
+  padding: 0 14px 0 10px;
   width: 100%;
   border: 1px solid ${props => props.theme.colors.greenWhite};
   font-size: 18px;
@@ -68,7 +59,9 @@ const StyledFlex = styled(Flex)`
   div {
     padding: 0 6px 0 6px;
     line-height: 3;
-    border-left: 1px solid ${props => props.theme.colors.greenWhite};
+    &:not(:first-child) {
+      border-left: 1px solid ${props => props.theme.colors.greenWhite};
+    }
   }
 
   .wide {

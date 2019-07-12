@@ -100,7 +100,7 @@ const StyledDashProductList = styled(DashProductList)`
 
   .add-hover {
     &:hover {
-      cursor: crosshair;
+      cursor: pointer;
       color: ${props => props.theme.colors.orange};
       background-color: ${props => props.theme.colors.green};
     }
