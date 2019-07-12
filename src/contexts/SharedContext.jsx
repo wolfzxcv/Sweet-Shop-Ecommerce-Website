@@ -165,6 +165,7 @@ export default props => {
         } else {
           setIsModalOpen(false);
           handleLogout();
+          resetForm();
         }
       });
   };
