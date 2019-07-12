@@ -54,51 +54,53 @@ const Product = ({ className }) => {
         </div>
       )}
 
-      <Flex flexDirection={['column', 'row']}>
-        <StyledSidebar mb={5} flexDirection='column'>
-          <Box
-            width={['97vw', '230px']}
-            ml={['0', '20px']}
-            bg='green'
-            color='white'
-          >
-            <Flex justifyContent='center' alignItems='center'>
-              CATEGORY
-            </Flex>
-          </Box>
-          <Box ml={['0', '20px']}>
-            <Flex
-              justifyContent='center'
-              alignItems='center'
-              onClick={() => setSelect('')}
+      <Flex justifyContent='center'>
+        <Flex flexDirection={['column', 'row']}>
+          <StyledSidebar mb={5} flexDirection='column'>
+            <Box
+              width={['97vw', '230px']}
+              ml={['0', '20px']}
+              bg='green'
+              color='white'
             >
-              {`All (${
-                products.filter(check => check.is_enabled !== '0').length
-              })`}
-            </Flex>
-          </Box>
-          {getProductsCategory.map(category => (
-            <ProductSidebar
-              key={category}
-              category={category}
-              handleChange={handleChange}
-            />
-          ))}
-        </StyledSidebar>
-
-        <Box width={['97vw', '1000px']}>
-          <Flex flexWrap='wrap' justifyContent='space-around'>
-            {showProduct.slice(4 * page, 4 * (page + 1)).map(item => (
-              <ProductContent
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                image={item.imageUrl}
-                price={item.price}
+              <Flex justifyContent='center' alignItems='center'>
+                CATEGORY
+              </Flex>
+            </Box>
+            <Box ml={['0', '20px']}>
+              <Flex
+                justifyContent='center'
+                alignItems='center'
+                onClick={() => setSelect('')}
+              >
+                {`All (${
+                  products.filter(check => check.is_enabled !== '0').length
+                })`}
+              </Flex>
+            </Box>
+            {getProductsCategory.map(category => (
+              <ProductSidebar
+                key={category}
+                category={category}
+                handleChange={handleChange}
               />
             ))}
-          </Flex>
-        </Box>
+          </StyledSidebar>
+
+          <Box width={['97vw', '800px']}>
+            <Flex flexWrap='wrap' justifyContent='space-around'>
+              {showProduct.slice(4 * page, 4 * (page + 1)).map(item => (
+                <ProductContent
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  image={item.imageUrl}
+                  price={item.price}
+                />
+              ))}
+            </Flex>
+          </Box>
+        </Flex>
       </Flex>
 
       {pages > 1 && (
@@ -152,7 +154,7 @@ const StyledSidebar = styled(Flex)`
 `;
 
 const StyledProduct = styled(Product)`
-  margin: 0 auto 20px auto;
+  margin-bottom: 20px;
 
   @media (min-width: 769px) {
     .bgi {
@@ -162,8 +164,10 @@ const StyledProduct = styled(Product)`
       height: 496px;
     }
     .pagination {
+      width: 1024px;
+      margin: 0 auto;
       margin-right: 50px;
-      justify-content: flex-end;
+      justify-content: center;
     }
   }
 

@@ -37,15 +37,15 @@ const ProductDetail = ({ className, match }) => {
 
           <Flex justifyContent='center'>
             <AmountButton
-              bg='greenWhite'
+              bg='white'
               onClick={() => setAmount(amount - 1)}
               disabled={amount === 1}
             >
               -
             </AmountButton>
-            <AmountButton bg='orange'>{amount}</AmountButton>
+            <AmountButton bg='greenWhite'>{amount}</AmountButton>
             <AmountButton
-              bg='greenWhite'
+              bg='white'
               onClick={() => setAmount(amount + 1)}
               disabled={amount >= item.unit}
             >
@@ -56,7 +56,8 @@ const ProductDetail = ({ className, match }) => {
           <StyledButton
             onClick={() => addToCart(match.params.id, qty)}
             width={['97vw', '300px']}
-            bg='green'
+            bg='white'
+            color='green'
             id={match.params.id}
             fontSize='26px'
           >
@@ -74,8 +75,12 @@ const ProductDetail = ({ className, match }) => {
             <br />
 
             <Flex justifyContent='space-between'>
-              <Text>Allergens</Text>
-              <Text bg='greenWhite'>{item.description}</Text>
+              <Box>
+                <Flex>
+                  <Text mr={3}>Allergens</Text>
+                  <Text bg='greenWhite'>{item.description}</Text>
+                </Flex>
+              </Box>
               {isLaptop && <Text>{`${item.unit} available`}</Text>}
             </Flex>
 
@@ -117,13 +122,13 @@ const AmountButton = styled(Button)`
 const StyledButton = styled(Button)`
   height: 60px;
   transition: 0.3s all;
+  border: 1px solid ${props => props.theme.colors.green};
   &:hover {
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
     background-color: ${props => props.theme.colors.greenWhite};
     color: ${props => props.theme.colors.green};
     cursor: pointer;
   }
-
   @media (min-width: 769px) {
     &:hover {
       transform: scale(1.1);
@@ -132,10 +137,10 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledProductDetail = styled(ProductDetail)`
-  background-color: ${props => props.theme.colors.orange};
-  margin-top: 10px;
+  margin: 10px auto 0 auto;
 
   @media (min-width: 769px) {
+    width: 1024px;
     height: 500px;
   }
   @media (max-width: 768px) {

@@ -133,8 +133,8 @@ const StyledHome = styled(Home)`
             top: -100%;
           }
           .left-overlay {
-            background: ${props => props.theme.colors.orange};
-            color: ${props => props.theme.colors.green};
+            background: ${props => props.theme.colors.green};
+            color: ${props => props.theme.colors.white};
           }
         }
 
@@ -144,8 +144,8 @@ const StyledHome = styled(Home)`
             top: -100%;
           }
           .middle-overlay {
-            background: ${props => props.theme.colors.green};
-            color: ${props => props.theme.colors.white};
+            background: ${props => props.theme.colors.orange};
+            color: ${props => props.theme.colors.green};
           }
         }
 
@@ -166,9 +166,10 @@ const StyledHome = styled(Home)`
       height: 460px;
       margin-top: 40px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       .why-choose-left {
         margin-left: 42px;
+        top: -20px;
         width: 460px;
         height: 100%;
         background-image: url(${background05});
@@ -178,7 +179,8 @@ const StyledHome = styled(Home)`
       }
 
       .why-choose-right {
-        margin-right: 42px;
+        margin-left: 42px;
+        top: -20px;
         width: 89px;
         height: 307px;
         background-image: url(${background06});
@@ -187,14 +189,14 @@ const StyledHome = styled(Home)`
         z-index: 100;
       }
       .why-choose-bg {
-        width: 1024px;
+        width: 100%;
         height: 420px;
         position: absolute;
         background-color: ${props => props.theme.colors.greenWhite};
         z-index: 1;
         div {
           position: absolute;
-          right: 180px;
+          right: 450px;
           top: 110px;
           width: 300px;
           font-weight: 300;
@@ -208,14 +210,14 @@ const StyledHome = styled(Home)`
       display: flex;
       justify-content: flex-end;
       .why-eat-bg {
-        width: 1024px;
+        width: 100%;
         height: 420px;
         position: absolute;
         background-color: ${props => props.theme.colors.greenWhite};
         z-index: 1;
         div {
           position: absolute;
-          left: 80px;
+          left: 320px;
           top: 110px;
           width: 300px;
           font-weight: 300;
@@ -223,6 +225,7 @@ const StyledHome = styled(Home)`
       }
       .why-eat-left {
         margin-right: 42px;
+        top: -20px;
         width: 89px;
         height: 307px;
         background-image: url(${background07});
@@ -232,7 +235,8 @@ const StyledHome = styled(Home)`
       }
 
       .why-eat-right {
-        margin-right: 42px;
+        margin-right: 260px;
+        top: -20px;
         width: 460px;
         height: 100%;
         background-image: url(${background08});

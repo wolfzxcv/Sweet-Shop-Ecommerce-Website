@@ -16,17 +16,13 @@ const globalRules = `
     margin: 0 auto;
     background-color: ${theme.colors.white};
   }
-
-  @media(min-width:1024px){
-    body{
-      width: 1024px;
-    }
-  }
-  
   a{
     text-decoration: none;
     color: inherit;
   }
+  button:focus{ 
+    outline: none;
+  }  
 `;
 
 const GlobalStyle = createGlobalStyle`${normalize} ${globalRules}`;
