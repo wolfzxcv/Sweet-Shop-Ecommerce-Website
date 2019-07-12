@@ -36,6 +36,7 @@ const Home = ({ className }) => {
 
           <div className='right'>
             <img src={background04} alt='background04' />
+
             <div className='right-overlay'>
               <span>New Arrivals</span>
             </div>
@@ -255,10 +256,10 @@ const StyledHome = styled(Home)`
   }
 
   @media (max-width: 768px) {
-    width: 97vw;
+    width: 93vw;
     .pic-group {
       .up-big {
-        width: 100%;
+        width: 90vw;
         height: 400px;
         background-image: url(${background01});
         background-size: cover;
@@ -270,7 +271,7 @@ const StyledHome = styled(Home)`
         overflow: hidden;
         font-family: ${props => props.theme.fonts.title};
         div {
-          width: 33.33vw;
+          width: 30vw;
           height: 180px;
           font-size: 26px;
           font-weight: 400;

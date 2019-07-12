@@ -11,7 +11,6 @@ const DashOrder = ({ className }) => {
   const { getOrders, orders } = useContext(SharedContext);
 
   useEffect(() => {
-    console.log('object');
     getOrders();
   }, []);
   return (
@@ -37,7 +36,6 @@ const DashOrder = ({ className }) => {
               email={order.user.email}
               total={order.total}
               is_paid={order.is_paid}
-              products={order.products}
             />
           ))}
         </div>

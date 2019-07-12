@@ -86,7 +86,9 @@ const ProductDetail = ({ className, match }) => {
               <Box>
                 <Flex>
                   <Text mr={3}>Allergens</Text>
-                  <Text bg='greenWhite'>{product.description}</Text>
+                  <Box width={['', '350px']}>
+                    <Text bg='greenWhite'>{product.description}</Text>
+                  </Box>
                 </Flex>
               </Box>
               {isLaptop && <Text>{`${product.unit} available`}</Text>}

@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashOrderList = ({ id, create_at, email, total, is_paid, products }) => {
+const DashOrderList = ({ id, create_at, email, total, is_paid }) => {
   const { editProduct, deleteProduct } = useContext(SharedContext);
-  console.log('what user orderd', products);
 
   const time = new Date(create_at * 1000);
   return (
