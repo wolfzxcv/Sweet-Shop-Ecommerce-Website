@@ -33,8 +33,8 @@ const DashOrder = ({ className }) => {
               key={order.id}
               id={order.id}
               create_at={order.create_at}
-              // email={order.user.email}
-              // tel={order.user.tel}
+              email={order.user.email}
+              tel={order.user.tel}
               total={order.total}
               is_paid={order.is_paid}
             />

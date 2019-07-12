@@ -317,7 +317,7 @@ export default props => {
       .then(response => {
         console.log('getOrders ', response.data.success);
         console.log('getOrders: setOrders ', response.data.orders);
-        setOrders(response.data.orders);
+        // setOrders(response.data.orders);
       });
   };
 

@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import Modal from 'styled-react-modal';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Box, Button, Card, Flex, Heading, Text } from 'rebass';
+import { Button, Flex, Text } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
 const DashOrderModal = () => {
@@ -21,19 +20,36 @@ const DashOrderModal = () => {
 
   return (
     <StyledModal isOpen={isOrderModalOpen}>
-      <StyledTitle>{`Edit Order id ${orderDetail.order.id}`}</StyledTitle>
+      <StyledTitle>
+        {`Edit ${orderDetail.order.user.name}'s order || order's id: ${
+          orderDetail.order.id
+        }`}
+      </StyledTitle>
 
       <Flex m={2} justifyContent='space-around'>
-        <StyledFlex flexDirection='column' justifyContent='center'>
-          <div>{createdTime.toLocaleString()}</div>
-          <div>{orderDetail.order.total}</div>
-          <div>{orderDetail.order.is_paid}</div>
-          <div>{paidTime.toLocaleString()}</div>
-          <div>{orderDetail.order.message}</div>
-        </StyledFlex>
         <Flex flexDirection='column' justifyContent='space-around'>
+          <Flex>
+            <Text width='200px'>Created at:</Text>
+            <Text>{createdTime.toLocaleString()}</Text>
+          </Flex>
+
+          <Flex>
+            <Text width='200px'>Total:</Text>
+            <Text>{orderDetail.order.total}</Text>
+          </Flex>
+
+          <Flex>
+            <Text width='200px'>Paid at:</Text>
+            <Text>{paidTime.toLocaleString()}</Text>
+          </Flex>
+
+          <Flex>
+            <Text width='200px'>Payment status:</Text>
+            <Text>{orderDetail.order.is_paid}</Text>
+          </Flex>
+
           <div>
-            Name
+            <Text width='200px'> Name</Text>
             <input
               type='text'
               placeholder='Edit recipients name'
@@ -41,15 +57,21 @@ const DashOrderModal = () => {
               value={orderDetail.order.user.name}
               onChange={e =>
                 setOrderDetail({
-                  ...orderDetail.order.user,
-                  name: e.target.value,
+                  ...orderDetail,
+                  order: {
+                    ...orderDetail.order,
+                    user: {
+                      ...orderDetail.order.user,
+                      name: e.target.value,
+                    },
+                  },
                 })
               }
             />
           </div>
 
           <div>
-            E-mail
+            <Text width='200px'>E-mail</Text>
             <input
               type='email'
               placeholder='Edit recipients email'
@@ -57,15 +79,21 @@ const DashOrderModal = () => {
               value={orderDetail.order.user.email}
               onChange={e =>
                 setOrderDetail({
-                  ...orderDetail.order.user,
-                  email: e.target.value,
+                  ...orderDetail,
+                  order: {
+                    ...orderDetail.order,
+                    user: {
+                      ...orderDetail.order.user,
+                      email: e.target.value,
+                    },
+                  },
                 })
               }
             />
           </div>
 
           <div>
-            Tel
+            <Text width='200px'>Tel</Text>
             <input
               type='text'
               placeholder='Edit recipients phone munber'
@@ -73,8 +101,33 @@ const DashOrderModal = () => {
               value={orderDetail.order.user.tel}
               onChange={e =>
                 setOrderDetail({
-                  ...orderDetail.order.user,
-                  tel: e.target.value,
+                  ...orderDetail,
+                  order: {
+                    ...orderDetail.order,
+                    user: {
+                      ...orderDetail.order.user,
+                      tel: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
+          </div>
+
+          <div>
+            <Text width='200px'>Message</Text>
+            <textarea
+              placeholder='Edit message...'
+              rows='3'
+              cols='60'
+              value={orderDetail.order.message}
+              onChange={e =>
+                setOrderDetail({
+                  ...orderDetail,
+                  order: {
+                    ...orderDetail.order,
+                    message: e.target.value,
+                  },
                 })
               }
             />
@@ -110,13 +163,16 @@ const DashOrderModal = () => {
 };
 
 const StyledModal = Modal.styled`
-width: 800px;
+width: 700px;
 height: 600px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 border: 2px solid ${props => props.theme.colors.green};
 background-color: ${props => props.theme.colors.white};
+div{
+  line-height:2;
+}
 `;
 
 const StyledTitle = styled.div`
@@ -126,10 +182,6 @@ const StyledTitle = styled.div`
   font-size: 20px;
   font-weight: 500;
   line-height: 2;
-`;
-
-const StyledFlex = styled(Flex)`
-  height: 500px;
 `;
 
 const StyledButton = styled(Button)`
