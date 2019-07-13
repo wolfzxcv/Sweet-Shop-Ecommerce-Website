@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "aefbe666d4c014e7ff5c4409b17d9199",
+    "revision": "e7e8eff19680a7446c0650b65fe92879",
     "url": "/Sweet-for-happiness/index.html"
   },
   {
-    "revision": "714171886a9ecb828368",
+    "revision": "2ac401f3c46201aa1b3d",
     "url": "/Sweet-for-happiness/static/css/main.34de6062.chunk.css"
   },
   {
@@ -56,24 +56,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Sweet-for-happiness/static/js/6.12fb9152.chunk.js"
   },
   {
-    "revision": "3c90dea5a2b9411b1dfc",
-    "url": "/Sweet-for-happiness/static/js/7.be147f46.chunk.js"
+    "revision": "6a16b59d204ab5a32911",
+    "url": "/Sweet-for-happiness/static/js/7.c72e93a1.chunk.js"
   },
   {
     "revision": "eaf1f9cf00a173b7a92c",
     "url": "/Sweet-for-happiness/static/js/8.bb89a01a.chunk.js"
   },
   {
-    "revision": "2a88c5c5ad7f0942f590",
-    "url": "/Sweet-for-happiness/static/js/9.805e8dd0.chunk.js"
+    "revision": "12992f83ef8c3312cbde",
+    "url": "/Sweet-for-happiness/static/js/9.2e7795df.chunk.js"
   },
   {
-    "revision": "714171886a9ecb828368",
-    "url": "/Sweet-for-happiness/static/js/main.f45856e1.chunk.js"
+    "revision": "2ac401f3c46201aa1b3d",
+    "url": "/Sweet-for-happiness/static/js/main.3388144e.chunk.js"
   },
   {
-    "revision": "91f3e0bc15c8e10e4c93",
-    "url": "/Sweet-for-happiness/static/js/runtime~main.0466afa0.js"
+    "revision": "7d3d0c17669064cfb661",
+    "url": "/Sweet-for-happiness/static/js/runtime~main.ad79ae8e.js"
   },
   {
     "revision": "0bd653f6305dab15afae64b2340ac0ba",

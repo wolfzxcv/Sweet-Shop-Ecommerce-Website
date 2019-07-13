@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Sweet-for-happiness/precache-manifest.f4d8b8eba07679d63d97a7ab7665e85c.js"
+  "/Sweet-for-happiness/precache-manifest.fcc56401fe283f6f6e3f998e18f1b26d.js"
 );
 
 self.addEventListener('message', (event) => {
