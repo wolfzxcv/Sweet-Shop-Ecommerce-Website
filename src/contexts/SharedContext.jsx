@@ -8,6 +8,7 @@ export const SharedContext = createContext();
 export default props => {
   // Display  setIsOrderModalOpen
   const isLaptop = useMedia({ minWidth: 769 });
+  const [isLoading, setIsloading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -77,6 +78,7 @@ export default props => {
   // Functions Part Start from Here
   // Products
   const getAllProducts = () => {
+    setIsloading(true);
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -86,11 +88,14 @@ export default props => {
       .then(response => {
         console.log('getAllProducts ', response.data.success);
         setProducts(response.data.products);
+        setIsloading(false);
       });
   };
 
   // Orders & Cart
   const addToCart = (id, qty = 1) => {
+    setIsloading(true);
+
     const cart = {
       product_id: id,
       qty,
@@ -106,11 +111,14 @@ export default props => {
         if (response.data.success) {
           getCart();
           setAmount(1);
+          setIsloading(false);
         }
       });
   };
 
   const getCart = () => {
+    setIsloading(true);
+
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
@@ -120,11 +128,14 @@ export default props => {
         if (response.data.success) {
           setOrderList(response.data.data.carts);
           setTotalPrice(response.data.data.final_total);
+          setIsloading(false);
         }
       });
   };
 
   const deleteCartOrder = id => {
+    setIsloading(true);
+
     axios
       .delete(
         `${process.env.REACT_APP_API}/api/${
@@ -135,11 +146,14 @@ export default props => {
         console.log('deleteCartOrder ', response.data.message);
         if (response.data.success) {
           getCart();
+          setIsloading(false);
         }
       });
   };
 
   const sendOrderForm = orderForm => {
+    setIsloading(true);
+
     axios
       .post(
         `${process.env.REACT_APP_API}/api/${
@@ -150,6 +164,7 @@ export default props => {
       .then(response => {
         console.log('sendOrderForm', response.data.message, response.data);
         setOrderId(response.data.orderId);
+        setIsloading(false);
         if (response.data.success) {
           getCart();
         }
@@ -157,6 +172,8 @@ export default props => {
   };
 
   const confirmPayment = id => {
+    setIsloading(true);
+
     axios
       .post(
         `${process.env.REACT_APP_API}/api/${
@@ -165,15 +182,19 @@ export default props => {
       )
       .then(response => {
         console.log(`confirmPayment ${id}`, response.data.message);
+        setIsloading(false);
       });
   };
 
   // Admin
   const handleLogin = user => {
+    setIsloading(true);
+
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
       .then(response => {
         console.log('handleLogin ', response.data.message);
+        setIsloading(false);
         if (response.data.success === true) {
           setIsLogin(true);
         }
@@ -181,8 +202,11 @@ export default props => {
   };
 
   const handleLogout = user => {
+    setIsloading(true);
+
     axios.post(`${process.env.REACT_APP_API}/logout`, user).then(response => {
       console.log('handleLogout ', response.data.message);
+      setIsloading(false);
       if (response.data.success) {
         setIsLogin(false);
       }
@@ -236,6 +260,8 @@ export default props => {
   };
 
   const uploadNewProduct = () => {
+    setIsloading(true);
+
     axios
       .post(
         `${process.env.REACT_APP_API}/api/${
@@ -248,6 +274,7 @@ export default props => {
           `uploadNewProduct ${productForm.title}`,
           response.data.message
         );
+        setIsloading(false);
         if (response.data.success) {
           getAllProducts();
           setIsModalOpen(false);
@@ -266,6 +293,8 @@ export default props => {
   };
 
   const updateProduct = id => {
+    setIsloading(true);
+
     axios
       .put(
         `${process.env.REACT_APP_API}/api/${
@@ -278,6 +307,7 @@ export default props => {
           `updateProduct ${productForm.title}`,
           response.data.message
         );
+        setIsloading(false);
         if (response.data.success) {
           getAllProducts();
           setIsModalOpen(false);
@@ -290,6 +320,8 @@ export default props => {
   };
 
   const deleteProduct = id => {
+    setIsloading(true);
+
     axios
       .delete(
         `${process.env.REACT_APP_API}/api/${
@@ -298,6 +330,7 @@ export default props => {
       )
       .then(response => {
         console.log(`deleteProduct ${id}`, response.data.message);
+        setIsloading(false);
         if (response.data.success) {
           getAllProducts();
         } else {
@@ -308,6 +341,8 @@ export default props => {
   };
 
   const getOrders = () => {
+    setIsloading(true);
+
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -317,11 +352,14 @@ export default props => {
       .then(response => {
         console.log('getOrders ', response.data.success);
         console.log('getOrders: setOrders ', response.data.orders);
+        setIsloading(false);
         // setOrders(response.data.orders);
       });
   };
 
   const editOrederDetail = id => {
+    setIsloading(true);
+
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -331,11 +369,14 @@ export default props => {
       .then(response => {
         setOrderDetail(response.data);
         setIsOrderModalOpen(true);
+        setIsloading(false);
         console.log('editOrederDetail ', response.data);
       });
   };
 
   const updateOrderDetail = id => {
+    setIsloading(true);
+
     axios
       .put(
         `${process.env.REACT_APP_API}/api/${
@@ -345,6 +386,7 @@ export default props => {
       )
       .then(response => {
         console.log(`order id ${orderDetail.id}`, response.data.message);
+        setIsloading(false);
         // if (response.data.success) {
         //   getAllProducts();
         //   setIsModalOpen(false);
@@ -358,6 +400,8 @@ export default props => {
 
   const value = {
     isLaptop,
+    isLoading,
+    setIsloading,
     menuOpen,
     setMenuOpen,
     isModalOpen,

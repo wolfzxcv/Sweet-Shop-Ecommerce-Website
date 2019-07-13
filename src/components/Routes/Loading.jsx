@@ -1,16 +1,18 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Flex, Text } from 'rebass';
+import { Box, Flex, Text } from 'rebass';
 import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 
 const Loading = () => {
   return (
-    <StyledFlex justifyContent='center' alignItems='center'>
-      <Rotate>
-        <LoaderAlt />
-      </Rotate>
-      <Text fontSize='30px'>Now Loading...</Text>
-    </StyledFlex>
+    <StyledBox>
+      <StyledFlex justifyContent='center' alignItems='center'>
+        <Rotate>
+          <LoaderAlt />
+        </Rotate>
+        <Text fontSize='30px'>Now Loading...</Text>
+      </StyledFlex>
+    </StyledBox>
   );
 };
 
@@ -34,8 +36,16 @@ const Rotate = styled.div`
 
 const StyledFlex = styled(Flex)`
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.4);
+`;
+
+const StyledBox = styled(Box)`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
 `;
 
 export default Loading;

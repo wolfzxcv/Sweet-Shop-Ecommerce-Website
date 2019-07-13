@@ -20,7 +20,7 @@ const Footer = lazy(() => import('../Footer/Footer'));
 const PageNotFound = lazy(() => import('../PageNotFound/PageNotFound'));
 
 const Layout = () => {
-  const { isLogin } = useContext(SharedContext);
+  const { isLogin, isLoading } = useContext(SharedContext);
   return (
     <Suspense fallback={<Loading />}>
       <Router>
@@ -30,7 +30,6 @@ const Layout = () => {
           <Route component={Home} exact path='/Sweet-for-happiness/' />
           <Route component={Login} exact path='/Sweet-for-happiness/login' />
           <Route component={Cart} path='/Sweet-for-happiness/cart' />
-          <Route component={Loading} path='/Sweet-for-happiness/loading' />
           <Route
             component={Checkout}
             exact
@@ -55,6 +54,7 @@ const Layout = () => {
           />
           <Route component={PageNotFound} />
         </Switch>
+        {isLoading && <Loading />}
         {!isLogin && <Footer />}
       </Router>
     </Suspense>
