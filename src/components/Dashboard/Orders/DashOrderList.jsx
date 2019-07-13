@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashOrderList = ({ id, create_at, email, tel, total, is_paid }) => {
+const DashOrderList = ({ id, create_at, name, email, tel, total, is_paid }) => {
   const { editOrederDetail } = useContext(SharedContext);
 
   const time = new Date(create_at * 1000);
@@ -15,12 +15,13 @@ const DashOrderList = ({ id, create_at, email, tel, total, is_paid }) => {
       alignItems='center'
     >
       <div className='wide'>{time.toLocaleString()}</div>
+      <div className='wide'>{name}</div>
       <div className='wider'>{email}</div>
       <div className='wide'>{tel}</div>
 
       <Flex justifyContent='flex-end'>{total}</Flex>
-      <Flex className='enabled' justifyContent='center'>
-        {is_paid === 'false' ? 'NO' : 'YES'}
+      <Flex className='paid' justifyContent='center'>
+        {is_paid === false ? 'NO' : 'YES'}
       </Flex>
 
       <Flex
@@ -39,10 +40,12 @@ const DashOrderList = ({ id, create_at, email, tel, total, is_paid }) => {
 
 DashOrderList.propTypes = {
   id: PropTypes.string.isRequired,
-  create_at: PropTypes.number.isRequired,
+  create_at: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   tel: PropTypes.string.isRequired,
-  total: PropTypes.number.isRequired,
+  total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   is_paid: PropTypes.bool.isRequired,
 };
 
@@ -74,8 +77,8 @@ const StyledFlex = styled(Flex)`
     flex: 1;
   }
 
-  .enabled {
-    color: ${props => (props.isEnabled === '0' ? 'red' : 'green')};
+  .paid {
+    color: ${props => (props.is_paid === false ? 'red' : 'green')};
   }
 
   .add-hover {

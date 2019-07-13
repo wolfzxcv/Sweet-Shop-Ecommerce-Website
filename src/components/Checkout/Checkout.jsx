@@ -16,8 +16,8 @@ const Checkout = ({ className }) => {
     sendOrderForm,
     orderId,
   } = useContext(SharedContext);
-  console.log('orderId  ', orderId);
-  console.log(orderForm);
+  console.log('orderId=  ', orderId);
+  console.log('orderForm= ', orderForm);
 
   if (orderId.length > 0) {
     return <Redirect to={`/Sweet-for-happiness/checkout/goNorway${orderId}`} />;

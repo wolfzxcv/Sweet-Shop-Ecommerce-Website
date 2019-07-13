@@ -14,7 +14,7 @@ const DashSidebar = ({ className }) => {
       </Link>
       <div>Coupon</div>
 
-      <div>Back Home</div>
+      <div> I don&apos;t know </div>
     </div>
   );
 };

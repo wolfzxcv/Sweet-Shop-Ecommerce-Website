@@ -20,6 +20,7 @@ const DashOrder = ({ className }) => {
           <Flex className='wide' pl='10px'>
             Created at
           </Flex>
+          <Flex className='wide'>Name</Flex>
           <div className='wider'>E-mail</div>
           <Flex className='wide'>Tel</Flex>
           <Flex justifyContent='center'>Price</Flex>
@@ -33,6 +34,7 @@ const DashOrder = ({ className }) => {
               key={order.id}
               id={order.id}
               create_at={order.create_at}
+              name={order.user.name}
               email={order.user.email}
               tel={order.user.tel}
               total={order.total}

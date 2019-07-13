@@ -13,8 +13,6 @@ const DashOrderModal = () => {
     updateOrderDetail,
   } = useContext(SharedContext);
 
-  console.log(orderDetail);
-
   const createdTime = new Date(orderDetail.order.create_at * 1000);
   const paidTime = new Date(orderDetail.order.paid_date * 1000);
 
@@ -38,14 +36,18 @@ const DashOrderModal = () => {
             <Text>{orderDetail.order.total}</Text>
           </Flex>
 
-          <Flex>
-            <Text width='200px'>Paid at:</Text>
-            <Text>{paidTime.toLocaleString()}</Text>
-          </Flex>
+          {paidTime.toLocaleString() !== 'Invalid Date' && (
+            <Flex>
+              <Text width='200px'>Paid at:</Text>
+              <Text>{paidTime.toLocaleString()}</Text>
+            </Flex>
+          )}
 
           <Flex>
             <Text width='200px'>Payment status:</Text>
-            <Text>{orderDetail.order.is_paid}</Text>
+            <Text>
+              {orderDetail.order.is_paid === true ? 'Paid' : 'Need to pay'}
+            </Text>
           </Flex>
 
           <div>
@@ -97,7 +99,7 @@ const DashOrderModal = () => {
             <input
               type='text'
               placeholder='Edit recipients phone munber'
-              size='20'
+              size='50'
               value={orderDetail.order.user.tel}
               onChange={e =>
                 setOrderDetail({
@@ -115,11 +117,33 @@ const DashOrderModal = () => {
           </div>
 
           <div>
+            <Text width='200px'>Address</Text>
+            <input
+              type='text'
+              placeholder='Edit recipients address'
+              size='50'
+              value={orderDetail.order.user.address}
+              onChange={e =>
+                setOrderDetail({
+                  ...orderDetail,
+                  order: {
+                    ...orderDetail.order,
+                    user: {
+                      ...orderDetail.order.user,
+                      address: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
+          </div>
+
+          <div>
             <Text width='200px'>Message</Text>
             <textarea
               placeholder='Edit message...'
               rows='3'
-              cols='60'
+              cols='52'
               value={orderDetail.order.message}
               onChange={e =>
                 setOrderDetail({
@@ -141,7 +165,7 @@ const DashOrderModal = () => {
           ml='30px'
           width='150px'
           bg='green'
-          onClick={() => updateOrderDetail(orderDetail.id)}
+          onClick={updateOrderDetail}
         >
           Submit
         </StyledButton>
