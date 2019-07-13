@@ -353,13 +353,11 @@ export default props => {
         console.log('getOrders ', response.data.success);
         console.log('getOrders: setOrders ', response.data.orders);
         setIsloading(false);
-        // setOrders(response.data.orders);
+        setOrders(response.data.orders);
       });
   };
 
   const editOrederDetail = id => {
-    setIsloading(true);
-
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -369,32 +367,30 @@ export default props => {
       .then(response => {
         setOrderDetail(response.data);
         setIsOrderModalOpen(true);
-        setIsloading(false);
         console.log('editOrederDetail ', response.data);
       });
   };
 
-  const updateOrderDetail = id => {
+  const updateOrderDetail = () => {
     setIsloading(true);
-
+    setIsOrderModalOpen(false);
     axios
       .put(
         `${process.env.REACT_APP_API}/api/${
           process.env.REACT_APP_CUSTOM
-        }/admin/order/${id}`,
-        { data: orderDetail }
+        }/admin/order/${orderDetail.order.id}`,
+        { data: orderDetail.order }
       )
       .then(response => {
-        console.log(`order id ${orderDetail.id}`, response.data.message);
+        console.log(
+          `updateOrderDetail id ${orderDetail.order.id}`,
+          response.data.message
+        );
         setIsloading(false);
-        // if (response.data.success) {
-        //   getAllProducts();
-        //   setIsModalOpen(false);
-        //   resetProductForm();
-        // } else {
-        //   setIsModalOpen(false);
-        //   handleLogout();
-        // }
+        if (response.data.success) {
+          getOrders();
+          setIsModalOpen(false);
+        }
       });
   };
 
