@@ -11,8 +11,8 @@ const DashProductModal = () => {
     productForm,
     setProductForm,
     updateProduct,
-    handleForm,
-    resetForm,
+    handleProductForm,
+    resetProductForm,
   } = useContext(SharedContext);
 
   return (
@@ -140,27 +140,28 @@ const DashProductModal = () => {
       <Flex justifyContent='flex-end'>
         <StyledButton
           m={1}
-          width='150px'
-          bg='green'
-          onClick={resetForm}
-          onKeyDown={e => {
-            if (e.keyCode === 27) setIsModalOpen(false);
-          }}
-        >
-          Close
-        </StyledButton>
-        <StyledButton
-          m={1}
           ml='30px'
           width='150px'
           bg='green'
           onClick={
             productForm.id === ''
-              ? () => handleForm(productForm)
+              ? () => handleProductForm(productForm)
               : () => updateProduct(productForm.id)
           }
         >
           Submit
+        </StyledButton>
+        <StyledButton
+          m={1}
+          width='150px'
+          bg='orange'
+          color='green'
+          onClick={resetProductForm}
+          onKeyDown={e => {
+            if (e.keyCode === 27) setIsModalOpen(false);
+          }}
+        >
+          Close
         </StyledButton>
       </Flex>
     </StyledModal>

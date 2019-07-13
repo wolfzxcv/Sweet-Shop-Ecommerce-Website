@@ -7,7 +7,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { SharedContext } from '../../contexts/SharedContext';
 
 const CartList = ({ className, id, title, image, price, qty, total }) => {
-  const { deleteOrder } = useContext(SharedContext);
+  const { deleteCartOrder } = useContext(SharedContext);
   return (
     <div className={className}>
       <div>
@@ -27,8 +27,8 @@ const CartList = ({ className, id, title, image, price, qty, total }) => {
         </div>
         <div
           className='trash'
-          onClick={() => deleteOrder(id)}
-          onKeyDown={deleteOrder}
+          onClick={() => deleteCartOrder(id)}
+          onKeyDown={deleteCartOrder}
           role='button'
           tabIndex='0'
         >

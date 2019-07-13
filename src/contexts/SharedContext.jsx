@@ -6,32 +6,24 @@ import { Redirect } from 'react-router-dom';
 export const SharedContext = createContext();
 
 export default props => {
+  // Display  setIsOrderModalOpen
   const isLaptop = useMedia({ minWidth: 769 });
+  const [isLoading, setIsloading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState({ username: '', password: '' });
-  const [isLogin, setIsLogin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [item, setItem] = useState({});
-  const [select, setSelect] = useState('');
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [page, setPage] = useState(0);
-  const [amount, setAmount] = useState(1);
-  const [orderList, setOrderList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [select, setSelect] = useState('');
   const [orderId, setOrderId] = useState('');
-  const [productForm, setProductForm] = useState({
-    id: '',
-    title: '',
-    category: '',
-    is_enabled: 1,
-    price: '',
-    unit: '',
-    description: '',
-    content: '',
-    image: '',
-    imageUrl: '',
-  });
+  const [amount, setAmount] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // Products
+  const [product, setProduct] = useState({});
+  const [products, setProducts] = useState([]);
+
+  // Orders & Cart
+  const [orderList, setOrderList] = useState([]);
   const [orderForm, setOrderForm] = useState({
     user: {
       name: ' ',
@@ -66,7 +58,27 @@ export default props => {
     },
   });
 
+  // Admin
+  const [user, setUser] = useState({ username: '', password: '' });
+  const [isLogin, setIsLogin] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [productForm, setProductForm] = useState({
+    id: '',
+    title: '',
+    category: '',
+    is_enabled: 1,
+    price: '',
+    unit: '',
+    description: '',
+    content: '',
+    image: '',
+    imageUrl: '',
+  });
+
+  // Functions Part Start from Here
+  // Products
   const getAllProducts = () => {
+    setIsloading(true);
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -76,14 +88,113 @@ export default props => {
       .then(response => {
         console.log('getAllProducts ', response.data.success);
         setProducts(response.data.products);
+        setIsloading(false);
       });
   };
 
+  // Orders & Cart
+  const addToCart = (id, qty = 1) => {
+    setIsloading(true);
+
+    const cart = {
+      product_id: id,
+      qty,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
+        { data: cart }
+      )
+      .then(response => {
+        console.log('addToCart ', response.data.message);
+        if (response.data.success) {
+          getCart();
+          setAmount(1);
+          setIsloading(false);
+        }
+      });
+  };
+
+  const getCart = () => {
+    setIsloading(true);
+
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
+      )
+      .then(response => {
+        console.log('getCart ', response.data.success);
+        if (response.data.success) {
+          setOrderList(response.data.data.carts);
+          setTotalPrice(response.data.data.final_total);
+          setIsloading(false);
+        }
+      });
+  };
+
+  const deleteCartOrder = id => {
+    setIsloading(true);
+
+    axios
+      .delete(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/cart/${id}`
+      )
+      .then(response => {
+        console.log('deleteCartOrder ', response.data.message);
+        if (response.data.success) {
+          getCart();
+          setIsloading(false);
+        }
+      });
+  };
+
+  const sendOrderForm = orderForm => {
+    setIsloading(true);
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/order`,
+        { data: orderForm }
+      )
+      .then(response => {
+        console.log('sendOrderForm', response.data.message, response.data);
+        setOrderId(response.data.orderId);
+        setIsloading(false);
+        if (response.data.success) {
+          getCart();
+        }
+      });
+  };
+
+  const confirmPayment = id => {
+    setIsloading(true);
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/pay/${id}`
+      )
+      .then(response => {
+        console.log(`confirmPayment ${id}`, response.data.message);
+        setIsloading(false);
+      });
+  };
+
+  // Admin
   const handleLogin = user => {
+    setIsloading(true);
+
     axios
       .post(`${process.env.REACT_APP_API}/admin/signin`, user)
       .then(response => {
         console.log('handleLogin ', response.data.message);
+        setIsloading(false);
         if (response.data.success === true) {
           setIsLogin(true);
         }
@@ -91,8 +202,11 @@ export default props => {
   };
 
   const handleLogout = user => {
+    setIsloading(true);
+
     axios.post(`${process.env.REACT_APP_API}/logout`, user).then(response => {
       console.log('handleLogout ', response.data.message);
+      setIsloading(false);
       if (response.data.success) {
         setIsLogin(false);
       }
@@ -111,7 +225,7 @@ export default props => {
     }
   };
 
-  const handleForm = () => {
+  const handleProductForm = () => {
     if (
       productForm.title.trim().length > 5 &&
       productForm.category.trim().length > 0 &&
@@ -129,7 +243,7 @@ export default props => {
     }
   };
 
-  const resetForm = () => {
+  const resetProductForm = () => {
     setProductForm({
       id: '',
       title: '',
@@ -146,6 +260,8 @@ export default props => {
   };
 
   const uploadNewProduct = () => {
+    setIsloading(true);
+
     axios
       .post(
         `${process.env.REACT_APP_API}/api/${
@@ -158,14 +274,15 @@ export default props => {
           `uploadNewProduct ${productForm.title}`,
           response.data.message
         );
+        setIsloading(false);
         if (response.data.success) {
           getAllProducts();
           setIsModalOpen(false);
-          resetForm();
+          resetProductForm();
         } else {
           setIsModalOpen(false);
           handleLogout();
-          resetForm();
+          resetProductForm();
         }
       });
   };
@@ -176,6 +293,8 @@ export default props => {
   };
 
   const updateProduct = id => {
+    setIsloading(true);
+
     axios
       .put(
         `${process.env.REACT_APP_API}/api/${
@@ -188,10 +307,11 @@ export default props => {
           `updateProduct ${productForm.title}`,
           response.data.message
         );
+        setIsloading(false);
         if (response.data.success) {
           getAllProducts();
           setIsModalOpen(false);
-          resetForm();
+          resetProductForm();
         } else {
           setIsModalOpen(false);
           handleLogout();
@@ -200,6 +320,8 @@ export default props => {
   };
 
   const deleteProduct = id => {
+    setIsloading(true);
+
     axios
       .delete(
         `${process.env.REACT_APP_API}/api/${
@@ -208,6 +330,7 @@ export default props => {
       )
       .then(response => {
         console.log(`deleteProduct ${id}`, response.data.message);
+        setIsloading(false);
         if (response.data.success) {
           getAllProducts();
         } else {
@@ -217,85 +340,9 @@ export default props => {
       });
   };
 
-  const addToCart = (id, qty = 1) => {
-    const cart = {
-      product_id: id,
-      qty,
-    };
+  const getOrders = () => {
+    setIsloading(true);
 
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`,
-        { data: cart }
-      )
-      .then(response => {
-        console.log('addToCart ', response.data.message);
-        if (response.data.success) {
-          getCart();
-          setAmount(1);
-        }
-      });
-  };
-
-  const getCart = () => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API}/api/${process.env.REACT_APP_CUSTOM}/cart`
-      )
-      .then(response => {
-        console.log('getCart ', response.data.success);
-        if (response.data.success) {
-          setOrderList(response.data.data.carts);
-          setTotalPrice(response.data.data.final_total);
-        }
-      });
-  };
-
-  const deleteOrder = id => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/cart/${id}`
-      )
-      .then(response => {
-        console.log('deleteOrder ', response.data.message);
-        if (response.data.success) {
-          getCart();
-        }
-      });
-  };
-
-  const sendOrderForm = orderForm => {
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/order`,
-        { data: orderForm }
-      )
-      .then(response => {
-        console.log('sendOrderForm', response.data.message, response.data);
-        setOrderId(response.data.orderId);
-        if (response.data.success) {
-          getCart();
-        }
-      });
-  };
-
-  const confirmPayment = id => {
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/api/${
-          process.env.REACT_APP_CUSTOM
-        }/pay/${id}`
-      )
-      .then(response => {
-        console.log(`confirmPayment ${id}`, response.data.message);
-      });
-  };
-
-  const getAllOrders = () => {
     axios
       .get(
         `${process.env.REACT_APP_API}/api/${
@@ -303,62 +350,116 @@ export default props => {
         }/admin/orders?page=:page`
       )
       .then(response => {
-        console.log('getAllOrders ', response.data.success);
-        console.log('getAllOrders serOrders', response.data.orders);
-        setOrders(response.data.orders);
+        console.log('getOrders ', response.data.success);
+        console.log('getOrders: setOrders ', response.data.orders);
+        setIsloading(false);
+        // setOrders(response.data.orders);
+      });
+  };
+
+  const editOrederDetail = id => {
+    setIsloading(true);
+
+    axios
+      .get(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/order/${id}`
+      )
+      .then(response => {
+        setOrderDetail(response.data);
+        setIsOrderModalOpen(true);
+        setIsloading(false);
+        console.log('editOrederDetail ', response.data);
+      });
+  };
+
+  const updateOrderDetail = id => {
+    setIsloading(true);
+
+    axios
+      .put(
+        `${process.env.REACT_APP_API}/api/${
+          process.env.REACT_APP_CUSTOM
+        }/admin/order/${id}`,
+        { data: orderDetail }
+      )
+      .then(response => {
+        console.log(`order id ${orderDetail.id}`, response.data.message);
+        setIsloading(false);
+        // if (response.data.success) {
+        //   getAllProducts();
+        //   setIsModalOpen(false);
+        //   resetProductForm();
+        // } else {
+        //   setIsModalOpen(false);
+        //   handleLogout();
+        // }
       });
   };
 
   const value = {
     isLaptop,
+    isLoading,
+    setIsloading,
     menuOpen,
     setMenuOpen,
-    user,
-    setUser,
+    isModalOpen,
+    setIsModalOpen,
+    isOrderModalOpen,
+    setIsOrderModalOpen,
+    page,
+    setPage,
+    select,
+    setSelect,
+    orderId,
+    setOrderId,
     amount,
     setAmount,
+    totalPrice,
+    setTotalPrice,
+
+    product,
+    setProduct,
+    products,
+    setProducts,
+
     orderList,
     setOrderList,
     orderForm,
     setOrderForm,
-    orderId,
-    setOrderId,
-    totalPrice,
-    setTotalPrice,
     orderDetail,
     setOrderDetail,
-    productForm,
-    setProductForm,
-    products,
-    setProducts,
-    orders,
-    setOrders,
-    item,
-    setItem,
-    select,
-    setSelect,
-    page,
-    setPage,
+
+    user,
+    setUser,
     isLogin,
     setIsLogin,
-    isModalOpen,
-    setIsModalOpen,
+    productForm,
+    setProductForm,
+    orders,
+    setOrders,
 
     getAllProducts,
+
+    addToCart,
+    getCart,
+    deleteCartOrder,
+    sendOrderForm,
+    confirmPayment,
+
     handleLogin,
     handleLogout,
     checkIfLogin,
-    handleForm,
-    resetForm,
+    handleProductForm,
+    resetProductForm,
     editProduct,
     updateProduct,
     deleteProduct,
-    addToCart,
-    getCart,
-    deleteOrder,
-    sendOrderForm,
-    confirmPayment,
-    getAllOrders,
+
+    getOrders,
+    editOrederDetail,
+    updateOrderDetail,
   };
 
   return <SharedContext.Provider value={value} {...props} />;

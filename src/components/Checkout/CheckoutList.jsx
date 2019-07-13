@@ -16,7 +16,7 @@ const CheckoutList = ({ title, qty, total }) => {
 CheckoutList.propTypes = {
   title: PropTypes.string.isRequired,
   qty: PropTypes.number.isRequired,
-  total: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
 };
 
 const StyledFlex = styled(Flex)`

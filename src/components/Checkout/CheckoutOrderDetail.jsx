@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -100,6 +101,7 @@ const CheckoutOrderDetail = ({ match }) => {
             confirmPayment(orderDetail.order.id);
             getOrederDetail();
           }}
+          disabled={orderDetail.order.is_paid === true}
           width={['97vw', '390px']}
           bg='green'
           fontSize='26px'
@@ -108,6 +110,18 @@ const CheckoutOrderDetail = ({ match }) => {
             ? 'Payment Completed'
             : 'Confirm Payment'}
         </StyledButton>
+        {orderDetail.order.is_paid && (
+          <Link to='/Sweet-for-happiness/'>
+            <StyledButton
+              width={['97vw', '390px']}
+              bg='green'
+              fontSize='26px'
+              my={5}
+            >
+              Back to Main Page
+            </StyledButton>
+          </Link>
+        )}
       </Flex>
     </Box>
   );

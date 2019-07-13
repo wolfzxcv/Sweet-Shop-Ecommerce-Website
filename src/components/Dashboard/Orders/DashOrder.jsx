@@ -4,28 +4,27 @@ import PropTypes from 'prop-types';
 import { ModalProvider } from 'styled-react-modal';
 import { Flex } from 'rebass';
 import DashOrderList from './DashOrderList';
-// import DashProductModal from './DashProductModal';
+import DashOrderModal from './DashOrderModal';
 import { SharedContext } from '../../../contexts/SharedContext';
 
 const DashOrder = ({ className }) => {
-  const { getAllOrders, orders } = useContext(SharedContext);
+  const { getOrders, orders } = useContext(SharedContext);
 
   useEffect(() => {
-    console.log('object');
-    getAllOrders();
+    getOrders();
   }, []);
   return (
     <ModalProvider>
       <div className={className}>
         <div className='table-head'>
           <Flex className='wide' pl='10px'>
-            Category
+            Created at
           </Flex>
           <div className='wider'>E-mail</div>
-          <div>Price</div>
-          <div>Paid</div>
-          <div>Edit</div>
-          <div>Delete</div>
+          <Flex className='wide'>Tel</Flex>
+          <Flex justifyContent='center'>Price</Flex>
+          <Flex justifyContent='center'>Paid</Flex>
+          <Flex justifyContent='center'>Edit</Flex>
         </div>
 
         <div className='order-list'>
@@ -35,13 +34,14 @@ const DashOrder = ({ className }) => {
               id={order.id}
               create_at={order.create_at}
               email={order.user.email}
+              tel={order.user.tel}
               total={order.total}
               is_paid={order.is_paid}
             />
           ))}
         </div>
 
-        {/* <DashOrderModal /> */}
+        <DashOrderModal />
       </div>
     </ModalProvider>
   );
@@ -54,7 +54,7 @@ DashOrder.propTypes = {
 const StyledDashOrder = styled(DashOrder)`
   margin-top: 42px;
   margin-bottom: 30px;
-  padding-right: 4px;
+  padding: 0 14px 0 10px;
   width: 100%;
 
   .table-head {
@@ -64,9 +64,11 @@ const StyledDashOrder = styled(DashOrder)`
     display: flex;
     justify-content: center;
     .wide {
+      padding-left: 10px;
       flex: 2;
     }
     .wider {
+      padding-left: 10px;
       flex: 5;
     }
     div {
