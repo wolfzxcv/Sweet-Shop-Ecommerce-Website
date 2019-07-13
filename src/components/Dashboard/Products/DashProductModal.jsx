@@ -11,7 +11,7 @@ const DashProductModal = () => {
     productForm,
     setProductForm,
     updateProduct,
-    handleProductForm,
+    validateProductForm,
     resetProductForm,
   } = useContext(SharedContext);
 
@@ -145,7 +145,7 @@ const DashProductModal = () => {
           bg='green'
           onClick={
             productForm.id === ''
-              ? () => handleProductForm(productForm)
+              ? () => validateProductForm(productForm)
               : () => updateProduct(productForm.id)
           }
         >

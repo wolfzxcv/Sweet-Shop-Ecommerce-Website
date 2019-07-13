@@ -151,6 +151,24 @@ export default props => {
       });
   };
 
+  const validateOrderForm = orderForm => {
+    if (
+      orderForm.user.name.trim().length > 0 &&
+      orderForm.user.email.trim().length > 0 &&
+      orderForm.user.tel.trim().length > 0 &&
+      orderForm.user.address.trim().length > 0 &&
+      orderForm.message.trim().length > 0 &&
+      typeof Number(orderForm.user.tel) === 'number' &&
+      /\S+@\S+\.\S+/.test(orderForm.user.email)
+    ) {
+      sendOrderForm(orderForm);
+    } else {
+      alert(
+        `All of the info must not be empty\nPhone number must be only numbers\nEmail must be valid`
+      );
+    }
+  };
+
   const sendOrderForm = orderForm => {
     setIsloading(true);
 
@@ -225,7 +243,7 @@ export default props => {
     }
   };
 
-  const handleProductForm = () => {
+  const validateProductForm = () => {
     if (
       productForm.title.trim().length > 5 &&
       productForm.category.trim().length > 0 &&
@@ -441,13 +459,14 @@ export default props => {
     addToCart,
     getCart,
     deleteCartOrder,
+    validateOrderForm,
     sendOrderForm,
     confirmPayment,
 
     handleLogin,
     handleLogout,
     checkIfLogin,
-    handleProductForm,
+    validateProductForm,
     resetProductForm,
     editProduct,
     updateProduct,
