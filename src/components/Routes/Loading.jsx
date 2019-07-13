@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Box, Flex, Text } from 'rebass';
-
 import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 
 const Loading = () => {
@@ -26,7 +25,7 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `;
-// Here we create a component that will rotate everything we pass in over two seconds
+// Here we create a component that will rotate everything we pass in over 1 second
 const Rotate = styled.div`
   width: 100px;
   height: 100px;
