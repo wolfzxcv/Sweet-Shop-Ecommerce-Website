@@ -158,7 +158,7 @@ export default props => {
       orderForm.user.tel.trim().length > 0 &&
       orderForm.user.address.trim().length > 0 &&
       orderForm.message.trim().length > 0 &&
-      typeof Number(orderForm.user.tel) === 'number' &&
+      /^[0-9]*$/.test(orderForm.user.tel) &&
       /\S+@\S+\.\S+/.test(orderForm.user.email)
     ) {
       sendOrderForm(orderForm);
@@ -245,7 +245,7 @@ export default props => {
 
   const validateProductForm = () => {
     if (
-      productForm.title.trim().length > 5 &&
+      productForm.title.trim().length > 3 &&
       productForm.category.trim().length > 0 &&
       productForm.price < 1000 &&
       productForm.price > 0 &&

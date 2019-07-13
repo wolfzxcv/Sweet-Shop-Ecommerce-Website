@@ -31,7 +31,7 @@ const DashOrderList = ({
 
       <Flex justifyContent='flex-end'>{total}</Flex>
       <Flex className='paid' justifyContent='center'>
-        {is_paid === 'false' ? 'NO' : 'YES'}
+        {is_paid === false ? 'NO' : 'YES'}
       </Flex>
 
       <Flex
@@ -89,7 +89,7 @@ const StyledDashOrderList = styled(DashOrderList)`
   }
 
   .paid {
-    color: ${props => (props.is_paid === 'false' ? 'red' : 'green')};
+    color: ${props => (props.is_paid === false ? 'red' : 'green')};
   }
 
   .add-hover {
