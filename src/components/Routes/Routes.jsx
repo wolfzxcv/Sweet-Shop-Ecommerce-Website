@@ -6,6 +6,7 @@ import { SharedContext } from '../../contexts/SharedContext';
 
 const Header = lazy(() => import('../Header/Header'));
 const CartOnScreen = lazy(() => import('../Cart/CartOnScreen'));
+const GoBackOnScreen = lazy(() => import('./GoBackOnScreen'));
 const Login = lazy(() => import('../Login/Login'));
 const Cart = lazy(() => import('../Cart/Cart'));
 const Checkout = lazy(() => import('../Checkout/Checkout'));
@@ -26,6 +27,7 @@ const Layout = () => {
       <Router>
         {!isLogin && <Header />}
         {!isLogin && <CartOnScreen />}
+        {!isLogin && <GoBackOnScreen />}
         <Switch>
           <Route component={Home} exact path='/Sweet-for-happiness/' />
           <Route component={Login} exact path='/Sweet-for-happiness/login' />

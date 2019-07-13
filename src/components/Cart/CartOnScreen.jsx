@@ -41,8 +41,6 @@ const CartOnScreen = () => {
   );
 };
 
-export default CartOnScreen;
-
 const StyledCartButton = styled.div`
   transition: 0.4s all;
   padding-top: 10px;
@@ -69,7 +67,7 @@ const StyledCartButton = styled.div`
     width: 80px;
     height: 60px;
     font-size: 46px;
-    bottom: 50px;
+    top: 40%;
     &:hover {
       transform: scale(1.3);
     }
@@ -87,6 +85,13 @@ const StyledCartButton = styled.div`
     height: 48px;
     font-size: 36px;
     top: 25px;
+    &:hover {
+      background: ${props => props.theme.colors.orange};
+      .cart-button-total {
+        border: 2px solid ${props => props.theme.colors.orange};
+        color: ${props => props.theme.colors.orange};
+      }
+    }
     .cart-button-total {
       width: 24px;
       height: 24px;
@@ -96,3 +101,5 @@ const StyledCartButton = styled.div`
     }
   }
 `;
+
+export default CartOnScreen;
