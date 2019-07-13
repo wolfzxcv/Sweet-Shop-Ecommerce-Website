@@ -13,7 +13,7 @@ const Checkout = ({ className }) => {
     orderList,
     orderForm,
     setOrderForm,
-    sendOrderForm,
+    validateOrderForm,
     orderId,
   } = useContext(SharedContext);
   console.log('orderId=  ', orderId);
@@ -184,8 +184,8 @@ const Checkout = ({ className }) => {
             {isLaptop && (
               <div
                 className='confirm'
-                onClick={() => sendOrderForm(orderForm)}
-                onKeyDown={sendOrderForm}
+                onClick={() => validateOrderForm(orderForm)}
+                onKeyDown={validateOrderForm}
                 role='button'
                 tabIndex='0'
               >
@@ -197,8 +197,8 @@ const Checkout = ({ className }) => {
         {!isLaptop && (
           <div
             className='confirm'
-            onClick={() => sendOrderForm(orderForm)}
-            onKeyDown={sendOrderForm}
+            onClick={() => validateOrderForm(orderForm)}
+            onKeyDown={validateOrderForm}
             role='button'
             tabIndex='0'
           >

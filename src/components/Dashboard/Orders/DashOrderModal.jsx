@@ -45,9 +45,21 @@ const DashOrderModal = () => {
 
           <Flex>
             <Text width='200px'>Payment status:</Text>
-            <Text>
-              {orderDetail.order.is_paid === true ? 'Paid' : 'Need to pay'}
-            </Text>
+            <select
+              value={orderDetail.order.is_paid}
+              onChange={e =>
+                setOrderDetail({
+                  ...orderDetail,
+                  order: {
+                    ...orderDetail.order,
+                    is_paid: e.target.value,
+                  },
+                })
+              }
+            >
+              <option value='true'>YES</option>
+              <option value='false'>NO</option>
+            </select>
           </Flex>
 
           <div>

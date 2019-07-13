@@ -4,12 +4,22 @@ import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { SharedContext } from '../../../contexts/SharedContext';
 
-const DashOrderList = ({ id, create_at, name, email, tel, total, is_paid }) => {
+const DashOrderList = ({
+  className,
+  id,
+  create_at,
+  name,
+  email,
+  tel,
+  total,
+  is_paid,
+}) => {
   const { editOrederDetail } = useContext(SharedContext);
 
   const time = new Date(create_at * 1000);
   return (
-    <StyledFlex
+    <Flex
+      className={className}
       width='900px'
       justifyContent='space-between'
       alignItems='center'
@@ -21,7 +31,7 @@ const DashOrderList = ({ id, create_at, name, email, tel, total, is_paid }) => {
 
       <Flex justifyContent='flex-end'>{total}</Flex>
       <Flex className='paid' justifyContent='center'>
-        {is_paid === false ? 'NO' : 'YES'}
+        {is_paid === 'false' ? 'NO' : 'YES'}
       </Flex>
 
       <Flex
@@ -34,11 +44,12 @@ const DashOrderList = ({ id, create_at, name, email, tel, total, is_paid }) => {
       >
         Edit
       </Flex>
-    </StyledFlex>
+    </Flex>
   );
 };
 
 DashOrderList.propTypes = {
+  className: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   create_at: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     .isRequired,
@@ -46,10 +57,10 @@ DashOrderList.propTypes = {
   email: PropTypes.string.isRequired,
   tel: PropTypes.string.isRequired,
   total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  is_paid: PropTypes.bool.isRequired,
+  is_paid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
 };
 
-const StyledFlex = styled(Flex)`
+const StyledDashOrderList = styled(DashOrderList)`
   padding: 0 14px 0 10px;
   width: 100%;
   border: 1px solid ${props => props.theme.colors.greenWhite};
@@ -78,7 +89,7 @@ const StyledFlex = styled(Flex)`
   }
 
   .paid {
-    color: ${props => (props.is_paid === false ? 'red' : 'green')};
+    color: ${props => (props.is_paid === 'false' ? 'red' : 'green')};
   }
 
   .add-hover {
@@ -90,4 +101,6 @@ const StyledFlex = styled(Flex)`
   }
 `;
 
-export default DashOrderList;
+StyledDashOrderList.displayName = 'DashOrderList';
+
+export default StyledDashOrderList;
