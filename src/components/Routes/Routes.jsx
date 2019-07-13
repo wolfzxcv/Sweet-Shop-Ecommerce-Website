@@ -30,6 +30,7 @@ const Layout = () => {
           <Route component={Home} exact path='/Sweet-for-happiness/' />
           <Route component={Login} exact path='/Sweet-for-happiness/login' />
           <Route component={Cart} path='/Sweet-for-happiness/cart' />
+          <Route component={Loading} path='/Sweet-for-happiness/loading' />
           <Route
             component={Checkout}
             exact
