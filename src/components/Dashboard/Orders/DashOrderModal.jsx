@@ -13,7 +13,7 @@ const DashOrderModal = () => {
     updateOrderDetail,
   } = useContext(SharedContext);
 
-  console.log(orderDetail);
+  console.log('orderDetail ', orderDetail);
 
   const createdTime = new Date(orderDetail.order.create_at * 1000);
   const paidTime = new Date(orderDetail.order.paid_date * 1000);
