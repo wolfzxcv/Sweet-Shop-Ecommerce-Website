@@ -52,7 +52,7 @@ const DashOrderModal = () => {
                   ...orderDetail,
                   order: {
                     ...orderDetail.order,
-                    is_paid: e.target.value,
+                    is_paid: JSON.parse(e.target.value),
                   },
                 })
               }
