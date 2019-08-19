@@ -20,7 +20,7 @@ const Dashboard = lazy(() => import('../Dashboard/Dashboard'));
 const Footer = lazy(() => import('../Footer/Footer'));
 const PageNotFound = lazy(() => import('../PageNotFound/PageNotFound'));
 
-const Layout = () => {
+const Routes = () => {
   const { isLogin, isLoading } = useContext(SharedContext);
   return (
     <Suspense fallback={<Loading />}>
@@ -63,4 +63,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default Routes;
